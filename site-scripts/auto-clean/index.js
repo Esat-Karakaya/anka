@@ -1,8 +1,6 @@
 import { handleEditable } from "./handle-editable";
 import { handleTextarea } from "./handle-textarea";
 
-console.log("hhheeeyyyyyoooooo")
-
 document.addEventListener("keyup", changeHandler);
 
 const prevVals = new Map();

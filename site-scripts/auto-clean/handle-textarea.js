@@ -4,7 +4,6 @@ import { fixTxt, getAlternatives, getLastGroupStart, PUNCTUATIONS, sortedLoopabl
 
 export function handleTextarea(textarea) {
     const alternatives = getAlternatives(textarea.value);
-    console.log(alternatives);
 
     const sorted = sortedLoopable(alternatives);
 

@@ -1,13 +1,19 @@
 function newGui(checking, id, applyHandle) {
 
     const guiStr=`
-        <div>
-            <button popovertarget="suggest${id}"  class="check-btn">✔️</button>
-            <div id="suggest${id}" popover class="suggester">
+        <div class="gui-container">
+            <label class="toggle-show">
+                <input type="checkbox">
+                <span class="toggle-gui">✔️</span>
+            </label>
+            <div id="suggest${id}" class="suggester">
                 <div class="foreign-suggest">
                     <p class="statusP">Yabancı kelime bulunmadı🎉</p>
                 </div>
-                <button class="applyBtn">Uygula</button>
+                <div class="actions" >
+                    <button class="applyBtn">Uygula</button>
+                    <button class="closeBtn">Kapat</button>
+                </div>
             </div>
         </div>
     `;
@@ -15,10 +21,21 @@ function newGui(checking, id, applyHandle) {
     const createdGui = 
     (new DOMParser().parseFromString(guiStr, "text/html")).querySelector("body>*"); 
 
-    createdGui.querySelector(".suggester").addEventListener("toggle", (event)=>{
-        if (event.newState === "open") {
+    const checkbox = createdGui
+    .querySelector('.toggle-show > input[type="checkbox"]');
+
+    // check when opened
+    checkbox.addEventListener("click", (event)=>{
+        if (checkbox.checked === true) {
             checking();
         }
+    });
+
+    // close button
+    createdGui
+    .querySelector('.closeBtn')
+    .addEventListener("click", ()=>{
+        checkbox.checked=false;
     });
 
     createdGui.querySelector(".applyBtn").addEventListener("click", applyHandle);
