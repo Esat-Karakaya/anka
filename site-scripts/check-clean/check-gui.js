@@ -11,8 +11,8 @@ function newGui(checking, id, applyHandle) {
                     <p class="statusP">Yabancı kelime bulunmadı🎉</p>
                 </div>
                 <div class="actions" >
-                    <button class="applyBtn">Uygula</button>
-                    <button class="closeBtn">Kapat</button>
+                    <div role="button" style="display: none" class="applyBtn">Uygula</div>
+                    <div role="button" class="closeBtn">Kapat</div>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@ function newGui(checking, id, applyHandle) {
     .querySelector('.toggle-show > input[type="checkbox"]');
 
     // check when opened
-    checkbox.addEventListener("click", (event)=>{
+    checkbox.addEventListener("click", ()=>{
         if (checkbox.checked === true) {
             checking();
         }
@@ -50,18 +50,25 @@ Adds new replacements
 Adds event listeners to checkboxes inside li's
 */
 function listAlternatives({replacements, container, badFoundMsg, noBadMsg, selectedsSet}) {
-    const p = container.querySelector("p");
+    const foreignSuggest = container.querySelector(".foreign-suggest");
+    
+    const applyBtn=container
+    .querySelector(".applyBtn")
+
+    const p = foreignSuggest.querySelector("p");
     const badWords = Object.keys(replacements);
 
     /* Remove old stuff */
-    const oldUls = container.querySelectorAll("ul");
+    const oldUls = foreignSuggest.querySelectorAll("ul");
     oldUls.forEach((ul)=>ul.remove());
 
     /* List words */
     if (badWords.length) {
         p.innerText = badFoundMsg;
+        applyBtn.style.display="inline-block";
     }else {
         p.innerText = noBadMsg;
+        applyBtn.style.display="none";
         return;
     }
 
@@ -105,7 +112,7 @@ function listAlternatives({replacements, container, badFoundMsg, noBadMsg, selec
         replaceList.appendChild(wordReplace);
     })
 
-    container.appendChild(replaceList);
+    foreignSuggest.appendChild(replaceList);
 }
 
 // creates a list item
@@ -119,7 +126,7 @@ function newListItem(str, checkHandle) {
     select.classList.add("checkOption");
     select.addEventListener("change", checkHandle);
 
-    li.appendChild(select);
+    li.prepend(select);
 
     return li;
 }

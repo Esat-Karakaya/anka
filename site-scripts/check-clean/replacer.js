@@ -1,15 +1,20 @@
 
 // recursively find text nodes
-function walkTxt(element, replacer) {
+function walkDiv(element, replacer) {
     const children=element.childNodes;
 
     children.forEach(child => {
         if (child.nodeType === 1) {
-            walkTxt(child, replacer);
+            walkDiv(child, replacer);
         }else if (child.nodeType === 3) {
             child.nodeValue=replacer(child.nodeValue);
         }
     });
+}
+
+// fix textarea
+function walkTextArea(element, replacer) {
+    element.value=replacer(element.value)
 }
 
 // replace foreign word inside writables
@@ -28,13 +33,17 @@ function localizeText(element, checkeds, originals) {
     // sorted desc to prevent shorter words to replace a portion of longer words
     const sorted = Object.entries(alternative).sort(comaparator);
 
-    walkTxt(element, 
-    (str)=>{ // replace foreign word inside text nodes
+    const replacer = (str)=>{ // replace foreign word inside text nodes
         for (const pair of sorted) {
             str = str.replaceAll(pair[0], pair[1]);
         }
         return str;
-    })
+    }
+    if (element.tagName==="DIV") {
+        walkDiv(element,replacer);
+        return;
+    }
+    walkTextArea(element,replacer)
 }
 
 function comaparator(a, b) {

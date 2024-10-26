@@ -1,36 +1,103 @@
 /* INITIAL CSS */
+.gui-container *{
+    all: unset;
+    color: black;
+    font-size: 16px;
+}
 
-.gui-container * { all: unset; }
-.gui-container * * { all: unset; }
-.gui-container * * * { all: unset; }
+.gui-container{
+    all:unset;
+}
 
 .gui-container ul{
-    all: unset;
     display: block;
     list-style-type: disc;
     margin-top: 1em;
     margin-bottom: 1 em;
     margin-left: 0;
     margin-right: 0;
-    padding-left: 40px;
+    padding-left: 5%;
 }
 
-.gui-container li {
-    all: unset;
-    display: list-item;
-}
+.gui-container li { display: list-item; }
 
-.gui-container button {
+.gui-container div[role="button"] {
     font-family: sans-serif;
     border: 1px solid black;
     border-radius: .5em;
     padding: .3em .5em;
     background-color: white;
     transition: border-radius 0.2s;
+
+    cursor: pointer;
+    user-select: none;
 }
 
-.gui-container button:active { border-radius: .9em; }
-.gui-container button:focus-visible { border-radius: .9em; }
+.gui-container div[role="button"]:active { border-radius: .9em; }
+.gui-container div[role="button"]:focus-visible { border-radius: .9em; }
+
+/* POPOVER */
+
+.suggester{
+    min-height: 10em;
+    width: 80%;
+    max-width: 25em;
+
+    border: none;
+    background-color: rgba(164, 255, 255, 0.541);
+    border-radius: 1em;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 8px black;
+    padding: 1em;
+
+    position: fixed;
+    z-index: 100000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.toggle-show:has(input:checked) + .suggester{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.foreign-suggest {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+}
+
+.statusP {
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+.suggester li {
+    display: flex;
+    align-items: center;
+    margin: 1em;
+    text-transform: capitalize; /* Remove localeCap before removing */
+    font-family: sans-serif;
+    width: 90%;
+}
+
+.checkOption { 
+    float: left;
+    margin-right: 1em;
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* checkboxes */
 
 .suggester input[type="checkbox"] {
     display: flex;
@@ -50,49 +117,8 @@
     font-size: .7em;
 }
 
-/* POPOVER */
-.suggester{
-    border: none;
-    background-color: rgba(0, 255, 255, 0.116);
-    border-radius: 1em;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 8px black;
-    padding: 1em;
 
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    display: none;
-}
-
-.toggle-show:has(input:checked) + .suggester{
-    display: block;
-}
-
-.statusP {
-    font-family: sans-serif;
-    font-weight: bold;
-    margin: 0;
-}
-
-.suggester li {
-    margin: 1em;
-    text-transform: capitalize; /* Remove localeCap before removing */
-    font-family: sans-serif;
-    width: 90%;
-}
-
-.checkOption { float: right; }
-
-.actions {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-
-/* CHECKBOX */
+/* CHECK BUTTON */
 
 .toggle-show {
     display: inline-block;

@@ -3,40 +3,55 @@ const spotteds = new Set([]);
 
 document.addEventListener("click", async () => {
     const focused = document.activeElement;
-    if (
+
+    /* add button to selected writables */
+    if ( // clicked tag is not writable
         (
             !(focused.tagName==="DIV") ||
             !(focused.getAttribute("contenteditable")==="true")
         ) &&
         !(focused.tagName==="TEXTAREA")
-    ) { return; } // clicked tag is not writable
+    ) {
+        return; 
+    }
+
     else if (spotteds.has(focused)){ return; } // already added
-    else {
+
+    else { // add new
         spotteds.add(focused);
         addGui(focused, spotteds.size);
     }
 })
 
-function addGui(element, id) { // mutations
+function addGui(focused, id) { // mutations
     const selectedForeigns = new Set([]);
+    const gui = newGui(whenVisible, id, async ()=>{ // when apply button is clicked
+        const { rootOriginals } = textForeignInfo(
+            focused.tagName==="DIV" ?
+                focused.textContent:
+                focused.value
+        );
 
-    const gui = newGui(async ()=>{ // When popover is visible
-        const { rootsToFix } = textForeignInfo(element.textContent);
+        localizeText(focused, selectedForeigns, rootOriginals);
+    });
+
+    async function whenVisible() { // when popover is visible
+        const { rootsToFix } = textForeignInfo(
+            focused.tagName==="DIV"?
+                focused.textContent:
+                focused.value
+        );
 
         const popover = document.getElementById(`suggest${id}`);
-        
+
         selectedForeigns.clear();
         listAlternatives({
             replacements: rootsToFix,
-            container: popover.querySelector(".foreign-suggest"),
+            container: popover,
             badFoundMsg: "Bu kelimeleri alternatifleriyle değiştirelim mi❓",
             noBadMsg: "Yabancı kelime bulunmadı🎉",
             selectedsSet: selectedForeigns,
         });
-    }, id, async ()=>{ // when apply button is clicked
-        const { rootOriginals } = textForeignInfo(element.textContent);
-
-        localizeText(element, selectedForeigns, rootOriginals);
-    });
-    element.before(gui);
+    }
+    focused.before(gui);
 }
