@@ -4,6 +4,7 @@ html{
 }
 
 h1 { text-align: center; }
+li {margin: 1em 0;}
 
 .option{
     margin: 3px;

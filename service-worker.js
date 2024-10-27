@@ -1,8 +1,13 @@
+import { autoClean, checkClean, fixSite } from "./JSdependencies.js";
+
+console.log("service worker")
+
 // Save default settings
 chrome.runtime.onInstalled.addListener(({ reason }) => {
   if (reason === 'install') {
     chrome.storage.local.set({
       defReplaceMode: "suggest",
+      defSiteFixMode: "off"
     });
   }
 });
@@ -12,60 +17,57 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
 
   const modes = await pickModes();
 
-  if (modes.defReplaceMode === "suggest") {
+  const toBeInjectedJS = new Set([]);
 
-    chrome.scripting.executeScript({
-      target: { tabId: tabId },
-      files: [
-        "site-scripts/check-clean/check-gui.js",
-        "site-scripts/check-clean/replacer.js",
+  if (modes.defReplaceMode === "suggest") { // check-clean
 
-        // utils
-        "site-scripts/utils/dict.js",
-        "site-scripts/utils/dilbilgisi.js",
-        "site-scripts/utils/arrayify.js",
-        "site-scripts/utils/text-info.js",
-
-        // inject last
-        "site-scripts/check-clean/index.js",
-      ],
-    }).catch(()=>{});
+    // add dependencies to js files list
+    checkClean.forEach(item =>
+      toBeInjectedJS.add(item)
+    )
 
     chrome.scripting.insertCSS({
       target: { tabId: tabId },
-      files: [
-        "site-css/style.css",
-      ],
+      files: [ "site-css/style.css", ],
     }).catch(()=>{});
 
-  } else {
-
-    chrome.scripting.executeScript({
-      target: { tabId: tabId },
-      files: [
-        "site-scripts/auto-clean/shared.js",
-        "site-scripts/auto-clean/editable-caret.js",
-        "site-scripts/auto-clean/handle-editable.js",
-        "site-scripts/auto-clean/handle-textarea.js",
-
-        // utils
-        "site-scripts/utils/dict.js",
-        "site-scripts/utils/dilbilgisi.js",
-        "site-scripts/utils/arrayify.js",
-        "site-scripts/utils/text-info.js",
-
-        // inject last
-        "site-scripts/auto-clean/index.js",
-      ],
-    }).catch(()=>{});
-
+  } else { // auto-clean
+    autoClean.forEach(item =>
+      toBeInjectedJS.add(item)
+    )
   }
   
+  if (modes.defSiteFixMode === "on") {
+    fixSite.forEach(item =>
+      toBeInjectedJS.add(item)
+    )
+  }
+
+  addJS(toBeInjectedJS, tabId);
 });
 
+// helpers
 async function pickModes() {
   const modes={};
-  modes.defReplaceMode = (await chrome.storage.local.get("defReplaceMode")).defReplaceMode;
+  modes.defReplaceMode = 
+  (await chrome.storage.local.get("defReplaceMode"))
+  .defReplaceMode;
+
+  modes.defSiteFixMode = 
+  (await chrome.storage.local.get("defSiteFixMode"))
+  .defSiteFixMode;
+
+  console.log(modes);
 
   return modes
+}
+
+function addJS(JSset, tabId) {
+  const arrayifed = [...JSset];
+
+  chrome.scripting.executeScript({
+    target: { tabId },
+    files: arrayifed,
+  })
+  .catch(()=>{});
 }
