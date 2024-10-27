@@ -29,7 +29,7 @@ export const autoClean = [
 ];
 
 export const fixSite = [
-    "site-scripts/fix-site/handle-body.js",
+    "site-scripts/site-fix/handle-body.js",
 
     // utils
     "site-scripts/utils/dict.js",
@@ -38,5 +38,5 @@ export const fixSite = [
     "site-scripts/utils/text-info.js",
 
     // inject last
-    "site-scripts/fix-site/index.js",
+    "site-scripts/site-fix/index.js",
 ];
