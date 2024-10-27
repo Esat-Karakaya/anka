@@ -1,9 +1,4 @@
-import { ALPHABET } from "../utils/arrayify";
-import { isForeign } from "../utils/dilbilgisi";
-import { getCaret, setCaret } from "./editable-caret";
-import { fixTxt, getAlternatives, getLastGroupStart, PUNCTUATIONS, sortedLoopable } from "./shared";
-
-export function handleEditable(editable) {
+function handleEditable(editable) {
     const alternatives = getAlternatives(editable.textContent);
 
     const sorted = sortedLoopable(alternatives);
@@ -57,10 +52,9 @@ function getLastText(element) {
         const child = children[i];
         if (child.nodeType===3) 
             return child;
-        
         if (child.nodeType===1) {
-            const out = lastTextNode(child);
-            if(out.nodeType) return out;
+            const out = getLastText(child);
+            if(out?.nodeType) return out;
         }
     }
     return null;

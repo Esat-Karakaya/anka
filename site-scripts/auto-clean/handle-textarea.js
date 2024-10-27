@@ -1,8 +1,4 @@
-import { ALPHABET } from "../utils/arrayify";
-import { isForeign } from "../utils/dilbilgisi";
-import { fixTxt, getAlternatives, getLastGroupStart, PUNCTUATIONS, sortedLoopable } from "./shared";
-
-export function handleTextarea(textarea) {
+function handleTextarea(textarea) {
     const alternatives = getAlternatives(textarea.value);
 
     const sorted = sortedLoopable(alternatives);

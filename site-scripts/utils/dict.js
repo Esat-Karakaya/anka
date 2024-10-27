@@ -98,7 +98,6 @@ const twoWords={
     adapte: 'ol',
     analiz: 'et',
     anons: 'et',
-    brifing: 'yap',
     deklare: 'et',
     dizayn: 'et',
     download: 'et',

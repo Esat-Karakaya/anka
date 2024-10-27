@@ -27,7 +27,7 @@ function createRange(node, targetPosition) {
 };
 
 // counting from end to start
-export function setCaret(element, fromEndPos) {
+function setCaret(element, fromEndPos) {
     const {length} = element.textContent;
 
     if (length < fromEndPos || 0 > fromEndPos) {
@@ -44,7 +44,7 @@ export function setCaret(element, fromEndPos) {
 
 // doesn't work on textarea
 // counting from end to start
-export function getCaret(element) {
+function getCaret(element) {
     let caretOffset = 0;
     let doc = element.ownerDocument;
     let win = doc.defaultView;

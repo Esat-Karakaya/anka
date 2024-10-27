@@ -1,11 +1,7 @@
-import textForeignInfo from "../utils/text-info";
-import { replaceForeign } from "../utils/dilbilgisi";
-import { ALPHABET } from "../utils/arrayify";
-
 // returns a sorted Object.entries
 // Sort is used to make sure smaller chunks
 // of long words don't get replaced
-export function sortedLoopable(obj) {
+function sortedLoopable(obj) {
     const entries = Object.entries(obj);
     entries.sort(comaparator);
 
@@ -23,7 +19,7 @@ function comaparator(a, b) {
 }
 
 // returns an object where obj[foreignWord] is localWord
-export function getAlternatives(str) {
+function getAlternatives(str) {
     const { rootOriginals } = textForeignInfo(str);
     
     const alternatives = {};
@@ -37,7 +33,7 @@ export function getAlternatives(str) {
     return alternatives;
 }
 
-export function fixTxt(str, loopable) {
+function fixTxt(str, loopable) {
     let tobefixed=str;
     for (const pair of loopable) {
         tobefixed = tobefixed.replaceAll(pair[0], pair[1]);
@@ -51,7 +47,7 @@ export function fixTxt(str, loopable) {
     it will return the last word's start index
     else it will return the second last word's start index
 */
-export function getLastGroupStart(str) {
+function getLastGroupStart(str) {
     let doubleStart = str.length-1;
 
     for (; doubleStart >= 0; doubleStart--)
@@ -68,7 +64,7 @@ export function getLastGroupStart(str) {
     return ++doubleStart;
 }
 
-export const PUNCTUATIONS = new Set([
+const PUNCTUATIONS = new Set([
     ".", ",", "?", "!", ":", ";", '"',
     "(", ")", "[", "]", "{", "}", "<", ">",
     "/", "\\", "|", "&", "@", "$", "%", "^", "*",

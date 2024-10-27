@@ -42,7 +42,21 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
 
     chrome.scripting.executeScript({
       target: { tabId: tabId },
-      files: ["site-scripts/auto-clean/index.js"],
+      files: [
+        "site-scripts/auto-clean/shared.js",
+        "site-scripts/auto-clean/editable-caret.js",
+        "site-scripts/auto-clean/handle-editable.js",
+        "site-scripts/auto-clean/handle-textarea.js",
+
+        // utils
+        "site-scripts/utils/dict.js",
+        "site-scripts/utils/dilbilgisi.js",
+        "site-scripts/utils/arrayify.js",
+        "site-scripts/utils/text-info.js",
+
+        // inject last
+        "site-scripts/auto-clean/index.js",
+      ],
     }).catch(()=>{});
 
   }
