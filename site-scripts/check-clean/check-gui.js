@@ -20,6 +20,7 @@ function newGui(checking, id, applyHandle) {
     // creating element from string
     const createdGui = 
     (new DOMParser().parseFromString(guiStr, "text/html")).querySelector("body>*"); 
+    removeWhitespace(createdGui);
 
     const checkbox = createdGui
     .querySelector('.toggle-show > input[type="checkbox"]');
@@ -135,4 +136,21 @@ function updateSelectAll(ul, set) {
     const checkBoxes = ul.querySelectorAll('input[type="checkbox"]');
 
     checkBoxes[0].checked = set.size === checkBoxes.length-1;
+}
+
+// removes white space in a DOM element made from string
+function removeWhitespace(node) {
+    // Loop through each child node in reverse to avoid index issues
+    for (let i = node.childNodes.length - 1; i >= 0; i--) {
+        const child = node.childNodes[i];
+        
+        // If the child is a text node and contains only whitespace, remove it
+        if (child.nodeType === Node.TEXT_NODE && !/\S/.test(child.nodeValue)) {
+            node.removeChild(child);
+        }
+        // If the child is an element node, recursively clean it as well
+        else if (child.nodeType === Node.ELEMENT_NODE) {
+            removeWhitespace(child);
+        }
+    }
 }

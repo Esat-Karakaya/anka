@@ -125,10 +125,11 @@
     position: relative;
     width: 1.8em !important;
     height: 1.8em !important;
-    user-select: none;
     border: 1px solid black;
     border-radius: 30%;
-    margin: 2px;
+    background-color: white;
+    margin: 7px;
+    user-select: none;
 
     transition: border-radius .2s;
 }
