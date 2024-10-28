@@ -91,7 +91,6 @@ const verbs = {
     "revize et": "yenile",
     "save et": "kaydet",
     "start al": "başla",
-    "transfer et": "naklet",
 };
 
 const twoWords={
@@ -109,7 +108,6 @@ const twoWords={
     revize: 'et',
     save: 'et',
     start: 'al',
-    transfer: 'et',
     bye: 'bye',
     full: 'time',
     nick: 'name',

@@ -4,57 +4,32 @@ function textForeignInfo(text) {
     const words = arrayifyText(text);
 
     const bundle = {
-        rootsToFix: [],
-        rootOriginals: {}
+        rootsToFix: [], // [dizayn, cool]
+        rootOriginals: {} // {dizayn:[dizaynın, dizaynlar]}
     };
 
     const { rootOriginals } = bundle;
 
     // Iterate over words
     for (let i = 0; i < words.length; i++) {
-        const info = isForeign(words[i]);
 
-        const second = twoWords[info.rootForeign];
-        const secondSliced = words[i+1]?.slice(0, second?.length);
+        const merged = words[i] + " " + words[1+i];
 
-        if (
-            twoWords[info.rootForeign] &&
-            i<words.length-1 && (
-                secondSliced === second || (
-                    second === "et" &&
-                    secondSliced==="ed"
-                )
-            )
-        ) {
-            /* double word */
+        const info = isForeign(merged);
 
-            let merged;
-            if ( secondSliced === second ){
-                merged = info.rootForeign + " " + second;
-            } else if (second === "et" && secondSliced==="ed"){
-                merged = info.rootForeign + " et";
-            }
+        if (info.foreign===false) continue; // word not foreign
 
-            bundle.rootsToFix[merged] = verbs[merged] ?? nouns[merged];
+        bundle.rootsToFix[info.rootForeign] = info.rootLocal;
 
-            // initialize if necessary
-            if (!rootOriginals[merged])  rootOriginals[merged]=[];
+        // initialize if necessary
+        if (!rootOriginals[info.rootForeign]) rootOriginals[info.rootForeign]=[];
 
-            // tag the unmodified word as having a foreign root
-            rootOriginals[merged].push(words[i] + " " + words[i+1]); 
-
+        if (info.twoWord) {
+            rootOriginals[info.rootForeign].push(merged);
             i++;
-        }else if (info.foreign) {
-            const { rootForeign } = info;
-            /* single word */
-            bundle.rootsToFix[rootForeign] = info.rootLocal;
-
-            // initialize if necessary
-            if (!rootOriginals[rootForeign])  rootOriginals[rootForeign]=[];
-
-            // tag the unmodified word as having a foreign root
-            rootOriginals[rootForeign].push(words[i]); 
+            continue;
         }
+        rootOriginals[info.rootForeign].push(words[i]);
     }
 
     return bundle;

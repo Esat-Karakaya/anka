@@ -1,17 +1,11 @@
 function isForeign(word) {
 
     word=word.toLocaleLowerCase('tr');
-    let apoi = word.indexOf("'");
-    if (apoi>-1) { // has the "'" symbol
-        const sliced = word.slice(0, word.indexOf("'"));
-        if (nouns[sliced]) {
-            return {
-                foreign: true,
-                rootForeign: sliced,
-                rootLocal: nouns[sliced],
-            };
-        }
-        return {foreign: false};
+    
+    if (word.includes(" ")) { // word is made up of two words
+        const result = isTwoWordForeign(word);
+
+        if (result.twoWord) return result;
     }
 
     for (let i = word.length; i > 1; i--) {
@@ -27,6 +21,31 @@ function isForeign(word) {
         }
     }
     return {foreign: false};
+}
+
+function isTwoWordForeign(word) {
+    const splitted = word.split(" ");
+    
+    if (!twoWords[splitted[0]]) return { twoWord: false };
+
+    const secondBase = twoWords[splitted[0]]; // second word from dictionary
+    const rootForeign = splitted[0] + " " + secondBase; // the word in dictionary
+
+    const secondSlice = splitted[1].slice(0, secondBase.length); // the second input word base (maybe)
+
+    if (
+        secondBase === secondSlice ||
+        (secondBase ==="et" && "ed" === secondSlice)
+    ) {
+        return {
+            twoWord: true,
+            foreign: true,
+            rootForeign,
+            rootLocal: nouns[rootForeign] ?? verbs[rootForeign]
+        }
+    }
+
+    return {twoWord: false};
 }
 
 function replaceForeign(word) { // NEEDS IMPROVEMENT
