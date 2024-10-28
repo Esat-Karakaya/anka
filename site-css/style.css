@@ -58,7 +58,7 @@
     display: none;
 }
 
-.toggle-show:has(input:checked) + .suggester{
+.toggle-gui-btn:checked + .suggester{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -117,41 +117,29 @@
     font-size: .7em;
 }
 
-
 /* CHECK BUTTON */
 
-.toggle-show {
-    display: inline-block;
+.toggle-gui-btn{
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 1.8em !important;
     height: 1.8em !important;
     border: 1px solid black;
     border-radius: 30%;
     background-color: white;
     margin: 7px;
-    user-select: none;
 
     transition: border-radius .2s;
 }
 
-.toggle-show:has(input:active) {
+.toggle-gui-btn:active {
     border-radius: 50%;
 }
 
-.toggle-show input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.toggle-gui {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.toggle-gui-btn::before{
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    content: "✔️";
 }

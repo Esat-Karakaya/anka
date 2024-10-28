@@ -1,11 +1,8 @@
-function newGui(checking, id, applyHandle) {
+function newGui(makeVisible, id, applyHandle) {
 
     const guiStr=`
         <div class="gui-container">
-            <label class="toggle-show">
-                <input type="checkbox">
-                <span class="toggle-gui">✔️</span>
-            </label>
+            <input class="toggle-gui-btn" type="checkbox">
             <div id="suggest${id}" class="suggester">
                 <div class="foreign-suggest">
                     <p class="statusP">Yabancı kelime bulunmadı🎉</p>
@@ -23,12 +20,12 @@ function newGui(checking, id, applyHandle) {
     removeWhitespace(createdGui);
 
     const checkbox = createdGui
-    .querySelector('.toggle-show > input[type="checkbox"]');
+    .querySelector('.toggle-gui-btn');
 
     // check when opened
     checkbox.addEventListener("click", ()=>{
         if (checkbox.checked === true) {
-            checking();
+            makeVisible();
         }
     });
 
