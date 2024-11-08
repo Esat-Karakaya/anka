@@ -69,7 +69,6 @@ const nouns = {
     "star": "yıldız",
     "straplez": "askısız giysi",
     "subjektif": "öznel",
-    "transfer": "nakil",
     "trend": "moda",
     "web" : "ağ",
 };
