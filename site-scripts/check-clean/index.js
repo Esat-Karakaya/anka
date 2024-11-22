@@ -26,21 +26,22 @@ document.addEventListener("click", async () => {
 function addGui(focused, id) { // mutations
     const selectedForeigns = new Set([]);
     const gui = newGui(whenVisible, id, async ()=>{ // when apply button is clicked
-        const { rootOriginals } = textForeignInfo(
+        const { rootOriginals } = await (textForeignInfo(
             focused.tagName==="DIV" ?
                 focused.textContent:
                 focused.value
-        );
+        ));
 
         localizeText(focused, selectedForeigns, rootOriginals);
     });
 
     async function whenVisible() { // when popover is visible
-        const { rootsToFix } = textForeignInfo(
+        const res = await (textForeignInfo(
             focused.tagName==="DIV"?
                 focused.textContent:
                 focused.value
-        );
+        ));
+        const { rootsToFix } = res;
 
         const popover = document.getElementById(`suggest${id}`);
 

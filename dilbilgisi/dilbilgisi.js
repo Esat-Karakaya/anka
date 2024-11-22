@@ -1,4 +1,6 @@
-function isForeign(word) {
+import {nouns, verbs, twoWords} from "./dict.js"
+
+export function isForeign(word) {
 
     word=word.toLocaleLowerCase('tr');
     
@@ -48,17 +50,6 @@ function isTwoWordForeign(word) {
     return {twoWord: false};
 }
 
-function replaceForeign(word) { // NEEDS IMPROVEMENT
+export function replaceForeign(word) { // NEEDS IMPROVEMENT
     return isForeign(word).rootLocal;
-}
-
-function localeCap(str) {
-    let cpy="";
-
-    if (str[0]==="i") cpy+="İ";
-    else cpy+=str[0];
-
-    for (let i = 1; i < str.length; i++) cpy+=str[i];
-
-    return cpy;
 }

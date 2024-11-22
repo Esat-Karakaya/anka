@@ -1,9 +1,10 @@
-function handleEditable(editable) {
-    const alternatives = getAlternatives(editable.textContent);
+async function handleEditable(editable) {
+    const { rootOriginals } = await textForeignInfo(editable.textContent);
+    const alternatives = await getAlternatives(rootOriginals);
 
     const sorted = sortedLoopable(alternatives);
     const lastTextNode = getLastText(editable);
-    const replacer = returnReplacer(sorted, lastTextNode);
+    const replacer = returnReplacer(sorted, lastTextNode, alternatives);
     const caretPos = getCaret(editable);
 
     walkTxt(editable, replacer);
@@ -13,17 +14,18 @@ function handleEditable(editable) {
 function walkTxt(element, replacer) {
     const children=element.childNodes;
 
-    children.forEach(child => {
+    for (const child of children) {
         if (child.nodeType === 1) {
             walkTxt(child, replacer);
         }else if (child.nodeType === 3) {
             replacer(child);
         }
-    });
+    }
+    
 }
 
-function returnReplacer(sorted, lastTextNode) {
-    return (textnode) => { // mutation
+function returnReplacer(sorted, lastTextNode, alternatives) {
+    return async (textnode) => { // mutation
         const { nodeValue } = textnode;
         if (textnode !== lastTextNode || PUNCTUATIONS.has(nodeValue.at(-1))) {
             textnode.nodeValue=fixTxt(nodeValue, sorted);
@@ -33,7 +35,7 @@ function returnReplacer(sorted, lastTextNode) {
         
         if (
             !ALPHABET.has(nodeValue.at(-1)) && 
-            !isForeign(nodeValue.slice(lastGroupStart)).foreign
+            !seeAlternative(nodeValue.slice(lastGroupStart), alternatives)
         ) {
             textnode.nodeValue=fixTxt(nodeValue, sorted);
         }

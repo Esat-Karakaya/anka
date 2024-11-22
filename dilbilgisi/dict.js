@@ -1,4 +1,4 @@
-const nouns = {
+export const nouns = {
     "absürt": "saçma",
     "adisyon": "hesap fişi",
     "ambiyans": "ortam",
@@ -73,7 +73,7 @@ const nouns = {
     "web" : "ağ",
 };
 
-const verbs = {
+export const verbs = {
     "adapte ol": "uyum sağla",
     "analiz et": "çözümle",
     "anons et": "duyur",
@@ -92,10 +92,11 @@ const verbs = {
     "start al": "başla",
 };
 
-const twoWords={
+export const twoWords={
     adapte: 'ol',
     analiz: 'et',
     anons: 'et',
+    brifing: 'yap',
     deklare: 'et',
     dizayn: 'et',
     download: 'et',

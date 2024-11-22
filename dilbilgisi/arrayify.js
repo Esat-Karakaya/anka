@@ -8,7 +8,7 @@ const ALPHABET = new Set([
 
 // Assumes there is no space before and after '
 // returns an array of words
-function arrayifyText(text) {
+export function arrayifyText(text) {
 
     let wordStart = 0;
     let wordEnd = 0;

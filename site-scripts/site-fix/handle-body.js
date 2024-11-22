@@ -21,21 +21,6 @@ function siteFixUtils() {
         return 0;
     }
 
-    // returns an object where obj[foreignWord] is localWord
-    function getAlternatives(str) {
-        const { rootOriginals } = textForeignInfo(str);
-        
-        const alternatives = {};
-
-        const toBeFixed=Object.values(rootOriginals).flat(1);
-
-        toBeFixed.forEach( word =>
-            alternatives[word] = replaceForeign(word)
-        );
-
-        return alternatives;
-    }
-
     function walkTxt(element, replacer) {
         const children=element.childNodes;
 
@@ -62,7 +47,6 @@ function siteFixUtils() {
     }
 
     return {
-        getAlternatives,
         sortedLoopable,
         walkTxt,
         returnReplacer

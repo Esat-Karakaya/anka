@@ -1,6 +1,5 @@
+import "./dilbilgisi/content-connect.js";
 import { autoClean, checkClean, fixSite } from "./JSdependencies.js";
-
-console.log("service worker")
 
 // Save default settings
 chrome.runtime.onInstalled.addListener(({ reason }) => {
@@ -20,7 +19,6 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
   const toBeInjectedJS = new Set([]);
 
   if (modes.defReplaceMode === "suggest") { // check-clean
-
     // add dependencies to js files list
     checkClean.forEach(item =>
       toBeInjectedJS.add(item)
@@ -32,12 +30,14 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
     }).catch(()=>{});
 
   } else { // auto-clean
+
     autoClean.forEach(item =>
       toBeInjectedJS.add(item)
     )
   }
   
   if (modes.defSiteFixMode === "on") {
+
     fixSite.forEach(item =>
       toBeInjectedJS.add(item)
     )
@@ -57,12 +57,11 @@ async function pickModes() {
   (await chrome.storage.local.get("defSiteFixMode"))
   .defSiteFixMode;
 
-  console.log(modes);
-
   return modes
 }
 
 function addJS(JSset, tabId) {
+
   const arrayifed = [...JSset];
 
   chrome.scripting.executeScript({

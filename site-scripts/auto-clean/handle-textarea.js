@@ -1,5 +1,6 @@
-function handleTextarea(textarea) {
-    const alternatives = getAlternatives(textarea.value);
+async function handleTextarea(textarea) {
+    const { rootOriginals } = await textForeignInfo(textarea.value);
+    const alternatives = await getAlternatives(rootOriginals);
 
     const sorted = sortedLoopable(alternatives);
 
@@ -8,7 +9,7 @@ function handleTextarea(textarea) {
     //count from end
     const caretPos = length - textarea.selectionStart;
 
-    replacer(textarea, sorted);
+    replacer(textarea, sorted, alternatives);
 
     length = textarea.value.length;
     // set from end
@@ -16,7 +17,7 @@ function handleTextarea(textarea) {
     textarea.selectionEnd = length - caretPos;
 }
 
-function replacer(textarea, sorted) { // mutation
+function replacer(textarea, sorted, alternatives) { // mutation
     const { value } = textarea;
     textarea.value=fixTxt(value, sorted);
     if (PUNCTUATIONS.has(value.at(-1))) {
@@ -27,7 +28,7 @@ function replacer(textarea, sorted) { // mutation
     
     if (
         !ALPHABET.has(value.at(-1)) && 
-        !isForeign(value.slice(lastGroupStart)).foreign
+        !seeAlternative(value.slice(lastGroupStart), alternatives)
     ) {
         textarea.value=fixTxt(value, sorted);
     }

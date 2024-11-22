@@ -18,21 +18,6 @@ function comaparator(a, b) {
     return 0;
 }
 
-// returns an object where obj[foreignWord] is localWord
-function getAlternatives(str) {
-    const { rootOriginals } = textForeignInfo(str);
-    
-    const alternatives = {};
-
-    const toBeFixed=Object.values(rootOriginals).flat(1);
-
-    toBeFixed.forEach( word =>
-        alternatives[word] = replaceForeign(word)
-    );
-
-    return alternatives;
-}
-
 function fixTxt(str, loopable) {
     let tobefixed=str;
     for (const pair of loopable) {
@@ -64,6 +49,18 @@ function getLastGroupStart(str) {
     return ++doubleStart;
 }
 
+// gets a word with nonsense chars at the end
+// returns whether the word has alternative (i.e. is it foreign)
+function seeAlternative(str, alternatives) {
+
+    for (let i = str.length; i > -1; i--) {
+        if (alternatives.hasOwnProperty(str.slice(0, i))) {
+            return true;
+        }
+    }
+    return false;
+}
+
 const PUNCTUATIONS = new Set([
     ".", ",", "?", "!", ":", ";", '"',
     "(", ")", "[", "]", "{", "}", "<", ">",
@@ -71,4 +68,11 @@ const PUNCTUATIONS = new Set([
     "-", "+", "=", "_", "~", "`",
     "•", "…", "–", "—", "“", "”", "€", "¥", "£", "¢",
     "§", "¶", "©", "®", "™", "\n", "\t",
+]);
+
+const ALPHABET = new Set([
+    "A", "a", "B", "b", "C", "c", "Ç", "ç", "D", "d", "E", "e", "F", "f", "G", "g", "Ğ", "ğ",
+    "H", "h", "I", "ı", "İ", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "Ö", "ö",
+    "P", "p", "R", "r", "S", "s", "Ş", "ş", "T", "t", "U", "u", "Ü", "ü", "V", "v", "Y", "y", "Z", "z",
+    "'", "w", "W", "q", "Q", "x", "X"
 ]);

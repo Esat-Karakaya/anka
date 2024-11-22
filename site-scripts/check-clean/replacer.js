@@ -1,4 +1,3 @@
-
 // recursively find text nodes
 function walkDiv(element, replacer) {
     const children=element.childNodes;
@@ -18,17 +17,15 @@ function walkTextArea(element, replacer) {
 }
 
 // replace foreign word inside writables
-function localizeText(element, checkeds, originals) {
-    const alternative={};
-    const loopable = Object.entries(originals);
+async function localizeText(element, checkeds, originals) {
+    // get rid of unchecked words
+    for (const root in originals) {
+        if (checkeds.has(root)) continue;
 
-    for (const pair of loopable) {
-        if (!checkeds.has(pair[0])) continue;
-
-        for (const original of pair[1]) {
-            alternative[original] = replaceForeign(original);
-        }
+        delete originals[root];
     }
+
+    const alternative= await getAlternatives(originals);
 
     // sorted desc to prevent shorter words to replace a portion of longer words
     const sorted = Object.entries(alternative).sort(comaparator);

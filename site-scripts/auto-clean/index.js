@@ -2,20 +2,20 @@ document.addEventListener("keyup", changeHandler);
 
 const prevVals = new Map();
 
-async function changeHandler() {
+function changeHandler() {
     const focused = document.activeElement;
     if (
         focused.tagName==="DIV" &&
         focused.getAttribute("contenteditable")==="true" &&
-        prevVals.get(prevVals)!==focused.textContent
+        prevVals.get(focused)!==focused.textContent
     ) {
         handleEditable(focused);
-        prevVals.set(prevVals, focused.textContent);
+        prevVals.set(focused, focused.textContent);
     } else if (
         focused.tagName==="TEXTAREA" &&
-        prevVals.get(prevVals)!==focused.value
+        prevVals.get(focused)!==focused.value
     ) {
         handleTextarea(focused);
-        prevVals.set(prevVals, focused.value);
+        prevVals.set(focused, focused.value);
     }
 }
