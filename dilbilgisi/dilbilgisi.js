@@ -1,8 +1,8 @@
-import {nouns, verbs, twoWords} from "./dict.js"
+import {words, twoWords} from "./dict.js"
 
 export function isForeign(word) {
 
-    word=word.toLocaleLowerCase('tr');
+    word=word.toLowerCase();
     
     if (word.includes(" ")) { // word is made up of two words
         const result = isTwoWordForeign(word);
@@ -12,7 +12,7 @@ export function isForeign(word) {
 
     for (let i = word.length; i > 1; i--) {
         const sliced = word.slice(0, i);
-        const replacement = nouns[sliced] ?? verbs[sliced];
+        const replacement = words[sliced]?.local;
         
         if (replacement) {
             return {
@@ -43,7 +43,7 @@ function isTwoWordForeign(word) {
             twoWord: true,
             foreign: true,
             rootForeign,
-            rootLocal: nouns[rootForeign] ?? verbs[rootForeign]
+            rootLocal: words[rootForeign].local,
         }
     }
 
