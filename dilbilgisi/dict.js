@@ -50,7 +50,7 @@ export const words = {
     "objektif": { local: "nesnel", flags: 0b00 },
     "offline": { local: "çevrim dış", flags: 0b10 },
     "okey": { local: "tamam", flags: 0b00 },
-    "online": { local: "çevrim içi", flags: 0b00 },
+    "online": { local: "çevrim iç", flags: 0b10 },
     "opsiyonel": { local: "seçmeli", flags: 0b00 },
     "optimist": { local: "iyimser", flags: 0b00 },
     "orijinal": { local: "özgün", flags: 0b00 },
