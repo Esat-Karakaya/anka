@@ -1,6 +1,5 @@
 async function handleEditable(editable) {
-    const { rootOriginals } = await textForeignInfo(editable.textContent);
-    const alternatives = await getAlternatives(rootOriginals);
+    const alternatives = await textForeignInfo(editable.textContent);
 
     const sorted = sortedLoopable(alternatives);
     const lastTextNode = getLastText(editable);

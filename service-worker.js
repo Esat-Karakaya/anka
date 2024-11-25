@@ -16,7 +16,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
 
   const modes = await pickModes();
 
-  const toBeInjectedJS = new Set([]);
+  const toBeInjectedJS = new Set();
 
   if (modes.defReplaceMode === "suggest") { // check-clean
     // add dependencies to js files list

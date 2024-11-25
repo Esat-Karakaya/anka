@@ -1,17 +1,11 @@
 import { arrayifyText } from "./arrayify.js";
-import { isForeign } from "./dilbilgisi.js";
+import { isForeign, replaceForeign } from "./dilbilgisi.js";
 
 // returns alternatives for used forign word roots
 // and original form of the foreign roots
 export function textForeignInfo(text) {
     const words = arrayifyText(text);
-
-    const bundle = {
-        rootsToFix: {}, // [dizayn, cool]
-        rootOriginals: {} // {dizayn:[dizaynın, dizaynlar]}
-    };
-
-    const { rootOriginals } = bundle;
+    const replacements = {} // {dizaynın: ["tasarımın"], perspektifin: ["bakış açın", "bakış açısı"]}
 
     // Iterate over words
     for (let i = 0; i < words.length; i++) {
@@ -22,18 +16,13 @@ export function textForeignInfo(text) {
 
         if (!info.foreign) continue; // word not foreign
 
-        bundle.rootsToFix[info.rootForeign] = info.local;
-        // initialize if necessary
-        if (!rootOriginals[info.rootForeign])
-            rootOriginals[info.rootForeign]=[];
-
         if (info.twoWord) {
-            rootOriginals[info.rootForeign].push(merged);
-            i++;
+            replacements[merged] = replaceForeign(merged).values().next().value;
+            i++; // skip second word
             continue;
         }
-        rootOriginals[info.rootForeign].push(words[i]);
+        replacements[words[i]] = replaceForeign(words[i]).values().next().value;
     }
 
-    return bundle;
+    return replacements;
 }

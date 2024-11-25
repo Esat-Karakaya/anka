@@ -47,7 +47,7 @@ Updates status p tag
 Adds new replacements
 Adds event listeners to checkboxes inside li's
 */
-function listAlternatives({replacements, container, badFoundMsg, noBadMsg, selectedsSet}) {
+function listAlternatives({replacements, container, selectedsSet}) {
     const foreignSuggest = container.querySelector(".foreign-suggest");
     
     const applyBtn=container
@@ -62,10 +62,10 @@ function listAlternatives({replacements, container, badFoundMsg, noBadMsg, selec
 
     /* List words */
     if (badWords.length) {
-        p.innerText = badFoundMsg;
+        p.innerText = "Bu kelimeleri alternatifleriyle değiştirelim mi❓";
         applyBtn.style.display="inline-block";
     }else {
-        p.innerText = noBadMsg;
+        p.innerText = "Yabancı kelime bulunmadı🎉";
         applyBtn.style.display="none";
         return;
     }

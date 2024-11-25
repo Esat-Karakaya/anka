@@ -4,10 +4,8 @@ async function handleBody(body) {
         returnReplacer,
         walkTxt
     } = siteFixUtils();
-    
-    const { rootOriginals } = await textForeignInfo(body.textContent);
-    const alternatives = await getAlternatives(rootOriginals);
 
+    const alternatives = await textForeignInfo(body.textContent);
     const sorted = sortedLoopable(alternatives);
     const replacer = returnReplacer(sorted);
 

@@ -1,6 +1,5 @@
 async function handleTextarea(textarea) {
-    const { rootOriginals } = await textForeignInfo(textarea.value);
-    const alternatives = await getAlternatives(rootOriginals);
+    const alternatives = await textForeignInfo(textarea.value);
 
     const sorted = sortedLoopable(alternatives);
 

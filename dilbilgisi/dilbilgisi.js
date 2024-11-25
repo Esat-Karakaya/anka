@@ -3,7 +3,7 @@ import {words, twoWords} from "./dict.js"
 
 export function isForeign(word) {
 
-    word=word.toLowerCase();
+    word=word.toLocaleLowerCase("tr");
     
     if (word.includes(" ")) { // word is made up of two words
         const result = isTwoWordForeign(word);
@@ -23,13 +23,13 @@ export function isForeign(word) {
             };
         }
     }
-    return {foreign: false};
+    return {};
 }
 
 function isTwoWordForeign(word) {
     const splitted = word.split(" ");
     
-    if (!twoWords[splitted[0]]) return { twoWord: false };
+    if (!twoWords[splitted[0]]) return {};
 
     const secondBase = twoWords[splitted[0]]; // second word from dictionary
     const rootForeign = splitted[0] + " " + secondBase; // the word in dictionary
@@ -48,21 +48,33 @@ function isTwoWordForeign(word) {
         }
     }
 
-    return {twoWord: false};
+    return {};
 }
 
 export function replaceForeign(word) { // NEEDS IMPROVEMENT
     const replaceInfo = isForeign(word);
     
     const capital = word[0] === word[0].toLocaleUpperCase("tr");
+    let replacements;
 
     if (!(replaceInfo.flags & 1)) {
-        let value = [...foreignNounConvert(word.toLocaleLowerCase("tr"), replaceInfo)][0];
-        
-        if (capital) // tarasım -> Tarasım
-            value = value[0].toLocaleUpperCase("tr") + value.slice(1);
-        return value;
+        // noun
+        replacements = foreignNounConvert(word.toLocaleLowerCase("tr"), replaceInfo);
+                
+    }else {
+        // verb
+        replacements = new Set([replaceInfo.local]);
     }
 
-    return replaceInfo.local;
+    if (capital) {
+        // tarasım -> Tarasım
+
+        const capitals = new Set();
+        for (const local of replacements) {
+            capitals.add(local[0].toLocaleUpperCase("tr") + local.slice(1));
+        }
+
+        replacements = capitals;
+    }
+    return replacements;
 }
