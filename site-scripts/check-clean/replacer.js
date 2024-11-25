@@ -17,18 +17,9 @@ function walkTextArea(element, replacer) {
 }
 
 // replace foreign word inside writables
-async function localizeText(element, checkeds, originals) {
-    
-    // select checked words
-    const willReplace = {};
-
-    for (const foreign in originals) {
-        if (checkeds.has(foreign))
-            willReplace[foreign] = originals[foreign];
-    }
-
+function localizeText(element, checkeds) {
     // sorted desc to prevent shorter words to replace a portion of longer words
-    const sorted = Object.entries(willReplace).sort(comaparator);
+    const sorted = Object.entries(checkeds).sort(comparator);
 
     const replacer = (str)=>{ // replace foreign word inside string
         for (const pair of sorted) {
@@ -40,10 +31,10 @@ async function localizeText(element, checkeds, originals) {
         walkDiv(element,replacer);
         return;
     }
-    walkTextArea(element,replacer)
+    walkTextArea(element,replacer);
 }
 
-function comaparator(a, b) {
+function comparator(a, b) {
     if (a[0].length<b[0].length) {
         return 1;
     }

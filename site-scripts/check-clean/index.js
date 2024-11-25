@@ -24,16 +24,16 @@ document.addEventListener("click", async () => {
 });
 
 function addGui(focused, id) { // mutations
-    const selectedForeigns = new Set();
-    const gui = newGui(whenVisible, id, async ()=>{ // when apply button is clicked
-        const replacements = await (textForeignInfo(
-            focused.tagName==="DIV" ?
-                focused.textContent:
-                focused.value
-        ));
+    // add clear prototype to selectedForeign
+    const clearPrototype = {
+        clear() {
+            for (const badWord in this)
+                delete this[badWord];
+        },
+    };
+    const selectedForeigns = Object.create(clearPrototype);
 
-        localizeText(focused, selectedForeigns, replacements);
-    });
+    const gui = newGui(whenVisible, id, () => localizeText(focused, selectedForeigns));
 
     async function whenVisible() { // when popover is visible
         const replacements = await (textForeignInfo(
@@ -48,7 +48,7 @@ function addGui(focused, id) { // mutations
         listAlternatives({
             replacements,
             container: popover,
-            selectedsSet: selectedForeigns,
+            selecteds: selectedForeigns,
         });
     }
     focused.before(gui);

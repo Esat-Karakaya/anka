@@ -106,7 +106,6 @@ function insertS3(routes) { // MUTATION
 // 0b010: 3.tekil yok -> 0, 3.tekil var -> 1
 // 0b100: ek alma -> 0, kesme işaretiyle ayrılma -> 1
 export function foreignNounConvert(originalForeign, rootInfo) {
-	console.log(originalForeign);
 	let newRoot =
 	(rootInfo.flags & 2**2) ? // flags[2] in bitwise operation 
 		rootInfo.rootForeign + "'" :

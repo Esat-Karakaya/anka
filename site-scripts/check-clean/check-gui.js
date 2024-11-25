@@ -36,7 +36,10 @@ function newGui(makeVisible, id, applyHandle) {
         checkbox.checked=false;
     });
 
-    createdGui.querySelector(".applyBtn").addEventListener("click", applyHandle);
+    // apply Button
+    createdGui
+    .querySelector(".applyBtn")
+    .addEventListener("click", applyHandle);
 
     return createdGui;
 }
@@ -47,7 +50,7 @@ Updates status p tag
 Adds new replacements
 Adds event listeners to checkboxes inside li's
 */
-function listAlternatives({replacements, container, selectedsSet}) {
+function listAlternatives({replacements, container, selecteds}) {
     const foreignSuggest = container.querySelector(".foreign-suggest");
     
     const applyBtn=container
@@ -72,43 +75,42 @@ function listAlternatives({replacements, container, selectedsSet}) {
 
     const replaceList=document.createElement("ul");
 
-    //select-unselect all option
+    // select/unselect all option
     const selectAll=newListItem("Hepsini Seç", event => {
         const checkBoxes = replaceList.querySelectorAll('input[type="checkbox"]');
 
-        for (let i = 1; i < checkBoxes.length; i++) {
-            const box = checkBoxes[i];
-            box.checked=event.target.checked
-            if (event.target.checked) {
-                for (const element of badWords) {
-                    selectedsSet.add(element);
-                }
-            }else {
-                selectedsSet.clear();
-            }
-        }
+        if (event.target.checked) {
+            for (const element in replacements)
+                selecteds[element] = replacements[element];
+        }else
+            selecteds.clear();
+
+        for (const box of checkBoxes)
+            box.checked=event.target.checked;
     });
     replaceList.appendChild(selectAll);
 
     // creating all li's
-    Object.entries(replacements).forEach(enrty => {
+    for (const badWord in replacements){
         // create li
-        const wordReplace = newListItem(`${localeCap(enrty[0])} ➡️ ${localeCap(enrty[1])}`, 
-        
-        event => {
-            // when checkbox is clicked
+        const wordReplace = newListItem(
 
-            if (event.target.checked) {
-                selectedsSet.add(enrty[0]);
-            } else {
-                selectedsSet.delete(enrty[0]);
+            `${localeCap(badWord)} ➡️ ${localeCap(replacements[badWord])}`,
+
+            event => {
+                // when checkbox is clicked
+                if (event.target.checked) {
+                    selecteds[badWord] = replacements[badWord];
+                } else {
+                    delete selecteds[badWord];
+                }
+
+                updateSelectAll(replaceList, badWords.length);
             }
-
-            updateSelectAll(replaceList, selectedsSet);
-        });
+        );
         
         replaceList.appendChild(wordReplace);
-    })
+    }
 
     foreignSuggest.appendChild(replaceList);
 }
@@ -118,7 +120,7 @@ function newListItem(str, checkHandle) {
     const li=document.createElement("li");
     li.innerText=str;
 
-    // selection button
+    // selection checkbox
     const select=document.createElement("input");
     select.setAttribute("type", "checkbox");
     select.classList.add("checkOption");
@@ -129,10 +131,13 @@ function newListItem(str, checkHandle) {
     return li;
 }
 
-function updateSelectAll(ul, set) {
-    const checkBoxes = ul.querySelectorAll('input[type="checkbox"]');
+function updateSelectAll(ul) {
+    const checkBoxes = [ ...ul.querySelectorAll('input[type="checkbox"]') ];
+    const allChecked = checkBoxes.reduce((acc, cur, i) => {
+        return !i || (cur.checked && acc);
+    });
 
-    checkBoxes[0].checked = set.size === checkBoxes.length-1;
+    checkBoxes[0].checked = allChecked;
 }
 
 // removes white space in a DOM element made from string

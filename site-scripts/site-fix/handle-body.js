@@ -6,12 +6,12 @@ function siteFixUtils() {
     // of long words don't get replaced
     function sortedLoopable(obj) {
         const entries = Object.entries(obj);
-        entries.sort(comaparator);
+        entries.sort(comparator);
 
         return entries;
     }
 
-    function comaparator(a, b) {
+    function comparator(a, b) {
         if (a[0].length < b[0].length) {
             return 1;
         }
