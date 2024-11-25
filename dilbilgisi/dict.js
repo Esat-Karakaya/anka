@@ -43,7 +43,7 @@ export const words = {
     "konsensus": { local: "uzlaşma", flags: 0b000 },
     "kreatif": { local: "yaratıcı", flags: 0b000 },
     "kriter": { local: "ölçüt", flags: 0b000 },
-    "laptop": { local: "dizüstü bilgisayar", flags: 0b000 },
+    "laptop": { local: "dizüstü", flags: 0b000 },
     "link": { local: "bağlantı", flags: 0b000 },
     "mantalite": { local: "anlayış", flags: 0b000 },
     "monoton": { local: "tekdüze", flags: 0b000 },
