@@ -20,12 +20,12 @@ export function textForeignInfo(text) {
 
         const info = isForeign(merged);
 
-        if (info.foreign===false) continue; // word not foreign
+        if (!info.foreign) continue; // word not foreign
 
-        bundle.rootsToFix[info.rootForeign] = info.rootLocal;
-
+        bundle.rootsToFix[info.rootForeign] = info.local;
         // initialize if necessary
-        if (!rootOriginals[info.rootForeign]) rootOriginals[info.rootForeign]=[];
+        if (!rootOriginals[info.rootForeign])
+            rootOriginals[info.rootForeign]=[];
 
         if (info.twoWord) {
             rootOriginals[info.rootForeign].push(merged);

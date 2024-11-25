@@ -1,3 +1,4 @@
+import { foreignNounConvert } from "../noun-convert/noun-handler.js";
 import {words, twoWords} from "./dict.js"
 
 export function isForeign(word) {
@@ -12,13 +13,13 @@ export function isForeign(word) {
 
     for (let i = word.length; i > 1; i--) {
         const sliced = word.slice(0, i);
-        const replacement = words[sliced]?.local;
+        const replaceInfo = words[sliced];
         
-        if (replacement) {
+        if (replaceInfo) {
             return {
                 foreign: true,
                 rootForeign: sliced,
-                rootLocal: replacement,
+                ...replaceInfo
             };
         }
     }
@@ -43,7 +44,7 @@ function isTwoWordForeign(word) {
             twoWord: true,
             foreign: true,
             rootForeign,
-            rootLocal: words[rootForeign].local,
+            ...words[rootForeign],
         }
     }
 
@@ -51,5 +52,17 @@ function isTwoWordForeign(word) {
 }
 
 export function replaceForeign(word) { // NEEDS IMPROVEMENT
-    return isForeign(word).rootLocal;
+    const replaceInfo = isForeign(word);
+    
+    const capital = word[0] === word[0].toLocaleUpperCase("tr");
+
+    if (!(replaceInfo.flags & 1)) {
+        let value = [...foreignNounConvert(word.toLocaleLowerCase("tr"), replaceInfo)][0];
+        
+        if (capital) // tarasım -> Tarasım
+            value = value[0].toLocaleUpperCase("tr") + value.slice(1);
+        return value;
+    }
+
+    return replaceInfo.local;
 }

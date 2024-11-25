@@ -1,7 +1,9 @@
 async function getAlternatives(obj) {
-    return await chrome.runtime.sendMessage({type: "dilbilgisi", function: "getAlternatives", input:obj});
+    const res = await chrome.runtime.sendMessage({type: "dilbilgisi", function: "getAlternatives", input:obj});
+    return res;    
 };
 
 async function textForeignInfo(paragraph) {
-    return await chrome.runtime.sendMessage({type: "dilbilgisi", function: "textForeignInfo", input:paragraph});
+    const res = await chrome.runtime.sendMessage({type: "dilbilgisi", function: "textForeignInfo", input:paragraph});
+    return res;    
 };
