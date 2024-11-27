@@ -40,7 +40,7 @@ function addGui(focused, id) { // mutations
             focused.tagName==="DIV"?
                 focused.textContent:
                 focused.value
-        )); // true for getting multiple converts
+        ), true); // true for getting multiple converts
 
         const popover = document.getElementById(`suggest${id}`);
 

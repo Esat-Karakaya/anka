@@ -28,23 +28,40 @@ function selectAllItem({selecteds, replacements, replaceList}) {
 }
 
 // creates a list item
-function newListItem({str, selecteds, replacements, badWord, replaceList}) {
+function newListItem({
+    selecteds,
+    replacements,
+    badWord,
+    replaceList
+}) {
     const li=document.createElement("li");
-    li.innerText=str;
+    li.innerText=`${badWord} ➡️ ${replacements[badWord]}`;
 
     // selection checkbox
     const select=document.createElement("input");
     select.setAttribute("type", "checkbox");
     select.classList.add("checkOption");
-    select.addEventListener("change",
-        getCheckHandler({selecteds, replacements, badWord, replaceList}));
+    select.addEventListener(
+        "change",
+        getCheckHandler({
+            selecteds,
+            replacements,
+            badWord,
+            replaceList
+        }),
+    );
 
     li.prepend(select);
 
     return li;
 }
 
-function getCheckHandler({selecteds, replacements, badWord, replaceList}) {
+function getCheckHandler({
+    selecteds,
+    replacements,
+    badWord,
+    replaceList
+}) {
     // when checkbox is clicked
     return (event) => {
 
