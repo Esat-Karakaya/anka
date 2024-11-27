@@ -23,15 +23,14 @@ export function textForeignInfo(text, getMulti) {
         }
         else foreign = words[i];
 
-        replacements[foreign] = replaceForeign(foreign);
+        replacements[foreign] = [...replaceForeign(foreign)];
 
         if (!getMulti){
             // a single word is needed
             replacements[foreign] =
-            replacements[foreign]
-            .values().next().value;
+            replacements[foreign][0]
         }
     }
-
+    console.log(replacements);
     return replacements;
 }

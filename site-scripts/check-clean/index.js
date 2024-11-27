@@ -36,11 +36,12 @@ function addGui(focused, id) { // mutations
     const gui = newGui(whenVisible, id, () => localizeText(focused, selectedForeigns));
 
     async function whenVisible() { // when popover is visible
-        const replacements = await (textForeignInfo(
-            focused.tagName==="DIV"?
-                focused.textContent:
-                focused.value
-        ), true); // true for getting multiple converts
+        const element = 
+        focused.tagName==="DIV"?
+            focused.textContent:
+            focused.value
+        
+        const replacements = await (textForeignInfo(element, true));
 
         const popover = document.getElementById(`suggest${id}`);
 

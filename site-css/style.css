@@ -80,6 +80,7 @@
 .suggester li {
     display: flex;
     align-items: center;
+    column-gap: 1em;
     margin: 1em;
     font-family: sans-serif;
     width: 90%;
@@ -87,7 +88,6 @@
 
 .checkOption { 
     float: left;
-    margin-right: 1em;
 }
 
 .actions {
@@ -114,6 +114,20 @@
 .suggester input[type="checkbox"]:checked:before {
     content: "✔️";
     font-size: .7em;
+}
+
+/* selections */
+.suggester select:not(select[disabled]){
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 3px;
+    text-align: center;
+    transition: border-radius .2s;
+}
+
+.suggester select:active {
+    border-radius: 10px !important;
 }
 
 /* CHECK BUTTON */

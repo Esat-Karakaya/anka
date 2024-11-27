@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener(
         if (request.type!=="dilbilgisi") return;
 
         if (request.function === "textForeignInfo") {
-            sendResponse(textForeignInfo(request.input));
+            sendResponse(textForeignInfo(...request.input));
         }
     }
 );

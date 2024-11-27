@@ -8,18 +8,18 @@ function selectAllItem({selecteds, replacements, replaceList}) {
     select.setAttribute("type", "checkbox");
     select.classList.add("checkOption");
 
-    select.addEventListener("change", (event) => {
+    select.addEventListener("change", event => {
         // when check all option is checked
         const checkBoxes = replaceList.querySelectorAll('input[type="checkbox"]');
-    
-        if (event.target.checked) {
-            for (const element in replacements)
-                selecteds[element] = replacements[element];
-        }else
-            selecteds.clear();
-    
-        for (const box of checkBoxes)
-            box.checked=event.target.checked;
+
+        // must detach refrence to dom element
+        const isChecked = event.target.checked;
+
+        for (const box of checkBoxes){
+            if ( box.checked!==isChecked ) {
+                box.click();
+            }
+        }
     });
 
     li.prepend(select);
@@ -34,49 +34,63 @@ function newListItem({
     badWord,
     replaceList
 }) {
-    const li=document.createElement("li");
-    li.innerText=`${badWord} ➡️ ${replacements[badWord]}`;
+    const li = document.createElement("li");
+    li.innerText=`${badWord} ➡️`;
+
+    // disable if only one option exist
+    const dropdown = document.createElement("select");
+    if (replacements[badWord].length === 1) 
+        dropdown.setAttribute("disabled", "")
+    
+    // add options
+    for (const replacement of replacements[badWord]) {
+        const option = document.createElement("option");
+        option.innerText = replacement;
+        dropdown.appendChild(option);
+    }
+
+    li.appendChild(dropdown);
 
     // selection checkbox
-    const select=document.createElement("input");
-    select.setAttribute("type", "checkbox");
-    select.classList.add("checkOption");
-    select.addEventListener(
+    const checkbox=document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.classList.add("checkOption");
+    checkbox.addEventListener(
         "change",
         getCheckHandler({
             selecteds,
-            replacements,
             badWord,
-            replaceList
+            replaceList,
+            dropdown,
         }),
     );
 
-    li.prepend(select);
+    li.prepend(checkbox);
 
     return li;
 }
 
 function getCheckHandler({
     selecteds,
-    replacements,
     badWord,
-    replaceList
+    replaceList,
+    dropdown,
 }) {
+
     // when checkbox is clicked
     return (event) => {
-
         if (event.target.checked) {
-            selecteds[badWord] = replacements[badWord];
+            selecteds[badWord] = dropdown.options[dropdown.selectedIndex].text;;
         } else {
             delete selecteds[badWord];
         }
 
-        updateSelectAll(replaceList);
+        updateSelectAll(replaceList, selecteds);
     }
 }
 
 // update select all checkbox
-function updateSelectAll(ul) {
+function updateSelectAll(ul, selecteds) {
     const checkBoxes = [ ...ul.querySelectorAll('input[type="checkbox"]') ];
     const allChecked = checkBoxes.reduce((acc, cur, i) => {
         return !i || (cur.checked && acc);
