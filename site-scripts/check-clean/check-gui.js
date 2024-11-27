@@ -76,68 +76,24 @@ function listAlternatives({replacements, container, selecteds}) {
     const replaceList=document.createElement("ul");
 
     // select/unselect all option
-    const selectAll=newListItem("Hepsini Seç", event => {
-        const checkBoxes = replaceList.querySelectorAll('input[type="checkbox"]');
-
-        if (event.target.checked) {
-            for (const element in replacements)
-                selecteds[element] = replacements[element];
-        }else
-            selecteds.clear();
-
-        for (const box of checkBoxes)
-            box.checked=event.target.checked;
-    });
+    const selectAll=selectAllItem({selecteds, replacements, replaceList});
     replaceList.appendChild(selectAll);
 
     // creating all li's
     for (const badWord in replacements){
         // create li
-        const wordReplace = newListItem(
-
-            `${localeCap(badWord)} ➡️ ${localeCap(replacements[badWord])}`,
-
-            event => {
-                // when checkbox is clicked
-                if (event.target.checked) {
-                    selecteds[badWord] = replacements[badWord];
-                } else {
-                    delete selecteds[badWord];
-                }
-
-                updateSelectAll(replaceList, badWords.length);
-            }
-        );
+        const wordReplace = newListItem({
+            str: `${badWord} ➡️ ${replacements[badWord]}`,
+            selecteds,
+            replacements,
+            badWord,
+            replaceList,
+        });
         
         replaceList.appendChild(wordReplace);
     }
 
     foreignSuggest.appendChild(replaceList);
-}
-
-// creates a list item
-function newListItem(str, checkHandle) {
-    const li=document.createElement("li");
-    li.innerText=str;
-
-    // selection checkbox
-    const select=document.createElement("input");
-    select.setAttribute("type", "checkbox");
-    select.classList.add("checkOption");
-    select.addEventListener("change", checkHandle);
-
-    li.prepend(select);
-
-    return li;
-}
-
-function updateSelectAll(ul) {
-    const checkBoxes = [ ...ul.querySelectorAll('input[type="checkbox"]') ];
-    const allChecked = checkBoxes.reduce((acc, cur, i) => {
-        return !i || (cur.checked && acc);
-    });
-
-    checkBoxes[0].checked = allChecked;
 }
 
 // removes white space in a DOM element made from string
@@ -155,10 +111,4 @@ function removeWhitespace(node) {
             removeWhitespace(child);
         }
     }
-}
-
-function localeCap(str) {
-    let cpy=str[0].toLocaleLowerCase("tr") + str.slice(1);
-
-    return cpy;
 }

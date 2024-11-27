@@ -15,7 +15,8 @@ export function arrayifyText(text) {
 
     const words = [];
 
-    for (let i=0; i <= text.length; i++) { // Seperate all words
+    for (let i=0; i <= text.length; i++) {
+
 
         // word has ended
         if (!ALPHABET.has(text[i]) || (i === text.length && ALPHABET.has(text[i-1]))) {

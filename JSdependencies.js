@@ -1,7 +1,8 @@
 export const checkClean = [
     "site-scripts/shared.js",
-    "site-scripts/check-clean/check-gui.js",
     "site-scripts/check-clean/replacer.js",
+    "site-scripts/check-clean/check-gui.js",
+    "site-scripts/check-clean/list-item.js",
 
     // inject last
     "site-scripts/check-clean/index.js",

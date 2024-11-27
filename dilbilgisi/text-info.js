@@ -3,7 +3,7 @@ import { isForeign, replaceForeign } from "./dilbilgisi.js";
 
 // returns alternatives for used forign word roots
 // and original form of the foreign roots
-export function textForeignInfo(text) {
+export function textForeignInfo(text, getMulti) {
     const words = arrayifyText(text);
     const replacements = {} // {dizaynın: ["tasarımın"], perspektifin: ["bakış açın", "bakış açısı"]}
 
@@ -16,12 +16,21 @@ export function textForeignInfo(text) {
 
         if (!info.foreign) continue; // word not foreign
 
+        let foreign;
         if (info.twoWord) {
-            replacements[merged] = replaceForeign(merged).values().next().value;
+            foreign = merged;
             i++; // skip second word
-            continue;
         }
-        replacements[words[i]] = replaceForeign(words[i]).values().next().value;
+        else foreign = words[i];
+
+        replacements[foreign] = replaceForeign(foreign);
+
+        if (!getMulti){
+            // a single word is needed
+            replacements[foreign] =
+            replacements[foreign]
+            .values().next().value;
+        }
     }
 
     return replacements;

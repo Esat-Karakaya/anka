@@ -81,7 +81,6 @@
     display: flex;
     align-items: center;
     margin: 1em;
-    text-transform: capitalize; /* Remove localeCap before removing */
     font-family: sans-serif;
     width: 90%;
 }
