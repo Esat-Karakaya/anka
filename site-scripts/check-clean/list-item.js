@@ -1,5 +1,5 @@
 // select/unselect all option
-function selectAllItem({selecteds, replacements, replaceList}) {
+function selectAllItem({replaceList}) {
 	const li=document.createElement("li");
 	li.innerText="Hepsini Seç";
 
@@ -37,8 +37,14 @@ function newListItem({
 	const li = document.createElement("li");
 	li.innerText=`${badWord} ➡️`;
 
-	// disable if only one option exist
 	const dropdown = document.createElement("select");
+
+	dropdown.addEventListener("change", () => {
+		if (selecteds[badWord])
+			selecteds[badWord] = dropdown.options[dropdown.selectedIndex].text;
+	})
+
+	// disable select if only one option exist
 	if (replacements[badWord].length === 1) 
 		dropdown.setAttribute("disabled", "")
 	
@@ -80,7 +86,7 @@ function getCheckHandler({
 	// when checkbox is clicked
 	return (event) => {
 		if (event.target.checked) {
-			selecteds[badWord] = dropdown.options[dropdown.selectedIndex].text;;
+			selecteds[badWord] = dropdown.options[dropdown.selectedIndex].text;
 		} else {
 			delete selecteds[badWord];
 		}

@@ -76,7 +76,7 @@ function listAlternatives({replacements, container, selecteds}) {
 	const replaceList=document.createElement("ul");
 
 	// select/unselect all option
-	const selectAll=selectAllItem({selecteds, replacements, replaceList});
+	const selectAll=selectAllItem({replaceList});
 	replaceList.appendChild(selectAll);
 
 	// creating all li's
