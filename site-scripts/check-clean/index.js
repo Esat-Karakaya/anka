@@ -2,55 +2,55 @@
 const spotteds = new Set();
 
 document.addEventListener("click", async () => {
-    const focused = document.activeElement;
+	const focused = document.activeElement;
 
-    /* add button to selected writables */
-    if ( // clicked tag is not writable
-        (
-            !(focused.tagName==="DIV") ||
-            !(focused.getAttribute("contenteditable")==="true")
-        ) &&
-        !(focused.tagName==="TEXTAREA")
-    ) {
-        return; 
-    }
+	/* add button to selected writables */
+	if ( // clicked tag is not writable
+		(
+			!(focused.tagName==="DIV") ||
+			!(focused.getAttribute("contenteditable")==="true")
+		) &&
+		!(focused.tagName==="TEXTAREA")
+	) {
+		return; 
+	}
 
-    else if (spotteds.has(focused)){ return; } // already added
+	else if (spotteds.has(focused)){ return; } // already added
 
-    else { // add new
-        spotteds.add(focused);
-        addGui(focused, spotteds.size);
-    }
+	else { // add new
+		spotteds.add(focused);
+		addGui(focused, spotteds.size);
+	}
 });
 
 function addGui(focused, id) { // mutations
-    // add clear prototype to selectedForeign
-    const clearPrototype = {
-        clear() {
-            for (const badWord in this)
-                delete this[badWord];
-        },
-    };
-    const selectedForeigns = Object.create(clearPrototype);
+	// add clear prototype to selectedForeign
+	const clearPrototype = {
+		clear() {
+			for (const badWord in this)
+				delete this[badWord];
+		},
+	};
+	const selectedForeigns = Object.create(clearPrototype);
 
-    const gui = newGui(whenVisible, id, () => localizeText(focused, selectedForeigns));
+	const gui = newGui(whenVisible, id, () => localizeText(focused, selectedForeigns));
 
-    async function whenVisible() { // when popover is visible
-        const element = 
-        focused.tagName==="DIV"?
-            focused.textContent:
-            focused.value
-        
-        const replacements = await (textForeignInfo(element, true));
+	async function whenVisible() { // when popover is visible
+		const element = 
+		focused.tagName==="DIV"?
+			focused.textContent:
+			focused.value
+		
+		const replacements = await (textForeignInfo(element, true));
 
-        const popover = document.getElementById(`suggest${id}`);
+		const popover = document.getElementById(`suggest${id}`);
 
-        selectedForeigns.clear();
-        listAlternatives({
-            replacements,
-            container: popover,
-            selecteds: selectedForeigns,
-        });
-    }
-    focused.before(gui);
+		selectedForeigns.clear();
+		listAlternatives({
+			replacements,
+			container: popover,
+			selecteds: selectedForeigns,
+		});
+	}
+	focused.before(gui);
 }

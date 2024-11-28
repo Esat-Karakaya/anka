@@ -4,33 +4,33 @@ import { isForeign, replaceForeign } from "./dilbilgisi.js";
 // returns alternatives for used forign word roots
 // and original form of the foreign roots
 export function textForeignInfo(text, getMulti) {
-    const words = arrayifyText(text);
-    const replacements = {} // {dizaynın: ["tasarımın"], perspektifin: ["bakış açın", "bakış açısı"]}
+	const words = arrayifyText(text);
+	const replacements = {} // {dizaynın: ["tasarımın"], perspektifin: ["bakış açın", "bakış açısı"]}
 
-    // Iterate over words
-    for (let i = 0; i < words.length; i++) {
+	// Iterate over words
+	for (let i = 0; i < words.length; i++) {
 
-        const merged = words[i] + " " + words[1+i];
+		const merged = words[i] + " " + words[1+i];
 
-        const info = isForeign(merged);
+		const info = isForeign(merged);
 
-        if (!info.foreign) continue; // word not foreign
+		if (!info.foreign) continue; // word not foreign
 
-        let foreign;
-        if (info.twoWord) {
-            foreign = merged;
-            i++; // skip second word
-        }
-        else foreign = words[i];
+		let foreign;
+		if (info.twoWord) {
+			foreign = merged;
+			i++; // skip second word
+		}
+		else foreign = words[i];
 
-        replacements[foreign] = [...replaceForeign(foreign)];
+		replacements[foreign] = [...replaceForeign(foreign)];
 
-        if (!getMulti){
-            // a single word is needed
-            replacements[foreign] =
-            replacements[foreign][0]
-        }
-    }
-    console.log(replacements);
-    return replacements;
+		if (!getMulti){
+			// a single word is needed
+			replacements[foreign] =
+			replacements[foreign][0]
+		}
+	}
+	console.log(replacements);
+	return replacements;
 }

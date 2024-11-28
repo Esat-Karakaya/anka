@@ -1,36 +1,36 @@
 /* INITIAL CSS */
 .gui-container *{
-    all: unset;
-    color: black;
-    font-size: 16px;
+	all: unset;
+	color: black;
+	font-size: 16px;
 }
 
 .gui-container{
-    all:unset;
+	all:unset;
 }
 
 .gui-container ul{
-    display: block;
-    list-style-type: disc;
-    margin-top: 1em;
-    margin-bottom: 1 em;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 5%;
+	display: block;
+	list-style-type: disc;
+	margin-top: 1em;
+	margin-bottom: 1 em;
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 5%;
 }
 
 .gui-container li { display: list-item; }
 
 .gui-container div[role="button"] {
-    font-family: sans-serif;
-    border: 1px solid black;
-    border-radius: .5em;
-    padding: .3em .5em;
-    background-color: white;
-    transition: border-radius 0.2s;
+	font-family: sans-serif;
+	border: 1px solid black;
+	border-radius: .5em;
+	padding: .3em .5em;
+	background-color: white;
+	transition: border-radius 0.2s;
 
-    cursor: pointer;
-    user-select: none;
+	cursor: pointer;
+	user-select: none;
 }
 
 .gui-container div[role="button"]:active { border-radius: .9em; }
@@ -39,120 +39,120 @@
 /* POPOVER */
 
 .suggester{
-    min-height: 10em;
-    width: 80%;
-    max-width: 25em;
+	min-height: 10em;
+	width: 80%;
+	max-width: 25em;
 
-    border: none;
-    background-color: rgba(164, 255, 255, 0.541);
-    border-radius: 1em;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 8px black;
-    padding: 1em;
+	border: none;
+	background-color: rgba(164, 255, 255, 0.541);
+	border-radius: 1em;
+	backdrop-filter: blur(5px);
+	box-shadow: 0 0 8px black;
+	padding: 1em;
 
-    position: fixed;
-    z-index: 100000;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: none;
+	position: fixed;
+	z-index: 100000;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
 }
 
 .toggle-gui-btn:checked + .suggester{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
 }
 
 .foreign-suggest {
-    flex-direction: column;
-    justify-content: center;
-    display: flex;
+	flex-direction: column;
+	justify-content: center;
+	display: flex;
 }
 
 .statusP {
-    font-family: sans-serif;
-    font-weight: bold;
-    margin: 0;
+	font-family: sans-serif;
+	font-weight: bold;
+	margin: 0;
 }
 
 .suggester li {
-    display: flex;
-    align-items: center;
-    column-gap: 1em;
-    margin: 1em;
-    font-family: sans-serif;
-    width: 90%;
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+	margin: 1em;
+	font-family: sans-serif;
+	width: 90%;
 }
 
 .checkOption { 
-    float: left;
+	float: left;
 }
 
 .actions {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 /* checkboxes */
 
 .suggester input[type="checkbox"] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 20%;
-    height: 1em;
-    width: 1em;
-    transition: border-radius .2s;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 20%;
+	height: 1em;
+	width: 1em;
+	transition: border-radius .2s;
 }
 .suggester input[type="checkbox"]:active { border-radius: 50%; }
 .suggester input[type="checkbox"]:checked:before {
-    content: "✔️";
-    font-size: .7em;
+	content: "✔️";
+	font-size: .7em;
 }
 
 /* selections */
 .suggester select:not(select[disabled]){
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 3px;
-    padding: 3px;
-    text-align: center;
-    transition: border-radius .2s;
+	background-color: white;
+	border: 2px solid black;
+	border-radius: 3px;
+	padding: 3px;
+	text-align: center;
+	transition: border-radius .2s;
 }
 
 .suggester select:active {
-    border-radius: 10px !important;
+	border-radius: 10px !important;
 }
 
 /* CHECK BUTTON */
 
 .toggle-gui-btn{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-    width: 1.8em !important;
-    height: 1.8em !important;
-    border: 1px solid black;
-    border-radius: 30%;
-    background-color: white;
-    margin: 7px;
+	width: 1.8em !important;
+	height: 1.8em !important;
+	border: 1px solid black;
+	border-radius: 30%;
+	background-color: white;
+	margin: 7px;
 
-    transition: border-radius .2s;
+	transition: border-radius .2s;
 }
 
 .toggle-gui-btn:active {
-    border-radius: 50%;
+	border-radius: 50%;
 }
 
 .toggle-gui-btn::before{
-    position: absolute;
-    content: "✔️";
+	position: absolute;
+	content: "✔️";
 }
