@@ -1,7 +1,7 @@
 // flags
-// 0b001: noun -> 0, verb -> 1
-// 0b?10: 3.tekil yok -> 0, 3.tekil var -> 1
-// 0b1?0: ek alma -> 0, kesme işaretiyle ayrılma -> 1
+// 0b?001: noun -> 0, verb -> 1
+// 0b??10: 3.tekil yok -> 0, 3.tekil var -> 1
+// 0b?1?0: ek alma -> 0, kesme işaretiyle ayrılma -> 1
 
 export const words = {
 	"absürt": { local: "saçma", flags: 0 },
@@ -52,7 +52,7 @@ export const words = {
 	"hümanist": { local: "insancıl", flags: 0 },
 	"illegal": { local: "yasa dış", flags: 0b010 },
 	"imitasyon": { local: "taklit", flags: 0 },
-	"influencer": { local: "etkileyen", flags: 0 }, // OKUNUŞU-YAZILIŞI FARKLI
+	"influencer": { local: "etkileyen", flags: 0, pronounce: "sır", }, // OKUNUŞU-YAZILIŞI FARKLI
 	"irregular": { local: "düzensiz", flags: 0 },
 	"izolasyon": { local: "yalıtım", flags: 0 },
 	"jenerasyon": { local: "nesil", flags: 0 },

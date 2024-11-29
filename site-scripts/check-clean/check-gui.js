@@ -81,6 +81,7 @@ function listAlternatives({replacements, container, selecteds}) {
 
 	// creating all li's
 	for (const badWord in replacements){
+		if (!replacements[badWord]) continue;
 		// create li
 		const wordReplace = newListItem({
 			selecteds,
