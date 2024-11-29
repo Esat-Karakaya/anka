@@ -31,20 +31,22 @@ function isTwoWordForeign(word) {
 	
 	if (!twoWords[splitted[0]]) return {};
 
-	const secondBase = twoWords[splitted[0]]; // second word from dictionary
-	const rootForeign = splitted[0] + " " + secondBase; // the word in dictionary
+	for (const secondBase of twoWords[splitted[0]]) { // iterate second words from dictionary
 
-	const secondSlice = splitted[1].slice(0, secondBase.length); // the second input word base (maybe)
+		const rootForeign = splitted[0] + " " + secondBase; // the word in dictionary
 
-	if (
-		secondBase === secondSlice ||
-		(secondBase ==="et" && "ed" === secondSlice)
-	) {
-		return {
-			twoWord: true,
-			foreign: true,
-			rootForeign,
-			...words[rootForeign],
+		const secondSlice = splitted[1].slice(0, secondBase.length); // the second input word base (maybe)
+
+		if (
+			secondBase === secondSlice ||
+			(secondBase ==="et" && "ed" === secondSlice)
+		) {
+			return {
+				twoWord: true,
+				foreign: true,
+				rootForeign,
+				...words[rootForeign],
+			}
 		}
 	}
 
