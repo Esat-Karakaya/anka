@@ -102,24 +102,22 @@ function insertS3(routes) { // MUTATION
 
 
 // flags
-// 0b?001: noun -> 0, verb -> 1
-// 0b??10: 3.tekil yok -> 0, 3.tekil var -> 1
-// 0b?1?0: ek alma -> 0, kesme işaretiyle ayrılma -> 1
+// 0b001: noun -> 0, verb -> 1
+// 0b?10: 3.tekil yok -> 0, 3.tekil var -> 1
 export function foreignNounConvert(originalWord, rootInfo) {
 
 	const {rootForeign} = rootInfo;
 
 	const pronouncedRoot = rootInfo.pronounce ?? rootForeign;
+
+	let suffStart = rootForeign.length;
+	originalWord.includes("'") && suffStart++;
+
 	const pronouncedWord = 
 		pronouncedRoot +
-		originalWord.slice(rootForeign.length)
+		originalWord.slice(suffStart);
 
-	const newRoot =
-	(rootInfo.flags & 2**2) ? // flags[2] in bitwise operation 
-		pronouncedRoot + "'" :
-		pronouncedRoot; // cv -> cv'
-
-	let routes = disectNoun(pronouncedWord, newRoot);
+	let routes = disectNoun(pronouncedWord, pronouncedRoot);
 
 	if (rootInfo.flags & 2**1) {
 		insertS3(routes);

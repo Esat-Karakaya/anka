@@ -1,47 +1,46 @@
 // ALL INPUT CHARS SHOULD BE LOWERCASE
 
 const hardeners = new Set([
-  "f", "s", "t", "k",
-  "ç", "ş", "h", "p",
+	"f", "s", "t", "k",
+	"ç", "ş", "h", "p",
 ]);
 
 const nextVowel = {
-  a: ["a", "ı"],
-  e: ["e", "i"],
-  ı: ["a", "ı"],
-  i: ["e", "i"],
-  o: ["a", "u"],
-  ö: ["e", "ü"],
-  u: ["a", "u"],
-  ü: ["e", "ü"],
-  "'": ["e", "i"],
+	a: ["a", "ı"],
+	e: ["e", "i"],
+	ı: ["a", "ı"],
+	i: ["e", "i"],
+	o: ["a", "u"],
+	ö: ["e", "ü"],
+	u: ["a", "u"],
+	ü: ["e", "ü"],
 };
 
 export function çoğulEki(word) {
-  const lastvowel = getLastVowel(word);
-  if (nextVowel[lastvowel][0] === "a") {
-	return word + "lar";
-  }
-  return word + "ler";
+	const lastvowel = getLastVowel(word);
+	if (nextVowel[lastvowel][0] === "a") {
+		return word + "lar";
+	}
+	return word + "ler";
 }
 export const iyelikEki = {
-  s1(word, moreInfo) {
+	s1(word, moreInfo) {
 	if (nextVowel.hasOwnProperty(word.at(-1))) return word + "m";
 
 	let softened = ( moreInfo.yumuşamama ? word : softener(word) );
 	let lastvowel = getLastVowel(softened);
 
 	return word + nextVowel[lastvowel][1] + "m";
-  },
-  s2(word, moreInfo) {
+	},
+	s2(word, moreInfo) {
 	if (nextVowel.hasOwnProperty(word.at(-1))) return word + "n";
 
 	let softened = ( moreInfo.yumuşamama ? word : softener(word) );
 	let lastvowel = getLastVowel(softened);
 
 	return word + nextVowel[lastvowel][1] + "n";
-  },
-  s3(word, moreInfo) {
+	},
+	s3(word, moreInfo) {
 	let lastvowel = getLastVowel(word);
 	let vowelToAdd = nextVowel[lastvowel][1];
 
@@ -49,8 +48,8 @@ export const iyelikEki = {
 
 	let softened = ( moreInfo.yumuşamama ? word : softener(word) );
 	return softened + vowelToAdd;
-  },
-  p1(word, moreInfo) {
+	},
+	p1(word, moreInfo) {
 	let lastvowel = getLastVowel(word);
 	let vowelToAdd = nextVowel[lastvowel][1];
 
@@ -58,8 +57,8 @@ export const iyelikEki = {
 
 	let softened = ( moreInfo.yumuşamama ? word : softener(word) );
 	return softened + vowelToAdd + "m" + vowelToAdd + "z";
-  },
-  p2(word, moreInfo) {
+	},
+	p2(word, moreInfo) {
 	let lastvowel = getLastVowel(word);
 	let vowelToAdd = nextVowel[lastvowel][1];
 
@@ -67,55 +66,55 @@ export const iyelikEki = {
 
 	let softened = ( moreInfo.yumuşamama ? word : softener(word) );
 	return softened + vowelToAdd + "n" + vowelToAdd + "z";
-  },
-  p3(word, moreInfo) {
+	},
+	p3(word, moreInfo) {
 	return this.s3(çoğulEki(word), moreInfo);
-  },
+	},
 };
 
 export const halEki = { // ki zamiri ve iyelik ekinden sonra n kaynaştırma daha sonra hal eki
-  belirtme(word, moreInfo) {
+	belirtme(word, moreInfo) {
 	let newWord = ( moreInfo.yumuşamama ? word : softener(word) );
 	if (moreInfo.kaynaşım && nextVowel.hasOwnProperty(word.at(-1))) newWord += "n";
 	else if (nextVowel.hasOwnProperty(word.at(-1))) newWord += "y";
 
 	return newWord + nextVowel[getLastVowel(word)][1];
-  },
-  yaklaşma(word, moreInfo) {
+	},
+	yaklaşma(word, moreInfo) {
 	let newWord = ( moreInfo.yumuşamama ? word : softener(word) );
 	if (moreInfo.kaynaşım && nextVowel.hasOwnProperty(word.at(-1))) newWord += "n";
 	else if (nextVowel.hasOwnProperty(word.at(-1))) newWord += "y";
 
 	return newWord + nextVowel[getLastVowel(word)][0];
-  },
-  bulunma(word, moreInfo) {
+	},
+	bulunma(word, moreInfo) {
 	let newWord = word;
 	if (moreInfo.kaynaşım && nextVowel.hasOwnProperty(word.at(-1))) newWord += "n";
 	newWord += hardeners.has(newWord.at(-1)) ? "t" : "d";
 
 	return newWord + nextVowel[getLastVowel(word)][0];
-  },
-  ayrılma(word, moreInfo) {
+	},
+	ayrılma(word, moreInfo) {
 	let newWord = word;
 	if (moreInfo.kaynaşım && nextVowel.hasOwnProperty(word.at(-1))) newWord += "n";
 	newWord += hardeners.has(newWord.at(-1)) ? "t" : "d";
 
 	return newWord + nextVowel[getLastVowel(word)][0] + "n";
-  },
+	},
 };
 
 export function tamlayanEki(word, moreInfo) {
 	let newWord = word;
-  if (nextVowel.hasOwnProperty(word.at(-1)))
-  	newWord += "n";
-  return iyelikEki.s2(newWord, moreInfo);
+	if (nextVowel.hasOwnProperty(word.at(-1)))
+		newWord += "n";
+	return iyelikEki.s2(newWord, moreInfo);
 }
 
 export function eşitlikEki(word, moreInfo) {
 	const lastvowel = getLastVowel(word);
 
 	let toAdd="";
-  if (moreInfo.kaynaşım && lastvowel === word.at(-1)) toAdd+="n";
+	if (moreInfo.kaynaşım && lastvowel === word.at(-1)) toAdd+="n";
 	if (hardeners.has(word.at(-1))) toAdd+="ç";
 	else toAdd+="c";
 	toAdd += nextVowel[lastvowel][0];
@@ -124,12 +123,12 @@ export function eşitlikEki(word, moreInfo) {
 }
 
 export function birliktelikEki(word) {
-  const lastvowel = getLastVowel(word);
-  let suffix = "";
-  if (lastvowel===word.at(-1)) suffix+="y";
-  suffix+="l" + nextVowel[lastvowel][0];
+	const lastvowel = getLastVowel(word);
+	let suffix = "";
+	if (lastvowel===word.at(-1)) suffix+="y";
+	suffix+="l" + nextVowel[lastvowel][0];
 
-  return word+suffix;
+	return word+suffix;
 }
 
 export function ilgiZamiriEki(word) {
@@ -137,7 +136,7 @@ export function ilgiZamiriEki(word) {
 }
 
 export function nePekiştirmesi(word) { // casına ekinin son hecesi
-  if (!nextVowel[word.at(-1)]) return word+"nn";
+	if (!nextVowel[word.at(-1)]) return word+"nn";
 	return word + "n" + nextVowel[word.at(-1)][0];
 }
 
@@ -145,7 +144,7 @@ export function nePekiştirmesi(word) { // casına ekinin son hecesi
 //  isim eylem ekleri
 //---------------------
 export const genişZamanEki = {
-  s1(word, moreInfo) {
+	s1(word, moreInfo) {
 	let lastvowel = getLastVowel(word);
 
 	let suffix = "";
@@ -154,42 +153,42 @@ export const genişZamanEki = {
 	suffix += nextVowel[lastvowel][1] + "m";
 
 	return ( moreInfo.yumuşamama ? word : softener(word) ) + suffix;
-  },
-  s2(word) {
+	},
+	s2(word) {
 	let lastvowel = getLastVowel(word);
 
 	return word + "s" + nextVowel[lastvowel][1] + "n";
-  },
-  s3(word) { // her zaman dİr eki ekler
+	},
+	s3(word) { // her zaman dİr eki ekler
 	let suffix = "";
 	suffix += hardeners.has(word.at(-1)) ? "t" : "d";
 	suffix += nextVowel[getLastVowel(word)][1] + "r";
 
 	return word + suffix;
-  },
-  p1(word, moreInfo) {
+	},
+	p1(word, moreInfo) {
 	let newWord = this.s1(word, moreInfo);
 	return newWord.slice(0, newWord.length-1) + "z";
-  },
-  p2(word) {
+	},
+	p2(word) {
 	let vowel = nextVowel[ getLastVowel(word) ][1];
 
 	return word + "s" + vowel + "n" + vowel + "z";
-  },
-  p3_1:çoğulEki,
-  p3_2(word) {
+	},
+	p3_1:çoğulEki,
+	p3_2(word) {
 	return çoğulEki(this.s3(word));
-  },
+	},
 };
 
 export const görülenZamanEki = {
-  s1(word) {
+	s1(word) {
 	return this.s3(word) + "m";
-  },
-  s2(word) {
+	},
+	s2(word) {
 	return this.s3(word) + "n";
-  },
-  s3(word) {
+	},
+	s3(word) {
 	let lastvowel = getLastVowel(word);
 
 	let suffix = "";
@@ -198,29 +197,29 @@ export const görülenZamanEki = {
 	else suffix += "d";
 
 	return word + suffix + nextVowel[lastvowel][1];
-  },
-  p1(word) {
+	},
+	p1(word) {
 	return this.s3(word) + "k";
-  },
-  p2(word) {
+	},
+	p2(word) {
 	let out = this.s3(word);
 	return out + "n" + out.at(-1) + "z";
-  },
-  p3(word) {
+	},
+	p3(word) {
 	return çoğulEki(this.s3(word));
-  },
+	},
 };
 
 export const duyulanZamanEki = {
-  s1(word) {
+	s1(word) {
 	let out = this.s3(word);
 	return out + out.at(-2) + "m";
-  },
-  s2(word) {
+	},
+	s2(word) {
 	let out = this.s3(word);
 	return out + "s" + out.at(-2) + "n";
-  },
-  s3(word) {
+	},
+	s3(word) {
 	let lastvowel = getLastVowel(word);
 
 	let suffix = "";
@@ -228,94 +227,94 @@ export const duyulanZamanEki = {
 	suffix += "m" + nextVowel[lastvowel][1] + "ş";
 
 	return word + suffix;
-  },
-  p1(word) {
+	},
+	p1(word) {
 	let out = this.s3(word);
 	return out + out.at(-2) + "z";
-  },
-  p2(word) {
+	},
+	p2(word) {
 	let out = this.s2(word);
 	return out + out.at(-2) + "z";
-  },
-  p3(word) {
+	},
+	p3(word) {
 	return çoğulEki(this.s3(word));
-  },
+	},
 };
 
 export const şartZamanEki = {
-  s1(word) {
+	s1(word) {
 	return this.s3(word) + "m";
-  },
-  s2(word) {
+	},
+	s2(word) {
 	return this.s3(word) + "n";
-  },
-  s3(word) {
-  	let lastvowel = getLastVowel(word);
+	},
+	s3(word) {
+		let lastvowel = getLastVowel(word);
 	let vowelToAdd = nextVowel[ lastvowel ][0];
 	if (lastvowel === word.at(-1)) return word + "ys" + vowelToAdd;
 	return word + "s" + vowelToAdd;
-  },
-  p1(word) {
+	},
+	p1(word) {
 	return this.s3(word) + "k";
-  },
-  p2(word) {
+	},
+	p2(word) {
 	let out = this.s2(word);
 	return out + nextVowel[out.at(-2)][1] + "z";
-  },
-  p3(word) {
+	},
+	p3(word) {
 	return çoğulEki(this.s3(word));
-  },
+	},
 };
 
 //---------------------
-//	   HELPERS
+//       HELPERS
 //---------------------
 function softener(word) {
-  if (!doesSoften(word)) return word;
+	if (!doesSoften(word)) return word;
 
-  let softenWith = "";
-  switch (word.at(-1)) {
+	let softenWith = "";
+	switch (word.at(-1)) {
 	case "t":
-	  softenWith = "d";
-	  break;
+		softenWith = "d";
+		break;
 
 	case "ç":
-	  softenWith = "c";
-	  break;
+		softenWith = "c";
+		break;
 
 	case "p":
-	  softenWith = "b";
-	  break;
+		softenWith = "b";
+		break;
 
 	case "k":
-	  if (nextVowel.hasOwnProperty(word.at(-2))) softenWith = "ğ";
-	  else softenWith = "g";
-	  break;
+		if (nextVowel.hasOwnProperty(word.at(-2))) softenWith = "ğ";
+		else softenWith = "g";
+		break;
 
 	default:
-	  softenWith = word.at(-1);
-  }
+		softenWith = word.at(-1);
+	}
 
-  return word.slice(0, -1) + softenWith;
+	return word.slice(0, -1) + softenWith;
 }
 
 function doesSoften(word) {
-  let count = 0;
+	let count = 0;
 
-  for (let i = word.length - 1; i >= 0 || word[i]===" "; i--) {
+	for (let i = word.length - 1; i >= 0 || word[i]===" "; i--) {
 	if (nextVowel.hasOwnProperty(word[i]))
-	  count++;
+		count++;
 	if (count > 1)
-	  return false;
-  }
-  return true;
+		return false;
+	}
+	return true;
 }
 
 function getLastVowel(word) {
-  for (
+	for (
 	var i = word.length - 1;
 	!nextVowel.hasOwnProperty(word[i]) && i >= 0;
 	i--
-  );
-  return word[i];
+	);
+	return word[i];
 }
