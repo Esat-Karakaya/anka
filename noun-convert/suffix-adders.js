@@ -19,7 +19,7 @@ const nextVowel = {
 export function çoğulEki(word) {
 	const lastvowel = getLastVowel(word);
 	if (nextVowel[lastvowel][0] === "a") {
-		return word + "lar";
+	return word + "lar";
 	}
 	return word + "ler";
 }
@@ -30,7 +30,7 @@ export const iyelikEki = {
 	let softened = ( moreInfo.yumuşamama ? word : softener(word) );
 	let lastvowel = getLastVowel(softened);
 
-	return word + nextVowel[lastvowel][1] + "m";
+	return softened + nextVowel[lastvowel][1] + "m";
 	},
 	s2(word, moreInfo) {
 	if (nextVowel.hasOwnProperty(word.at(-1))) return word + "n";
@@ -38,7 +38,7 @@ export const iyelikEki = {
 	let softened = ( moreInfo.yumuşamama ? word : softener(word) );
 	let lastvowel = getLastVowel(softened);
 
-	return word + nextVowel[lastvowel][1] + "n";
+	return softened + nextVowel[lastvowel][1] + "n";
 	},
 	s3(word, moreInfo) {
 	let lastvowel = getLastVowel(word);
@@ -270,7 +270,7 @@ export const şartZamanEki = {
 //       HELPERS
 //---------------------
 function softener(word) {
-	if (!doesSoften(word)) return word;
+	if (tekHece(word)) return word;
 
 	let softenWith = "";
 	switch (word.at(-1)) {
@@ -298,7 +298,7 @@ function softener(word) {
 	return word.slice(0, -1) + softenWith;
 }
 
-function doesSoften(word) {
+function tekHece(word) {
 	let count = 0;
 
 	for (let i = word.length - 1; i >= 0 || word[i]===" "; i--) {
