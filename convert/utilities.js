@@ -58,10 +58,11 @@ export function tekHece(word) {
 }
 
 export function getLastVowel(word) {
-  for (
-    var i = word.length - 1;
-    !nextVowel.hasOwnProperty(word[i]) && i >= 0;
-    i--
-  );
-  return word[i];
+	let i;
+	for (
+		i = word.length - 1;
+		i > 0 && !nextVowel.hasOwnProperty(word[i]);
+		i--
+	);
+	return word[i];
 }
