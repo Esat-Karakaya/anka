@@ -1,4 +1,4 @@
-import { foreignNounConvert } from "../noun-convert/noun-handler.js";
+import { foreignNounConvert } from "../convert/noun/noun-handler.js";
 import {words, twoWords} from "./dict.js"
 
 export function isForeign(word) {

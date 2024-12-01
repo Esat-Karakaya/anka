@@ -102,8 +102,8 @@ function insertS3(routes) { // MUTATION
 
 
 // flags
-// 0b001: noun -> 0, verb -> 1
-// 0b?10: 3.tekil yok -> 0, 3.tekil var -> 1
+// 0b01: noun -> 0, verb -> 1
+// 0b10: 3.tekil yok -> 0, 3.tekil var -> 1
 export function foreignNounConvert(originalWord, rootInfo) {
 
 	const {rootForeign} = rootInfo;
@@ -125,5 +125,3 @@ export function foreignNounConvert(originalWord, rootInfo) {
 
 	return crudeNounConvert(rootInfo.local, routes);
 }
-
-// foreignNounConvert("laptopumun", {rootForeign:"laptop", local:"dizüstü bilgisayar", flags:0})

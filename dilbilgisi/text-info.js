@@ -31,6 +31,6 @@ export function textForeignInfo(text, getMulti) {
 			replacements[foreign][0]
 		}
 	}
-	console.log(replacements);
+
 	return replacements;
 }
