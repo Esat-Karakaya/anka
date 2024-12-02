@@ -2,6 +2,11 @@
 // 0b?001: noun -> 0, verb -> 1
 // 0b??10: 3.tekil yok -> 0, 3.tekil var -> 1
 
+// flags
+// 0b?_1: yabancıda yumuşama var -> 1  
+// 0b_?1: Türkçesinde yumuşama var -> 1
+
+
 export const words = {
 	"absürt": { local: "saçma", flags: 0 },
 	"adapte ol": { local: "uyum sağla", flags: 0b1 },
@@ -10,10 +15,10 @@ export const words = {
 	"aksesuar": { local: "donatımlık", flags: 0 },
 	"ambiyans": { local: "ortam", flags: 0 },
 	"analiz": { local: "çözümleme", flags: 0 },
-	"analiz et": { local: "çözümle", flags: 0b1 },
+	"analiz et": { local: "çözümle", flags: 0b11 },
 	"anksiyete": { local: "kaygı", flags: 0 },
 	"anons": { local: "duyuru", flags: 0 },
-	"anons et": { local: "duyur", flags: 0b1 },
+	"anons et": { local: "duyur", flags: 0b11 },
 	"anormal": { local: "olağandışı", flags: 0 },
 	"antipatik": { local: "sevimsiz", flags: 0 },
 	"bodyguard": { local: "koruma", flags: 0 },
@@ -28,18 +33,18 @@ export const words = {
 	"cv": { local: "özgeçmiş", flags: 0b100, pronounce: "sivi",  },
 	"data": { local: "veri", flags: 0 },
 	"deadline": { local: "son tarih", flags: 0 },
-	"deklare et": { local: "bildir", flags: 0b1 },
+	"deklare et": { local: "bildir", flags: 0b11 },
 	"default": { local: "varsayılan", flags: 0 },
 	"departman": { local: "bölüm", flags: 0 },
 	"dermatoloji": { local: "cildiye", flags: 0 },
 	"dizayn": { local: "tasarım", flags: 0 },
-	"dizayn et": { local: "tasarla", flags: 0b1 },
+	"dizayn et": { local: "tasarla", flags: 0b11 },
 	"döküman": { local: "belge", flags: 0 },
-	"download et": { local: "indir", flags: 0b1 },
+	"download et": { local: "indir", flags: 0b11 },
 	"driver": { local: "sürücü", flags: 0 },
 	"e-mail": { local: "e-posta", flags: 0 },
-	"elimine et": { local: "ele", flags: 0b1 },
-	"empoze et": { local: "dayat", flags: 0b1 },
+	"elimine et": { local: "ele", flags: 0b11 },
+	"empoze et": { local: "dayat", flags: 0b11 },
 	"emergency": { local: "acil", flags: 0 },
 	"ekstra": { local: "fazladan", flags: 0 },
 	"entegre ol": { local: "bütünleş", flags: 0b1 },
@@ -51,7 +56,7 @@ export const words = {
 	"hümanist": { local: "insancıl", flags: 0 },
 	"illegal": { local: "yasa dış", flags: 0b10 },
 	"imitasyon": { local: "taklit", flags: 0 },
-	"influencer": { local: "etkileyen", flags: 0, pronounce: "sır", }, // OKUNUŞU-YAZILIŞI FARKLI
+	"influencer": { local: "etkileyen", flags: 0, pronounce: "sır", },
 	"irregular": { local: "düzensiz", flags: 0 },
 	"izolasyon": { local: "yalıtım", flags: 0 },
 	"jenerasyon": { local: "nesil", flags: 0 },
@@ -61,7 +66,7 @@ export const words = {
 	"komünikasyon": { local: "iletişim", flags: 0 },
 	"konser": { local: "dinleti", flags: 0 },
 	"kontrol": { local: "denetim", flags: 0 },
-	"kontrol et": { local: "denetle", flags: 0b1 }, // tdk
+	"kontrol et": { local: "denetle", flags: 0b11 }, // tdk
 	"konsensüs": { local: "uzlaşma", flags: 0 },
 	"kreatif": { local: "yaratıcı", flags: 0 },
 	"kriter": { local: "ölçüt", flags: 0 },
@@ -69,7 +74,7 @@ export const words = {
 	"link": { local: "bağlantı", flags: 0 },
 	"mantalite": { local: "anlayış", flags: 0 },
 	"manipülasyon": { local: "yönlendirme", flags: 0 },
-	"manipüle et": { local: "yönlendir", flags: 0b1 }, // tdk
+	"manipüle et": { local: "yönlendir", flags: 0b11 }, // tdk
 	"manipüle ol": { local: "yönlendiril", flags: 0b1 }, // tdk
 	"motivasyon": { local: "güdüleme", flags: 0 },
 	"monoton": { local: "tekdüze", flags: 0 },
