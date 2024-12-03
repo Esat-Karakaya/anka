@@ -1,4 +1,5 @@
 import { foreignNounConvert } from "../convert/noun/noun-handler.js";
+import { foreignVerbConvert } from "../convert/verb/verb-handler.js";
 import {words, twoWords} from "./dict.js"
 
 export function isForeign(word) {
@@ -59,13 +60,14 @@ export function replaceForeign(word) { // NEEDS IMPROVEMENT
 	const capital = word[0] === word[0].toLocaleUpperCase("tr");
 	let replacements;
 
+	const smaller = word.toLocaleLowerCase("tr");
 	if (!(replaceInfo.flags & 1)) {
 		// noun
-		replacements = foreignNounConvert(word.toLocaleLowerCase("tr"), replaceInfo);
+		replacements = foreignNounConvert(smaller, replaceInfo);
 				
 	}else {
 		// verb
-		replacements = new Set([replaceInfo.local]);
+		replacements = foreignVerbConvert(smaller, replaceInfo);
 	}
 
 	if (capital) {

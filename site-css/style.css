@@ -133,6 +133,7 @@
 /* CHECK BUTTON */
 
 .toggle-gui-btn{
+	z-index: 1000000;
 	position: relative;
 	display: flex;
 	justify-content: center;

@@ -58,9 +58,3 @@ export function foreignVerbConvert(originalWord, rootInfo) {
 	}
 	return converts;
 }
-
-console.log(foreignVerbConvert("dizayn etmeyecek", {
-	rootForeign: "dizayn et",
-	local: "tasarla",
-	flags: 0b111
-}))
