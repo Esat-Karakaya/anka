@@ -1,60 +1,60 @@
 export const hardeners = new Set([
-  "f", "s", "t", "k",
-  "ç", "ş", "h", "p",
+	"f", "s", "t", "k",
+	"ç", "ş", "h", "p",
 ]);
 
 export const nextVowel = {
-  a: ["a", "ı"],
-  e: ["e", "i"],
-  ı: ["a", "ı"],
-  i: ["e", "i"],
-  o: ["a", "u"],
-  ö: ["e", "ü"],
-  u: ["a", "u"],
-  ü: ["e", "ü"],
+	a: ["a", "ı"],
+	e: ["e", "i"],
+	ı: ["a", "ı"],
+	i: ["e", "i"],
+	o: ["a", "u"],
+	ö: ["e", "ü"],
+	u: ["a", "u"],
+	ü: ["e", "ü"],
 };
 
 export function softener(word, isVerb) {
-  if (!isVerb && tekHece(word)) return word;
+	if (!isVerb && tekHece(word)) return word;
 
-  let softenWith = "";
-  switch (word.at(-1)) {
-    case "t":
-      softenWith = "d";
-      break;
+	let softenWith = "";
+	switch (word.at(-1)) {
+		case "t":
+			softenWith = "d";
+			break;
 
-    case "ç":
-      softenWith = "c";
-      break;
+		case "ç":
+			softenWith = "c";
+			break;
 
-    case "p":
-      softenWith = "b";
-      break;
+		case "p":
+			softenWith = "b";
+			break;
 
-    case "k":
-      if (nextVowel.hasOwnProperty(word.at(-2))) softenWith = "ğ";
-      else softenWith = "g";
-      break;
+		case "k":
+			if (nextVowel.hasOwnProperty(word.at(-2))) softenWith = "ğ";
+			else softenWith = "g";
+			break;
 
-    default:
-      return word;
-  }
+		default:
+			return word;
+	}
 
-  return word.slice(0, -1) + softenWith;
+	return word.slice(0, -1) + softenWith;
 }
 
 export function tekHece(word) {
-  let count = 0;
+	let count = 0;
 
-  for (let i = word.length - 1; i >= 0 && word[i]!==" "; i--) {
-    if (nextVowel.hasOwnProperty(word[i]))
-      count++;
-    if (count > 1){
-      return false;
-    }
-  }
+	for (let i = word.length - 1; i >= 0 && word[i]!==" "; i--) {
+		if (nextVowel.hasOwnProperty(word[i]))
+			count++;
+		if (count > 1){
+			return false;
+		}
+	}
 
-  return true;
+	return true;
 }
 
 export function getLastVowel(word) {
@@ -65,4 +65,18 @@ export function getLastVowel(word) {
 		i--
 	);
 	return word[i];
+}
+
+// DON'T USE ON NOUNS
+export function sesliEkle(word, flags, item) {
+	const lastVwl = getLastVowel(word);
+
+	if (flags & 1)
+		word = softener(word, true);
+	if (word.at(-1) === lastVwl)
+		word+="y";
+
+	word+=nextVowel[lastVwl][item];
+
+	return word;
 }

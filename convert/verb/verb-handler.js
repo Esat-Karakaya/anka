@@ -1,6 +1,6 @@
 import { priorities } from "./priorities.js";
 import { softener } from "../utilities.js";
-
+import { disectNoun } from "../noun/noun-handler.js"
 
 // return [[adder, adder], [adder, adder, adder],]
 export function disectVerb(toWord, fromWord, flags, state="kök" ) {
@@ -10,7 +10,6 @@ export function disectVerb(toWord, fromWord, flags, state="kök" ) {
 	const from = fromWord;
 
 	if (toWord === from) return [routes]; // return [[]]
-
 	for (const adderInfo of priorities[state]) {
 		const newWord = adderInfo[0](from, flags);
 
@@ -19,7 +18,12 @@ export function disectVerb(toWord, fromWord, flags, state="kök" ) {
 			sliced === newWord ||
 			sliced === softener(newWord, true)
 		){
-			const res = disectVerb(toWord, newWord, 0, adderInfo[1]);
+			let res;
+			if (adderInfo[1] === "isim")
+				res = cleanNounRes(disectNoun(toWord, newWord, "kök", false));
+			else
+				res = disectVerb(toWord, newWord, 0, adderInfo[1]);
+
 			for (const route of res) {
 				route.push(adderInfo[0]);
 				routes.push(route);
@@ -28,6 +32,19 @@ export function disectVerb(toWord, fromWord, flags, state="kök" ) {
 	}
 
 	return routes;
+}
+
+function cleanNounRes(routes) {
+	const cleaned = new Set();
+
+	for (const route of routes){
+		const newRoute = [];
+		for (const trio of route)
+			newRoute.push(trio[0]);
+		cleaned.add(newRoute);
+	}
+
+	return cleaned;
 }
 
 // flags
@@ -58,3 +75,11 @@ export function foreignVerbConvert(originalWord, rootInfo) {
 	}
 	return converts;
 }
+
+console.log(disectVerb("dizayn edemeyebilir", "dizayn et", 1))
+
+// console.log(foreignVerbConvert("dizayn etmeyecek", {
+// 	rootForeign: "dizayn et",
+// 	local: "tasarla",
+// 	flags: 0b111
+// }))

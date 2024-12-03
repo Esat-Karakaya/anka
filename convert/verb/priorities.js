@@ -1,11 +1,12 @@
-import { olumsuzluk, haberKipi, dilekKipi, şahıs, birleşikZaman, dir } from "./suffix-adders.js";
+import { olumsuzluk, haberKipi, dilekKipi, şahıs, birleşikZaman, dir, kurallıBir } from "./çekim.js";
+import { isimFiil, sıfatFiil, zarfFiil } from "./fiilimsi.js";
 
 export const priorities = {
 	kök: [
 		[haberKipi.geniş, "zaman"],
 		[haberKipi.genişOlumsuz, "zaman"],
-		[haberKipi.genişOlumsuzS1, "şahıs"],
-		[haberKipi.genişOlumsuzP1, "end"],
+		[haberKipi.genişOlumsuzS1, "kök"],
+		[haberKipi.genişOlumsuzP1, "kök"],
 		[haberKipi.şimdiki, "zaman"],
 		[haberKipi.görülen, "zaman"],
 		[haberKipi.görülenS2, "şahıs"],
@@ -29,6 +30,36 @@ export const priorities = {
 		[dilekKipi.gereklilikS1, "şahıs"],
 
 		[olumsuzluk, "kök"],
+
+		[isimFiil.ma, "isim"],
+		[isimFiil.ış, "isim"],
+		[isimFiil.mak, "isim"],
+
+		[sıfatFiil.an, "isim"],
+		[sıfatFiil.ası, "isim"],
+		[sıfatFiil.mez, "isim"],
+		[sıfatFiil.ar, "isim"],
+		[sıfatFiil.dik, "isim"],
+		[sıfatFiil.ecek, "isim"],
+		[sıfatFiil.miş, "isim"],
+
+		[zarfFiil.arak, "end"],
+		[zarfFiil.alı, "end"],
+		[zarfFiil.ip, "end"],
+		[zarfFiil.ince, "end"],
+		[zarfFiil.madan, "end"],
+		[zarfFiil.maksızın, "end"],
+		[zarfFiil.ken, "end"],
+		[zarfFiil.dikçe, "end"],
+
+		[kurallıBir.yeterlilik, "kök"],
+		[kurallıBir.yeterlilikOlumsuz, "kök"],
+		[kurallıBir.yeterlilikGenişOlumsuz, "zaman"],
+		[kurallıBir.yeterlilikGenişOlumsuzP1, "şahıs"],
+		[kurallıBir.yeterlilikGenişOlumsuzS1, "şahıs"],
+		[kurallıBir.tezlik, "kök"],
+		[kurallıBir.yaklaşma, "kök"],
+		[kurallıBir.edur, "kök"],
 	],
 
 	zaman: [

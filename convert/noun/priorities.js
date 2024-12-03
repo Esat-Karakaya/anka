@@ -5,6 +5,7 @@ import {
 	halEki,
 	tamlayanEki,
 	eşitlikEki,
+	eşitlikEkiK,
 	birliktelikEki,
 	genişZamanEki,
 	görülenZamanEki,
@@ -55,14 +56,14 @@ export const priorities = {
 		birliktelikEki,
 	},
 	iyelikEkiS1 : {
-		halEkiBelirtme: halEki.belirtme,
-		halEkiYaklaşma: halEki.yaklaşma,
-		halEkiBulunma: halEki.bulunma,
-		halEkiAyrılma: halEki.ayrılma,
+		halEkiBelirtmeK: halEki.belirtmeK,
+		halEkiYaklaşmaK: halEki.yaklaşmaK,
+		halEkiBulunmaK: halEki.bulunmaK,
+		halEkiAyrılmaK: halEki.ayrılmaK,
 
 		tamlayanEki,
 
-		eşitlikEki,
+		eşitlikEkiK,
 
 		birliktelikEki,
 
@@ -77,14 +78,14 @@ export const priorities = {
 	ilgiZamiriEki : {
 		çoğulEki,
 
-		halEkiBelirtme: halEki.belirtme,
-		halEkiYaklaşma: halEki.yaklaşma,
-		halEkiBulunma: halEki.bulunma,
-		halEkiAyrılma: halEki.ayrılma,
+		halEkiBelirtmeK: halEki.belirtmeK,
+		halEkiYaklaşmaK: halEki.yaklaşmaK,
+		halEkiBulunmaK: halEki.bulunmaK,
+		halEkiAyrılmaK: halEki.ayrılmaK,
 
 		tamlayanEki,
 
-		eşitlikEki,
+		eşitlikEkiK,
 
 		birliktelikEki,
 
@@ -95,6 +96,10 @@ export const priorities = {
 	halEkiYaklaşma: { ilgiZamiriEki },
 	halEkiBulunma: { ilgiZamiriEki },
 	halEkiAyrılma: { ilgiZamiriEki },
+	halEkiBelirtmeK: { ilgiZamiriEki },
+	halEkiYaklaşmaK: { ilgiZamiriEki },
+	halEkiBulunmaK: { ilgiZamiriEki },
+	halEkiAyrılmaK: { ilgiZamiriEki },
 
 	tamlayanEki : { ilgiZamiriEki },
 
@@ -115,6 +120,7 @@ export const priorities = {
 
 		birliktelikEki,
 	},
+	get eşitlikEkiK(){ return this.eşitlikEki },
 	birliktelikEki : {},
 	nePekiştirmesi : {},
 }

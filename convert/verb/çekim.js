@@ -1,6 +1,6 @@
 // ALL INPUT CHARS SHOULD BE LOWERCASE
 
-import { nextVowel, hardeners, softener as crudeSoftener, getLastVowel, tekHece } from "../utilities.js";
+import { nextVowel, hardeners, softener as crudeSoftener, getLastVowel, tekHece, sesliEkle } from "../utilities.js";
 import { çoğulEki } from "../noun/suffix-adders.js";
 
 export function olumsuzluk(word) {
@@ -13,7 +13,10 @@ export const haberKipi = {
 		if (flags & 1)
 			word = softener(word);
 
-		if (!nextVowel[word.at(-1)] && tekHece(word)) {
+		const tekMi = tekHece(word);
+		const isEdge = Boolean(flags & (2**2));
+
+		if (!nextVowel[word.at(-1)] && tekMi!=isEdge) {
 			word += nextVowel[getLastVowel(word)][0];
 		}
 		else if (!nextVowel[word.at(-1)]){
@@ -200,6 +203,17 @@ export const birleşikZaman = {
 
 export function dir(word) {
 	return haberKipi.görülen(word) + "r";
+}
+
+export const kurallıBir = {
+	yeterlilik(word, flags) { return sesliEkle(word, flags, 0) + "bil" },
+	yeterlilikOlumsuz(word, flags) { return olumsuzluk(sesliEkle(word, flags, 0)) },
+	yeterlilikGenişOlumsuz(word, flags) { return haberKipi.genişOlumsuz(sesliEkle(word, flags, 0)) },
+	yeterlilikGenişOlumsuzS1(word, flags) { return haberKipi.genişOlumsuzS1(sesliEkle(word, flags, 0)) },
+	yeterlilikGenişOlumsuzP1(word, flags) { return haberKipi.genişOlumsuzP1(sesliEkle(word, flags, 0)) },
+	tezlik(word, flags) { return sesliEkle(word, flags, 1) + "ver" },
+	yaklaşma(word, flags) { return sesliEkle(word, flags, 0) + "yaz" },
+	edur(word, flags) { return sesliEkle(word, flags, 0) + "dur" },
 }
 
 // helper

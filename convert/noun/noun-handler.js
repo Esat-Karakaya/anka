@@ -2,26 +2,15 @@
 
 import { priorities, isimEylem } from "./priorities.js";
 
-const halEkiKaynaştıranlar = new Set([
-	"iyelikEkiS1",
-	"iyelikEkiS2",
-	"iyelikEkiS3",
-	"iyelikEkiP1",
-	"iyelikEkiP2",
-	"iyelikEkiP3",
-	"ilgiZamiriEki",
-])
-
 // returns possible routes to reach the word
 // each route contains trios: function, funtion name and other function props wrapped around an arr
-function disectNoun(toWord, fromWord, wordState="kök", foreign=true) {
+export function disectNoun(toWord, fromWord, wordState="kök", foreign=true) {
 	if (toWord===fromWord) return [[]];
 	const nextStates = priorities[wordState];
 
 	const possibleRoutes = [];
 
 	const additionalInfo = {
-		kaynaşım: halEkiKaynaştıranlar.has(wordState),
 		yumuşamama: wordState === "kök" && foreign
 	};
 
@@ -125,3 +114,5 @@ export function foreignNounConvert(originalWord, rootInfo) {
 
 	return crudeNounConvert(rootInfo.local, routes);
 }
+
+//console.log(foreignNounConvert("bug'ımız", {rootForeign:"bug", local:"hata", flags:0b00, pronounce:"bag"}));
