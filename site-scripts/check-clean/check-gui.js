@@ -65,7 +65,7 @@ function listAlternatives({replacements, container, selecteds}) {
 
 	/* List words */
 	if (badWords.length) {
-		p.innerText = "Bu kelimeleri alternatifleriyle değiştirelim mi❓";
+		p.innerText = "Bu kelimeleri alternatifleriyle değiştirelim mi?";
 		applyBtn.style.display="inline-block";
 	}else {
 		p.innerText = "Yabancı kelime bulunmadı🎉";
