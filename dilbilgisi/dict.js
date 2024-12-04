@@ -6,7 +6,7 @@
 // 0b???_1: yabancıda yumuşama var -> 1  
 // 0b??_?1: Türkçesinde yumuşama var -> 1
 // 0b?_??1: yabancıda er, ar -> 0; ir, ır, ur, ür -> 1 
-// 0b_???1: ir, ır, ur, ür -> 1; Türkçesinde er, ar ->0
+// 0b_???1: Türkçesinde ir, ır, ur, ür -> 1;  er, ar ->0
 
 export const words = {
 	"absürt": { local: "saçma", flags: 0 },
@@ -77,6 +77,7 @@ export const words = {
 	"manipülasyon": { local: "yönlendirme", flags: 0 },
 	"manipüle et": { local: "yönlendir", flags: 0b00011 },  // FIIL
 	"manipüle ol": { local: "yönlendiril", flags: 0b01001 },  // FIIL
+	"manipüle olun": { local: "yönlendiril", flags: 0b01001 },  // FIIL
 	"motivasyon": { local: "güdüleme", flags: 0 },
 	"monoton": { local: "tekdüze", flags: 0 },
 	"nick name": { local: "kullanıcı ad", flags: 0b10 },

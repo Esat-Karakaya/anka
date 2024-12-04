@@ -72,7 +72,7 @@ export function sesliEkle(word, flags, item) {
 	const lastVwl = getLastVowel(word);
 
 	if (flags & 1)
-		word = softener(word, true);
+		word = softener(word, true); // not for nouns
 	if (word.at(-1) === lastVwl)
 		word+="y";
 

@@ -48,8 +48,10 @@ function cleanNounRes(routes) {
 }
 
 // flags
-// 0b?_1: yabancıda yumuşama var -> 1  
-// 0b_?1: Türkçesinde yumuşama var -> 1  
+// 0b???_1: yabancıda yumuşama var -> 1  
+// 0b??_?1: Türkçesinde yumuşama var -> 1
+// 0b?_??1: yabancıda er, ar -> 0; ir, ır, ur, ür -> 1 
+// 0b_???1: Türkçesinde ir, ır, ur, ür -> 1;  er, ar ->0
 export function foreignVerbConvert(originalWord, rootInfo) {
 	const converts = new Set();
 
@@ -76,7 +78,7 @@ export function foreignVerbConvert(originalWord, rootInfo) {
 	return converts;
 }
 
-console.log(disectVerb("dizayn edemeyebilir", "dizayn et", 1))
+console.log(disectVerb("dizayn edilemez", "dizayn et", 1))
 
 // console.log(foreignVerbConvert("dizayn etmeyecek", {
 // 	rootForeign: "dizayn et",

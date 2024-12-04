@@ -1,5 +1,6 @@
 import { olumsuzluk, haberKipi, dilekKipi, şahıs, birleşikZaman, dir, kurallıBir } from "./çekim.js";
 import { isimFiil, sıfatFiil, zarfFiil } from "./fiilimsi.js";
+import { edilgen, ıcı } from "./yapım.js";
 
 export const priorities = {
 	kök: [
@@ -51,6 +52,9 @@ export const priorities = {
 		[zarfFiil.maksızın, "end"],
 		[zarfFiil.ken, "end"],
 		[zarfFiil.dikçe, "end"],
+
+		[ıcı, "isim"],
+		[edilgen, "kök"],
 
 		[kurallıBir.yeterlilik, "kök"],
 		[kurallıBir.yeterlilikOlumsuz, "kök"],

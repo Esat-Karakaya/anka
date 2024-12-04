@@ -1,7 +1,6 @@
 import { olumsuzluk, haberKipi } from "./çekim.js";
 import { sesliEkle, nextVowel, getLastVowel} from "../utilities.js";
 import { halEki, eşitlikEki } from "../noun/suffix-adders.js";
-//nextVowel, hardeners, softener as crudeSoftener, getLastVowel, tekHece, sesliEkle
 
 export const isimFiil = {
 	ma:olumsuzluk,
