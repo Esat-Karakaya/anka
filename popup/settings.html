@@ -2,7 +2,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="styles.css">
-		<script src="saver.js" defer></script>
+		<script src="saver.js" type="module" defer></script>
 	</head>
 	<body>
 		<h1>Ayarlar</h1>
@@ -25,6 +25,32 @@
 					Açık
 					<label class="switch">
 						<input id="def-site_fix-mode" type="checkbox">
+						<span class="slider"></span>
+					</label>
+					Kapalı
+				</div>
+			</li>
+		</ul>
+
+		<h2 id="siteSettingsH2"></h2>
+		<ul>
+			<li>
+				Yazılan yabancı kelimeleri değiştirme:
+				<div class="option">
+					Öneri verme
+					<label class="switch">
+						<input id="site-replace-mode" type="checkbox">
+						<span class="slider"></span>
+					</label>
+					Doğrudan değiştirme
+				</div>
+			</li>
+			<li>
+				Sayfadaki tüm yabancı kelimeleri değiştirme:
+				<div class="option">
+					Açık
+					<label class="switch">
+						<input id="site-site_fix-mode" type="checkbox">
 						<span class="slider"></span>
 					</label>
 					Kapalı

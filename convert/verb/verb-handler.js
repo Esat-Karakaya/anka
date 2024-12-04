@@ -78,8 +78,6 @@ export function foreignVerbConvert(originalWord, rootInfo) {
 	return converts;
 }
 
-console.log(disectVerb("dizayn edilemez", "dizayn et", 1))
-
 // console.log(foreignVerbConvert("dizayn etmeyecek", {
 // 	rootForeign: "dizayn et",
 // 	local: "tasarla",

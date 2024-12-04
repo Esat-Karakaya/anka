@@ -3,70 +3,92 @@ import { autoClean, checkClean, fixSite } from "./JSdependencies.js";
 
 // Save default settings
 chrome.runtime.onInstalled.addListener(({ reason }) => {
-  if (reason === 'install') {
+	if (reason === 'install') {
 	chrome.storage.local.set({
-	  defReplaceMode: "suggest",
-	  defSiteFixMode: "off"
+		defReplaceMode: "suggest",
+		defSiteFixMode: "off"
 	});
-  }
+	}
 });
 
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
-  if (changeInfo.status !== 'complete') { return }
+	if (changeInfo.status !== 'complete') { return }
 
-  const modes = await pickModes();
+	const modes = await pickModes();
 
-  const toBeInjectedJS = new Set();
+	console.log(modes);
 
-  if (modes.defReplaceMode === "suggest") { // check-clean
+	const toBeInjectedJS = new Set();
+
+	if (modes.replaceMode === "suggest") { // check-clean
 	// add dependencies to js files list
 	checkClean.forEach(item =>
-	  toBeInjectedJS.add(item)
+		toBeInjectedJS.add(item)
 	)
 
 	chrome.scripting.insertCSS({
-	  target: { tabId: tabId },
-	  files: [ "site-css/style.css", ],
+		target: { tabId },
+		files: [ "site-css/style.css", ],
 	}).catch(()=>{});
 
-  } else { // auto-clean
+	} else { // auto-clean
+		autoClean.forEach(item =>
+			toBeInjectedJS.add(item)
+		)
+	}
+	
+	if (modes.siteFixMode === "on") {
+		fixSite.forEach(item =>
+			toBeInjectedJS.add(item)
+		)
+	}
 
-	autoClean.forEach(item =>
-	  toBeInjectedJS.add(item)
-	)
-  }
-  
-  if (modes.defSiteFixMode === "on") {
-
-	fixSite.forEach(item =>
-	  toBeInjectedJS.add(item)
-	)
-  }
-
-  addJS(toBeInjectedJS, tabId);
+	addJS(toBeInjectedJS, tabId);
 });
 
 // helpers
-async function pickModes() {
-  const modes={};
-  modes.defReplaceMode = 
-  (await chrome.storage.local.get("defReplaceMode"))
-  .defReplaceMode;
+export async function pickModes() {
+	let queryOptions = { active: true, lastFocusedWindow: true };
+    // `tab` will either be a `tabs.Tab` instance or `undefined`.
+    let [tab] = await chrome.tabs.query(queryOptions);
+	const hostname = (new URL(tab?.url)).hostname;
+	
+	const modes={};
 
-  modes.defSiteFixMode = 
-  (await chrome.storage.local.get("defSiteFixMode"))
-  .defSiteFixMode;
+	const hostSettings = (await chrome.storage.local.get(hostname))[hostname];
 
-  return modes
+	if (hostSettings) {
+		modes.replaceMode = 
+		hostSettings[0] === "1"?
+			"auto":
+			"suggest";
+
+		modes.siteFixMode = 
+		hostSettings[1] === "1"?
+			"off":
+			"on";
+
+		return modes;
+	}
+
+	modes.replaceMode = 
+	(await chrome.storage.local.get("defReplaceMode"))
+	.defReplaceMode;
+
+	modes.siteFixMode = 
+	(await chrome.storage.local.get("defSiteFixMode"))
+	.defSiteFixMode;
+
+	return modes
 }
 
 function addJS(JSset, tabId) {
 
-  const arrayifed = [...JSset];
+	const arrayifed = [...JSset];
 
-  chrome.scripting.executeScript({
+	chrome.scripting.executeScript({
 	target: { tabId },
 	files: arrayifed,
-  })
-  .catch(()=>{});
+	})
+	.catch(()=>{});
 }
