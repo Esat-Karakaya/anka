@@ -35,7 +35,12 @@ function newListItem({
 	replaceList
 }) {
 	const li = document.createElement("li");
-	li.innerText=`${badWord} ➡️`;
+
+	const showReplacement = document.createElement("div");
+	showReplacement.classList.add("showReplacement")
+	const foreign = document.createElement("del");
+	foreign.innerText = badWord;
+	showReplacement.appendChild(foreign);
 
 	const dropdown = document.createElement("select");
 
@@ -55,7 +60,7 @@ function newListItem({
 		dropdown.appendChild(option);
 	}
 
-	li.appendChild(dropdown);
+	showReplacement.appendChild(dropdown);
 
 	// selection checkbox
 	const checkbox=document.createElement("input");
@@ -71,7 +76,8 @@ function newListItem({
 		}),
 	);
 
-	li.prepend(checkbox);
+	li.appendChild(checkbox);
+	li.appendChild(showReplacement);
 
 	return li;
 }

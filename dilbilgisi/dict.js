@@ -110,7 +110,7 @@ export const words = {
 	"security": { local: "güvenlik", flags: 0 },
 	"selfie": { local: "özçekim", flags: 0 },
 	"selfie çek": { local: "özçekim yap", flags: 0b00001 },  // FIIL
-	"selfie çekin": { local: "özçekim yap", flags: 0b00001 },  // FIIL
+	"selfie çekil": { local: "özçekim yap", flags: 0b00001 },  // FIIL
 	"sempatik": { local: "sevimli", flags: 0 },
 	"spontane": { local: "kendiliğinden", flags: 0 },
 	"sponsor": { local: "katkıcı", flags: 0 },
