@@ -50,7 +50,7 @@
 	padding: 1em;
 
 	position: fixed;
-	z-index: 100000;
+	z-index: 10000000;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);

@@ -120,7 +120,7 @@ export const words = {
 	"start al": { local: "başla", flags: 0b00001 },  // FIIL
 	"straplez": { local: "askısız giysi", flags: 0 },
 	"subjektif": { local: "öznel", flags: 0 },
-	"trend": { local: "moda", flags: 0 },
+	"trend": { local: "eğilim", flags: 0 },
 	"web": { local: "ağ", flags: 0 },
 };
 
