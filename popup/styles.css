@@ -1,7 +1,12 @@
 h1 { text-align: center; }
 li {margin: 1em 0;}
 h2 { text-transform: capitalize; }
-body { width: 400px; }
+
+@-moz-document url-prefix(){
+	body {width: 400px; }
+}
+
+html { width: 20em; }
 
 .option{
 	margin: 3px;
