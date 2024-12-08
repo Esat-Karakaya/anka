@@ -16,8 +16,6 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
 
 	const modes = await pickModes();
 
-	console.log(modes);
-
 	const toBeInjectedJS = new Set();
 
 	if (modes.replaceMode === "suggest") { // check-clean

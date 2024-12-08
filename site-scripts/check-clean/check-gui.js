@@ -2,7 +2,7 @@ function newGui(makeVisible, id, applyHandle) {
 
 	const guiStr=`
 		<div class="gui-container">
-			<input type="button" value="✔️" class="toggle-gui-btn">
+			<div class="toggle-gui-btn">✔️</div>
 			<div id="suggest${id}" class="suggester" popover>
 				<div class="foreign-suggest">
 					<p class="statusP">Yabancı kelime bulunmadı🎉</p>

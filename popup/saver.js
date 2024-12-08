@@ -29,7 +29,6 @@ defSiteFixMode.addEventListener("change", (event)=>{
 
 // SITE SETTINGS
 let [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-console.log(tab)
 const hostname = (new URL(tab?.url)).hostname;
 
 const siteSettingsH2 = document.getElementById("siteSettingsH2");
@@ -41,9 +40,6 @@ siteReplaceMode.checked = modes.replaceMode === "auto";
 siteSiteFixMode.checked = modes.siteFixMode === "off";
 
 // Construct raw data
-
-console.log(modes);
-
 modes.replaceMode = String(Number(modes.replaceMode === "auto"));
 modes.siteFixMode = String(Number(modes.siteFixMode === "off"));
 

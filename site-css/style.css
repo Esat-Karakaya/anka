@@ -80,7 +80,7 @@
 
 /* checkboxes */
 
-.suggester input[type="checkbox"] {
+.checkOption {
 	all: unset;
 	display: flex;
 	justify-content: center;
@@ -92,9 +92,10 @@
 	height: 1.5em;
 	width: 1.5em;
 	transition: border-radius .2s;
+	cursor: pointer;
 }
-.suggester input[type="checkbox"]:active { border-radius: 50%; }
-.suggester input[type="checkbox"]:checked:before {
+.checkOption:active { border-radius: 50%; }
+.checkOption[checked=true]:before {
 	content: "✔️";
 	font-size: 1em;
 }
@@ -111,18 +112,15 @@
 	user-select: none;
 	transition: border-radius .2s;
 }
-.showReplacement select:active { border-radius: 10px !important; }
+.showReplacement select:active
+{ border-radius: 10px }
 
 .showReplacement del{
 	color: rgb(255, 78, 78);
 	margin-right: 1em;
 	margin-bottom: 1em;
 }
-
-.showReplacement select{
-	color: green;
-}
-
+.showReplacement select{ color: green; }
 
 /* CHECK BUTTON */
 
@@ -135,6 +133,9 @@
 	background-color: white;
 	margin: 7px;
 	padding: 0 !important;
+	align-content: center;
+	text-align: center;
+	cursor: pointer;
 
 	transition: border-radius .2s;
 }

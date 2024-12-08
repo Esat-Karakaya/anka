@@ -4,19 +4,19 @@ function selectAllItem({replaceList}) {
 	li.innerText="Hepsini Seç";
 
 	// selection checkbox
-	const select=document.createElement("input");
-	select.setAttribute("type", "checkbox");
+	const select=document.createElement("div");
+	select.setAttribute("checked", "false");
 	select.classList.add("checkOption");
 
-	select.addEventListener("change", event => {
+	select.addEventListener("click", () => {
+		const oldState = select.getAttribute("checked");
+		const newState = nextState(oldState);
+		select.setAttribute("checked", newState);
 		// when check all option is checked
-		const checkBoxes = replaceList.querySelectorAll('input[type="checkbox"]');
-
-		// must detach refrence to dom element
-		const isChecked = event.target.checked;
+		const checkBoxes = replaceList.querySelectorAll(`div[checked=${oldState}]`);
 
 		for (const box of checkBoxes){
-			if ( box.checked!==isChecked ) {
+			if ( box.getAttribute("checked")!==newState ) {
 				box.click();
 			}
 		}
@@ -63,11 +63,11 @@ function newListItem({
 	showReplacement.appendChild(dropdown);
 
 	// selection checkbox
-	const checkbox=document.createElement("input");
-	checkbox.setAttribute("type", "checkbox");
+	const checkbox=document.createElement("div");
+	checkbox.setAttribute("checked", "false");
 	checkbox.classList.add("checkOption");
 	checkbox.addEventListener(
-		"change",
+		"click",
 		getCheckHandler({
 			selecteds,
 			badWord,
@@ -91,22 +91,37 @@ function getCheckHandler({
 
 	// when checkbox is clicked
 	return (event) => {
-		if (event.target.checked) {
+		const oldState = event.target.getAttribute("checked");
+		const newState = nextState(oldState);
+		event.target.setAttribute("checked", newState);
+		if (newState === "true") {
 			selecteds[badWord] = dropdown.options[dropdown.selectedIndex].text;
 		} else {
 			delete selecteds[badWord];
 		}
 
-		updateSelectAll(replaceList, selecteds);
+		updateSelectAll(replaceList);
 	}
 }
 
 // update select all checkbox
-function updateSelectAll(ul, selecteds) {
-	const checkBoxes = [ ...ul.querySelectorAll('input[type="checkbox"]') ];
-	const allChecked = checkBoxes.reduce((acc, cur, i) => {
-		return !i || (cur.checked && acc);
-	});
+function updateSelectAll(ul) {
+	const selectAll = ul.firstChild.firstChild;
+	const allCnt = ul.children.length-1;
+	let checkeds = ul.querySelectorAll('[checked=true]');
+	let checkedsCnt = checkeds.length;
 
-	checkBoxes[0].checked = allChecked;
+	// exlude selectAll
+	if (checkeds[0] === selectAll) 
+		checkedsCnt--;
+
+	if (checkedsCnt === allCnt){
+		selectAll.setAttribute("checked", "true");
+		return
+	}
+	selectAll.setAttribute("checked", "false");
+}
+
+function nextState(str) {
+	return str==="true" ? "false" : "true";
 }
