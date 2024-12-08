@@ -1,13 +1,7 @@
-html{
-	width: 20em;
-	border-radius: 5em;
-}
-
 h1 { text-align: center; }
 li {margin: 1em 0;}
-h2 {
-	text-transform: capitalize;
-}
+h2 { text-transform: capitalize; }
+body { width: 400px; }
 
 .option{
 	margin: 3px;
