@@ -1,3 +1,5 @@
+let popoverState=false;
+
 function newGui(makeVisible, id, applyHandle) {
 
 	const guiStr=`
@@ -27,11 +29,12 @@ function newGui(makeVisible, id, applyHandle) {
 
 	// check when opened
 	suggester.addEventListener("toggle", event=>{
+		popoverState = event.newState === "open";
 		if (event.newState === "open")
 			makeVisible();
 	});
 
-	checkBtn.addEventListener("click", ()=>suggester.togglePopover())
+	checkBtn.addEventListener("click", ()=>suggester.togglePopover(!popoverState));
 
 	// close button
 	createdGui

@@ -27,9 +27,8 @@
 	cursor: pointer;
 	user-select: none;
 }
-
-.gui-container div[role="button"]:active,
-.gui-container div[role="button"]:focus-visible { border-radius: .9em; }
+.gui-container div[role="button"]:active
+{ border-radius: .9em; }
 
 /* POPOVER */
 
@@ -139,5 +138,4 @@
 
 	transition: border-radius .2s;
 }
-
 .toggle-gui-btn:active { border-radius: 50%; }
