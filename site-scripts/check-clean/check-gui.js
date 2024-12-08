@@ -2,8 +2,8 @@ function newGui(makeVisible, id, applyHandle) {
 
 	const guiStr=`
 		<div class="gui-container">
-			<input class="toggle-gui-btn" type="checkbox">
-			<div id="suggest${id}" class="suggester">
+			<input type="button" value="✔️" class="toggle-gui-btn">
+			<div id="suggest${id}" class="suggester" popover>
 				<div class="foreign-suggest">
 					<p class="statusP">Yabancı kelime bulunmadı🎉</p>
 				</div>
@@ -18,23 +18,25 @@ function newGui(makeVisible, id, applyHandle) {
 	const createdGui = 
 	(new DOMParser().parseFromString(guiStr, "text/html")).querySelector("body>*"); 
 	removeWhitespace(createdGui);
+	
+	const suggester = createdGui
+	.querySelector(`#suggest${id}`);
 
-	const checkbox = createdGui
-	.querySelector('.toggle-gui-btn');
+	const checkBtn = createdGui
+	.querySelector(".toggle-gui-btn");
 
 	// check when opened
-	checkbox.addEventListener("click", ()=>{
-		if (checkbox.checked === true) {
+	suggester.addEventListener("toggle", event=>{
+		if (event.newState === "open")
 			makeVisible();
-		}
 	});
+
+	checkBtn.addEventListener("click", ()=>suggester.togglePopover())
 
 	// close button
 	createdGui
 	.querySelector('.closeBtn')
-	.addEventListener("click", ()=>{
-		checkbox.checked=false;
-	});
+	.addEventListener("click", ()=>suggester.hidePopover());
 
 	// apply Button
 	createdGui
