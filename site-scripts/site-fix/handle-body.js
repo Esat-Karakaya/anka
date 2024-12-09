@@ -28,7 +28,7 @@ function siteFixUtils() {
 		return 0;
 	}
 
-	function walkTxt(element, replacer) {
+	function walkTxt(element, textHandler) {
 		const children=element.childNodes;
 
 		children.forEach(child => {
@@ -36,9 +36,9 @@ function siteFixUtils() {
 				child.nodeType === 1 &&
 				cleanables.has(child.tagName)
 			) {
-				walkTxt(child, replacer);
+				walkTxt(child, textHandler);
 			}else if (child.nodeType === 3) {
-				replacer(child);
+				textHandler(child);
 			}
 		});
 	}
@@ -56,9 +56,18 @@ function siteFixUtils() {
 		}
 	}
 
+	function getTexts(element) {
+		let contentText = "";
+
+		walkTxt(element, (textnode)=>contentText += " "+textnode.nodeValue);
+
+		return contentText;
+	}
+
 	return {
 		sortedLoopable,
 		walkTxt,
-		returnReplacer
+		returnReplacer,
+		getTexts
 	}
 }
