@@ -86,6 +86,8 @@ export const priorities = {
 		[birleşikZaman.şartS2, "şahıs"],
 
 		[dir, "end"],
+
+		[zarfFiil.casına, "end"],
 	],
 
 	şahıs: [

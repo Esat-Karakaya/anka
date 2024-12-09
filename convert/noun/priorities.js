@@ -14,6 +14,8 @@ import {
 	nePekiştirmesi
 } from "./suffix-adders.js";
 
+import {zarfFiil} from "../verb/fiilimsi.js";
+
 export const priorities = {
 	kök : {
 		çoğulEki,
@@ -123,6 +125,10 @@ export const priorities = {
 	get eşitlikEkiK(){ return this.eşitlikEki },
 	birliktelikEki : {},
 	nePekiştirmesi : {},
+	isimEylem: {
+		dır: genişZamanEki.s3,
+		casına: zarfFiil.casına,
+	},
 }
 
 export const isimEylem = [

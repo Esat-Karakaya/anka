@@ -38,8 +38,17 @@ export function disectNoun(toWord, fromWord, wordState="kök", foreign=true) {
 	}
 
 	for (const func of isimEylem) {
-		if (func(fromWord, additionalInfo)===toWord) {
-			possibleRoutes.push([[func, "isimEylem", {}]]);
+		const newWord = func(fromWord, additionalInfo)
+		if (newWord===toWord.slice(0, newWord.length)) {
+			const attempt = disectNoun(toWord, newWord, "isimEylem");
+
+			if (!attempt[0]) continue;
+
+			for (const route of attempt) {
+				delete additionalInfo.yumuşamama;
+				route.push([func, "isimEylem", additionalInfo])
+				possibleRoutes.push(route);
+			}
 		}
 	}
 

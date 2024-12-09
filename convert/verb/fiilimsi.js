@@ -66,4 +66,11 @@ export const zarfFiil = {
 	},
 	ken(word){ return word + "ken"},
 	dikçe(word) {return eşitlikEki(haberKipi.görülenP1(word), {})},
+	casına(word) {
+		word+="c";
+		word = sesliEkle(word, 0, 0) +"s";
+		word = sesliEkle(word, 0, 1) +"n";
+		word += nextVowel[word.at(-2)][0];
+		return word;
+	}
 }
