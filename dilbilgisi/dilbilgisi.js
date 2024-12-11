@@ -54,7 +54,7 @@ function isTwoWordForeign(word) {
 	return {};
 }
 
-export function replaceForeign(word) { // NEEDS IMPROVEMENT
+export function replaceForeign(word) {
 	const replaceInfo = isForeign(word);
 	
 	const capital = word[0] === word[0].toLocaleUpperCase("tr");
