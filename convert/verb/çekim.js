@@ -1,4 +1,5 @@
 // ALL INPUT CHARS SHOULD BE LOWERCASE
+// ALL FUNTIONS HERE CAUSE MUTATION
 
 import { nextVowel, hardeners, softener as crudeSoftener, getLastVowel, tekHece, sesliEkle } from "../utilities.js";
 import { çoğulEki } from "../noun/suffix-adders.js";

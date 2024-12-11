@@ -1,3 +1,5 @@
+// ALL FUNTIONS HERE CAUSE MUTATION
+
 import { sesliEkle, nextVowel, getLastVowel, softener} from "../utilities.js";
 
 export function ıcı(word, flags) { // isim yapar

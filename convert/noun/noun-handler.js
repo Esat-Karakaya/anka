@@ -74,7 +74,6 @@ function crudeNounConvert(fromWord, routes) {
 
 function insertS3(routes) { // MUTATION
 	return routes.map(route => {
-
 		let s3ToAdd = [priorities.kök.iyelikEkiS3, "iyelikEkiS3"];
 
 		for (const transformer of route)
@@ -83,13 +82,13 @@ function insertS3(routes) { // MUTATION
 				return route;
 
 		// iyelik eki eklenmeli
-
-		for (let i = 0; i <= route.length; i++) {
+		// i değişkeni ekin eklenebileceği pozisyon
+		for (let i = route.length; i >= 0; i--) {
 			if (
-				( !route[i-1] || priorities[route[i-1][1]].iyelikEkiS3 ) &&
-				( !route[i] || priorities.iyelikEkiS3[route[i][1]] )
+				( !route[i] || priorities[route[i][1]].iyelikEkiS3 ) &&
+				( !route[i-1] || priorities.iyelikEkiS3[route[i-1][1]] )
 			) {
-				if (route[i]) route[i][2]=true;
+				if (route[i-1]) route[i-1][2]=true;
 				route.splice(i, 0, s3ToAdd);
 				return route;
 			}
@@ -124,4 +123,4 @@ export function foreignNounConvert(originalWord, rootInfo) {
 	return crudeNounConvert(rootInfo.local, routes);
 }
 
-//console.log(foreignNounConvert("bug'ımız", {rootForeign:"bug", local:"hata", flags:0b00, pronounce:"bag"}));
+//console.log(foreignNounConvert("perspektifindekileri", {rootForeign:"perspektif", local:"bakış açı", flags:0b10, pronounce:"perspektif"}));

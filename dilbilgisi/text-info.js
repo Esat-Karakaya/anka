@@ -5,7 +5,7 @@ import { isForeign, replaceForeign } from "./dilbilgisi.js";
 // and original form of the foreign roots
 export function textForeignInfo(text, getMulti) {
 	const words = arrayifyText(text);
-	const replacements = {} // {dizaynın: ["tasarımın"], perspektifin: ["bakış açın", "bakış açısı"]}
+	const replacements = {} // {dizaynın: ["tasarımın"], perspektifini: ["bakış açını", "bakış açısını"]}
 
 	// Iterate over words
 	for (let i = 0; i < words.length; i++) {

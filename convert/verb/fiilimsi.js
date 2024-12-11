@@ -1,3 +1,5 @@
+// ALL FUNTIONS HERE CAUSE MUTATION
+
 import { olumsuzluk, haberKipi } from "./çekim.js";
 import { sesliEkle, nextVowel, getLastVowel} from "../utilities.js";
 import { halEki, eşitlikEki } from "../noun/suffix-adders.js";
