@@ -15,7 +15,7 @@ export const haberKipi = {
 			word = softener(word);
 
 		const tekMi = tekHece(word);
-		const isEdge = Boolean(flags & (2**2));
+		const isEdge = Boolean(flags & (2**1));
 
 		if (!nextVowel[word.at(-1)] && tekMi!=isEdge) {
 			word += nextVowel[getLastVowel(word)][0];

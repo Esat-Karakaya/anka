@@ -97,10 +97,11 @@ function insertS3(routes) { // MUTATION
 	})
 }
 
+// foreignFlags
+// 0b_: noun -> 0, verb -> 1
 
-// flags
-// 0b01: noun -> 0, verb -> 1
-// 0b10: 3.tekil yok -> 0, 3.tekil var -> 1
+// localFlags (noun)
+// 0b_: 3.tekil yok -> 0, 3.tekil var -> 1
 export function foreignNounConvert(originalWord, rootInfo) {
 
 	const {rootForeign} = rootInfo;
@@ -116,11 +117,17 @@ export function foreignNounConvert(originalWord, rootInfo) {
 
 	let routes = disectNoun(pronouncedWord, pronouncedRoot);
 
-	if (rootInfo.flags & 2**1) {
+	if (rootInfo.flags & 1) {
 		insertS3(routes);
 	}
 
 	return crudeNounConvert(rootInfo.local, routes);
 }
 
-//console.log(foreignNounConvert("perspektifindekileri", {rootForeign:"perspektif", local:"bakış açı", flags:0b10, pronounce:"perspektif"}));
+console.log(foreignNounConvert("perspektifindekileri", {
+	rootForeign:"perspektif",
+	local:"bakış açı",
+	foreignFlags:0b1,
+	localFlags:0b0,
+	pronounce:"perspektif"
+}));

@@ -47,27 +47,31 @@ function cleanNounRes(routes) {
 	return cleaned;
 }
 
-// flags
-// 0b???_1: yabancıda yumuşama var -> 1  
-// 0b??_?1: Türkçesinde yumuşama var -> 1
-// 0b?_??1: yabancıda er, ar -> 0; ir, ır, ur, ür -> 1 
-// 0b_???1: Türkçesinde ir, ır, ur, ür -> 1;  er, ar ->0
+// foreignFlags
+// 0b??_: noun -> 0, verb -> 1
+// 0b?_1: yumuşama var -> 1 
+// 0b_?1: er, ar -> 0; ir, ır, ur, ür -> 1 
+
+// localFlags (verb)
+// 0b?_: yumuşama var -> 1
+// 0b_?: ir, ır, ur, ür -> 1;  er, ar ->0
 export function foreignVerbConvert(originalWord, rootInfo) {
 	const converts = new Set();
 
 	const {
 		rootForeign,
-		flags,
 		local,
+		foreignFlags,
+		localFlags,
 	} = rootInfo;
 
-	const routes = disectVerb(originalWord, rootForeign, flags>>1);
+	const routes = disectVerb(originalWord, rootForeign, foreignFlags>>1);
 
 	for (const route of routes){
 		let target = local;
 
 		if (route.length)
-			target = route.at(-1)(target, flags>>2);
+			target = route.at(-1)(target, localFlags);
 
 		for (let i = route.length-2; i >= 0; i--) {
 			target = route[i](target);
@@ -78,8 +82,11 @@ export function foreignVerbConvert(originalWord, rootInfo) {
 	return converts;
 }
 
-// console.log(foreignVerbConvert("dizayn etmeyecek", {
-// 	rootForeign: "dizayn et",
-// 	local: "tasarla",
-// 	flags: 0b111
-// }))
+// console.log(disectVerb("dizayn etmişcesine", "dizayn et", 1))
+
+/* console.log(foreignVerbConvert("dizayn ediliyor", {
+	rootForeign: "dizayn et",
+	local: "tasarla",
+	foreignFlags:0b011,
+	localFlags: [0b00]
+})) */
