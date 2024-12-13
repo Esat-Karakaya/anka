@@ -1,5 +1,6 @@
 // wrapped around an object to prevent name clashing with auto-clean 
 function siteFixUtils() {
+//	const cleanables = document.querySelectorAll("a, b, blockquote, caption, del, details, div, em, figcaption, h1, h2, h3, h4, h5, h6, label, legend, li, mark, noscript, p, pre, s, samp, section, span, strong, summary, textarea");
 	const cleanables = new Set([
 		"A", "ARTICLE", "ASIDE", "B", "BLOCKQUOTE", "CAPTION", "COL", "COLGROUP",
 		"DEL", "DETAILS", "DIALOG", "DIV", "EM", "FIGCAPTION", "FIGURE", "FIELDSET",

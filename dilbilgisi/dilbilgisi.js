@@ -55,10 +55,32 @@ function isTwoWordForeign(word) {
 }
 
 export function replaceForeign(word) {
-	throw new Error("replcaseForeign not implemented");
-	
+//	throw new Error("replaceForeign not implemented");
+
 	const replaceInfo = isForeign(word);
+
+	let alternatives = new Set();
 	
+	for (let index = 0; index < replaceInfo.locals.length; index++) {
+		const local = replaceInfo.locals[index];
+		const localFlags = replaceInfo.locals[index];
+		
+		const replaceSingle = {
+			rootForeign: replaceInfo.rootForeign,
+			local,
+			foreignFlags:replaceInfo.foreignFlags,
+			localFlags,
+			pronounce: replaceInfo.pronounce,
+		};
+
+		const res=replaceWithOneLocal(word, replaceSingle);
+		alternatives=alternatives.union(res);
+	}
+
+	return alternatives;
+}
+
+function replaceWithOneLocal(word, replaceInfo){
 	const capital = word[0] === word[0].toLocaleUpperCase("tr");
 	let replacements;
 

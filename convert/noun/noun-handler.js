@@ -124,10 +124,10 @@ export function foreignNounConvert(originalWord, rootInfo) {
 	return crudeNounConvert(rootInfo.local, routes);
 }
 
-console.log(foreignNounConvert("perspektifindekileri", {
+/* console.log(foreignNounConvert("perspektifindekileri", {
 	rootForeign:"perspektif",
 	local:"bakış açı",
 	foreignFlags:0b1,
 	localFlags:0b0,
 	pronounce:"perspektif"
-}));
+})); */
