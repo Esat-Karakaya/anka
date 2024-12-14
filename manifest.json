@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
-	"name": "Tübitak eklenti",
-	"description": "Yabancı sözcükleri karşılıklarıyla değiştirir",
+	"name": "Anka",
+	"description": "Dilimizdeki yabancı sözcükleri Türkçesiyle değiştirir",
 	"version": "1.0",
 	"permissions": ["activeTab", "storage", "tabs", "scripting"],
 	"browser_specific_settings": {
@@ -26,7 +26,8 @@
 			"16": "images/anka-16.png",
 			"32": "images/anka-32.png",
 			"48": "images/anka-48.png",
-			"128": "images/anka-128.png"
+			"128": "images/anka-128.png",
+			"1024": "images/anka-1024.png"
 		}
 	}
 }
