@@ -1,0 +1,8 @@
+Bilinen hatalar:
+* dizayn -> tasarım çevrimi yapılırken "dizayn et" -> "tasarım et" olur
+* Link-> Bağlantı çevrimi yapılırken LinkedIn -> BağlantıedIn olur
+* Uzantıları yönet sayfasında logo gözükmüyor
+
+Geliştirilebilir yerler:
+* Site-fix ve auto-fix yabancı kelimeyi sadece tek bir kelimeyle çevirir. Ancak eklenti yine de olabilecek tüm hesaplamaları yaparak gereksiz işlem yapar
+* Safari desteği yok

@@ -69,7 +69,7 @@ export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"kompleks": { locals: ["karmaşık"], foreignFlags:0, localFlags: [0] },
 	"komünikasyon": { locals: ["iletişim"], foreignFlags:0, localFlags: [0] },
 	"konser": { locals: ["dinleti"], foreignFlags:0, localFlags: [0] },
-	"kontrol": { locals: ["denetim"], foreignFlags:0, localFlags: [0] },
+	"kontrol": { locals: ["denetim"], foreignFlags:0, localFlags: [0], pronounce: "kontrül" }, // kontrol kelimesine gelen eklere uyum için "pronounce: 'kontrül'" dendi
 	"kontrol et": { locals: ["denetle", "yokla"], foreignFlags:0b011, localFlags: [0b00, 0b00] },  // FIIL
 	"konsensüs": { locals: ["uzlaşma"], foreignFlags:0, localFlags: [0] },
 	"kreatif": { locals: ["yaratıcı"], foreignFlags:0, localFlags: [0] },
