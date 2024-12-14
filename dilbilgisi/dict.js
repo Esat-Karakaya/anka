@@ -58,6 +58,7 @@ export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"full time": { locals: ["tam gün"], foreignFlags:0, localFlags: [0] },
 	"global": { locals: ["küresel"], foreignFlags:0, localFlags: [0] },
 	"hümanist": { locals: ["insancıl"], foreignFlags:0, localFlags: [0] },
+	"internet": { locals: ["genel ağ"], foreignFlags:0, localFlags: [0] },
 	"illegal": { locals: ["yasa dış"], foreignFlags:0, localFlags: [1] },
 	"imitasyon": { locals: ["taklit"], foreignFlags:0, localFlags: [0] },
 	"influencer": { locals: ["etkileyen"], foreignFlags:0, localFlags: [0], pronounce: "sır", },
@@ -70,6 +71,8 @@ export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"komünikasyon": { locals: ["iletişim"], foreignFlags:0, localFlags: [0] },
 	"konser": { locals: ["dinleti"], foreignFlags:0, localFlags: [0] },
 	"kontrol": { locals: ["denetim"], foreignFlags:0, localFlags: [0], pronounce: "kontrül" }, // kontrol kelimesine gelen eklere uyum için "pronounce: 'kontrül'" dendi
+	"kontrollü": { locals: ["denetimli"], foreignFlags:0, localFlags: [0]}, // kontrol kelimesine gelen eklere uyum için "pronounce: 'kontrül'" dendi
+	"kontrolsüz": { locals: ["denetimsiz"], foreignFlags:0, localFlags: [0]}, // kontrol kelimesine gelen eklere uyum için "pronounce: 'kontrül'" dendi
 	"kontrol et": { locals: ["denetle", "yokla"], foreignFlags:0b011, localFlags: [0b00, 0b00] },  // FIIL
 	"konsensüs": { locals: ["uzlaşma"], foreignFlags:0, localFlags: [0] },
 	"kreatif": { locals: ["yaratıcı"], foreignFlags:0, localFlags: [0] },

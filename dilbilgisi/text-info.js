@@ -23,7 +23,11 @@ export function textForeignInfo(text, getMulti) {
 		}
 		else foreign = words[i];
 
-		replacements[foreign] = [...replaceForeign(foreign)];
+		const possibleLocals = replaceForeign(foreign);
+		if (!possibleLocals.size) 
+			continue;
+
+		replacements[foreign] = [...possibleLocals];
 
 		if (!getMulti){
 			// a single word is needed
