@@ -6,11 +6,11 @@
 	"permissions": ["activeTab", "storage", "tabs", "scripting"],
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "proje@tubitak.com",
+			"id": "anka@afl.com",
 			"strict_min_version": "112.0"
 		},
 		"gecko_android": {
-			"id": "proje@tubitak.com",
+			"id": "anka@afl.com",
 			"strict_min_version": "113.0"
 		}
 	},
