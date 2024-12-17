@@ -1,13 +1,6 @@
 // wrapped around an object to prevent name clashing with auto-clean 
 function siteFixUtils() {
-//	const cleanables = document.querySelectorAll("a, b, blockquote, caption, del, details, div, em, figcaption, h1, h2, h3, h4, h5, h6, label, legend, li, mark, noscript, p, pre, s, samp, section, span, strong, summary, textarea");
-	const cleanables = new Set([
-		"A", "ARTICLE", "ASIDE", "B", "BLOCKQUOTE", "CAPTION", "COL", "COLGROUP",
-		"DEL", "DETAILS", "DIALOG", "DIV", "EM", "FIGCAPTION", "FIGURE", "FIELDSET",
-		"FORM", "H1", "H2", "H3", "H4", "H5", "H6", "HEADER", "LABEL", "LEGEND",
-		"LI", "MAIN", "MARK", "MENU", "NOSCRIPT", "OL", "P", "PRE", "SAMP",
-		"SECTION", "SPAN", "STRONG", "SUMMARY", "TEXTAREA", "UL",
-	]);
+	const cleanables = document.querySelectorAll("a, b, blockquote, caption, del, details, div, em, figcaption, h1, h2, h3, h4, h5, h6, label, legend, li, mark, noscript, p, pre, s, samp, section, span, strong, summary, textarea, title");
 
 	// returns a sorted Object.entries
 	// Sort is used to make sure smaller chunks
@@ -20,31 +13,26 @@ function siteFixUtils() {
 	}
 
 	function comparator(a, b) {
-		if (a[0].length < b[0].length) {
+		if (a[0].length < b[0].length)
 			return 1;
-		}
-		if (a[0].length > b[0].length) {
+		if (a[0].length > b[0].length)
 			return -1;
-		}
 		return 0;
 	}
 
-	function walkTxt(element, textHandler) {
-		const children=element.childNodes;
+	function walkTxt(textHandler) {
+		// Array moved closer to improve performance
+		const closerCleanables = cleanables;
+		for (const element of closerCleanables) {
 
-		children.forEach(child => {
-			if (
-				child.nodeType === 1 &&
-				cleanables.has(child.tagName)
-			) {
-				walkTxt(child, textHandler);
-			}else if (child.nodeType === 3) {
-				textHandler(child);
-			}
-		});
+			element.childNodes.forEach(child => {
+				if (child.nodeType === Node.TEXT_NODE)
+					textHandler(child); // handle all text nodes
+			});
+		}
 	}
 
-	 function returnReplacer(sorted) {
+	function returnReplacer(sorted) {
 		return (textnode) => { // mutation
 			let { nodeValue: rawStr } = textnode;
 
@@ -57,10 +45,10 @@ function siteFixUtils() {
 		}
 	}
 
-	function getTexts(element) {
+	function getTexts() {
 		let contentText = "";
 
-		walkTxt(element, (textnode)=>contentText += " "+textnode.nodeValue);
+		walkTxt((textnode)=>contentText += " "+textnode.nodeValue);
 
 		return contentText;
 	}

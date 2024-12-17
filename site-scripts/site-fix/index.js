@@ -1,4 +1,4 @@
-async function handleBody(body) {
+async function handleBody() {
 	const {
 		sortedLoopable,
 		returnReplacer,
@@ -6,12 +6,14 @@ async function handleBody(body) {
 		getTexts
 	} = siteFixUtils();
 
-	const contentText = getTexts(body);
+	const contentText = getTexts();
+
+	console.log(contentText)
 	const alternatives = await textForeignInfo(contentText);
 	const sorted = sortedLoopable(alternatives);
 	const replacer = returnReplacer(sorted);
 
-	walkTxt(body, replacer);
+	walkTxt(replacer);
 }
 
-handleBody(document.querySelector("body"));
+handleBody();
