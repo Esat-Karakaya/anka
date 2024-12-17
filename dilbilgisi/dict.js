@@ -36,7 +36,7 @@ export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"counter": { locals: ["sayaç"], foreignFlags:0, localFlags: [0] },
 	"cv": { locals: ["özgeçmiş"], foreignFlags:0, localFlags: [0], pronounce: "sivi", },
 	"data": { locals: ["veri"], foreignFlags:0, localFlags: [0] },
-	"deadline": { locals: ["son tarih"], foreignFlags:0, localFlags: [0] },
+	"deadline": { locals: ["son tarih"], foreignFlags:0, localFlags: [0], pronounce: "layn" },
 	"deklare et": { locals: ["bildir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"default": { locals: ["varsayılan"], foreignFlags:0, localFlags: [0] },
 	"departman": { locals: ["bölüm"], foreignFlags:0, localFlags: [0] },
@@ -52,6 +52,7 @@ export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"emergency": { locals: ["acil"], foreignFlags:0, localFlags: [0] },
 	"ekstra": { locals: ["fazladan"], foreignFlags:0, localFlags: [0] },
 	"entegre ol": { locals: ["bütünleş"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
+	"entegre et": { locals: ["bütünleştir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"exit": { locals: ["çıkış"], foreignFlags:0, localFlags: [0] },
 	"feedback": { locals: ["geri bildirim"], foreignFlags:0, localFlags: [0] },
 	"full": { locals: ["dolu"], foreignFlags:0, localFlags: [0] },
@@ -140,7 +141,7 @@ export const twoWords={
 	download: [ 'et' ],
 	elimine: [ 'et' ],
 	empoze: [ 'et' ],
-	entegre: [ 'ol' ],
+	entegre: [ 'ol', 'et' ],
 	kontrol: [ 'et' ],
 	manipüle: [ 'et', 'ol' ],
 	provoke: [ 'et' ],

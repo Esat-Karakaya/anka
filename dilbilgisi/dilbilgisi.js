@@ -55,7 +55,6 @@ function isTwoWordForeign(word) {
 }
 
 export function replaceForeign(word) {
-//	throw new Error("replaceForeign not implemented");
 
 	const replaceInfo = isForeign(word);
 
@@ -85,10 +84,10 @@ function replaceWithOneLocal(word, replaceInfo){
 	let replacements;
 
 	const smaller = word.toLocaleLowerCase("tr");
-	if (!(replaceInfo.foreignFlags & 1)) { // noun
+	if (!(replaceInfo.foreignFlags & 1)) { // isim
 		replacements = foreignNounConvert(smaller, replaceInfo);
 
-	}else { // verb
+	}else { // fiil
 		replacements = foreignVerbConvert(smaller, replaceInfo);
 	}
 
