@@ -1,25 +1,25 @@
 // foreignFlags
 // 0b??_: noun -> 0, verb -> 1
 // 0b?_1: yumuşama var -> 1 
-// 0b_?1: er, ar -> 0; ir, ır, ur, ür -> 1 
+// 0b_?1: tek heceli -ar, -er veya çok heceli ir, ır, ur, ür -> 0; değilse -> 1 
 
 // localFlags (noun)
 // 0b_: 3.tekil yok -> 0, 3.tekil var -> 1
 
 // localFlags (verb)
 // 0b?_: yumuşama var -> 1
-// 0b_?: ir, ır, ur, ür -> 1;  er, ar ->0
+// 0b_?: tek heceli -ar, -er veya çok heceli ir, ır, ur, ür -> 0; değilse -> 1 
 
 export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"absürt": { locals: ["saçma"], foreignFlags:0, localFlags: [0] },
-	"adapte ol": { locals: ["uyum sağla"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
+	"adapte ol": { locals: ["uyum sağla", "uy"], foreignFlags:0b101, localFlags: [0b00, 0b00] },  // FIIL
 	"adisyon": { locals: ["hesap fiş"], foreignFlags:0, localFlags: [1] },
 	"aidat": { locals: ["ödenti"], foreignFlags:0, localFlags: [0] },
 	"aksesuar": { locals: ["donatımlık"], foreignFlags:0, localFlags: [0] },
 	"alternatif": { locals: ["seçenek", "farklı", "karşı", "almaşık", "dalgalı"], foreignFlags:0, localFlags: [0, 0, 0, 0,] },
 	"ambiyans": { locals: ["ortam"], foreignFlags:0, localFlags: [0] },
 	"analiz": { locals: ["çözümleme"], foreignFlags:0, localFlags: [0] },
-	"analiz et": { locals: ["çözümle"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
+	"analiz et": { locals: ["çözümle, değerlendir"], foreignFlags:0b011, localFlags: [0b00, 0b00] },  // FIIL
 	"anksiyete": { locals: ["kaygı"], foreignFlags:0, localFlags: [0] },
 	"anons": { locals: ["duyuru"], foreignFlags:0, localFlags: [0] },
 	"anons et": { locals: ["duyur"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
@@ -27,6 +27,8 @@ export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"antipatik": { locals: ["sevimsiz"], foreignFlags:0, localFlags: [0] },
 	"bodyguard": { locals: ["koruma"], foreignFlags:0, localFlags: [0] },
 	"brifing": { locals: ["özetleme"], foreignFlags:0, localFlags: [0] },
+	"brifing al": { locals: ["bilgilen"], foreignFlags:0b101, localFlags: [0] },  // FIIL
+	"brifing ver": { locals: ["bilgilendir"], foreignFlags:0b101, localFlags: [0] },  // FIIL
 	"brifing yap": { locals: ["özetle"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL
 	"bye": { locals: ["hoşça kal"], foreignFlags:0, localFlags: [0] },
 	"bye bye": { locals: ["güle güle"], foreignFlags:0, localFlags: [0] },
@@ -48,9 +50,11 @@ export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"driver": { locals: ["sürücü"], foreignFlags:0, localFlags: [0] },
 	"e-mail": { locals: ["e-posta"], foreignFlags:0, localFlags: [0] },
 	"elimine et": { locals: ["ele"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
+	"elimine ol": { locals: ["elen"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
+	"emperyalizm": { locals: ["yayılmacılık", "yayılımcılık"], foreignFlags:0, localFlags: [0b00, 0b00] },
 	"empoze et": { locals: ["dayat"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"emergency": { locals: ["acil"], foreignFlags:0, localFlags: [0] },
-	"ekstra": { locals: ["fazladan"], foreignFlags:0, localFlags: [0] },
+	"ekstra": { locals: ["fazladan", "üstün nitelikli", "en iyi"], foreignFlags:0, localFlags: [0, 0, 0] },
 	"entegre ol": { locals: ["bütünleş"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
 	"entegre et": { locals: ["bütünleştir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"exit": { locals: ["çıkış"], foreignFlags:0, localFlags: [0] },
@@ -135,11 +139,11 @@ export const twoWords={
 	adapte: [ 'ol' ],
 	analiz: [ 'et' ],
 	anons: [ 'et' ],
-	brifing: [ 'yap' ],
+	brifing: [ 'yap', 'al', 'ver' ],
 	deklare: [ 'et' ],
 	dizayn: [ 'et' ],
 	download: [ 'et' ],
-	elimine: [ 'et' ],
+	elimine: [ 'et', 'ol' ],
 	empoze: [ 'et' ],
 	entegre: [ 'ol', 'et' ],
 	kontrol: [ 'et' ],
