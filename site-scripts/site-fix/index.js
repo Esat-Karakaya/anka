@@ -8,7 +8,6 @@ async function handleBody() {
 
 	const contentText = getTexts();
 
-	console.log(contentText)
 	const alternatives = await textForeignInfo(contentText);
 	const sorted = sortedLoopable(alternatives);
 	const replacer = returnReplacer(sorted);
