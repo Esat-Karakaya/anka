@@ -17,21 +17,21 @@ export const words = {
 	"aidat": { locals: ["ödenti"], foreignFlags:0, localFlags: [0] },
 	"aksesuar": { locals: ["donatımlık"], foreignFlags:0, localFlags: [0] },
 	"alternatif": { locals: ["seçenek", "farklı", "karşı", "almaşık", "dalgalı"], foreignFlags:0, localFlags: [0, 0, 0, 0,] },
-	"ambiyans": { locals: ["ortam", "tarz"], foreignFlags:0, localFlags: [0, 0] }, // YOK
+	"ambiyans": { locals: ["hava", "tarz"], foreignFlags:0, localFlags: [0, 0] },
 	"analiz": { locals: ["çözümleme"], foreignFlags:0, localFlags: [0] },
 	"analiz et": { locals: ["çözümle, değerlendir"], foreignFlags:0b011, localFlags: [0b00, 0b00] },  // FIIL
 	"anksiyete": { locals: ["kaygı bozukluk"], foreignFlags:0, localFlags: [1] },
 	"anons": { locals: ["duyuru", "sesli duyuru"], foreignFlags:0, localFlags: [0, 0] },
-	"anons et": { locals: ["duyur"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL // YOK
-	"anormal": { locals: ["olağandışı", "düzgüsüz"], foreignFlags:0, localFlags: [0, 0] }, // YOK
+	"anons et": { locals: ["duyur"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
+	"anormal": { locals: ["düzgüsüz"], foreignFlags:0, localFlags: [0, 0] },
 	"antipatik": { locals: ["sevimsiz"], foreignFlags:0, localFlags: [0] },
 	"bug": { locals: ["yazılım hata"], foreignFlags:0, localFlags: [1], pronounce:"bag" }, // YOK
 	"bodyguard": { locals: ["koruma"], foreignFlags:0, localFlags: [0] },
-	"brifing": { locals: ["özetleme", "bilgilendirme"], foreignFlags:0, localFlags: [0, 0] }, // YOK
+	"brifing": { locals: ["özetlem", "bilgilendirme"], foreignFlags:0, localFlags: [0, 0] },
 	"brifing al": { locals: ["bilgilen"], foreignFlags:0b101, localFlags: [0] },  // FIIL
 	"brifing ver": { locals: ["bilgilendir"], foreignFlags:0b101, localFlags: [0] },  // FIIL
-	"brifing yap": { locals: ["özetle"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL
-	"bye": { locals: ["hoşça kal"], foreignFlags:0, localFlags: [0] }, // YOK
+	"brifing yap": { locals: ["özetle"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL // YOK
+	"bye": { locals: ["görüşürüz"], foreignFlags:0, localFlags: [0] }, // YOK
 	"bye bye": { locals: ["güle güle"], foreignFlags:0, localFlags: [0] }, // YOK
 	"catering": { locals: ["yemek hizmet"], foreignFlags:0, localFlags: [1] },
 	"center": { locals: ["merkez"], foreignFlags:0, localFlags: [0] },
@@ -40,14 +40,14 @@ export const words = {
 	"cv": { locals: ["özgeçmiş"], foreignFlags:0, localFlags: [0], pronounce: "sivi", },  // YOK
 	"data": { locals: ["veri"], foreignFlags:0, localFlags: [0] },
 	"deadline": { locals: ["süre sonu"], foreignFlags:0, localFlags: [0], pronounce: "layn" },
-	"deklare et": { locals: ["bildir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL // YOK
+	"deklare et": { locals: ["bildir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"default": { locals: ["varsayılan"], foreignFlags:0, localFlags: [0] }, // YOK
 	"departman": { locals: ["bölüm"], foreignFlags:0, localFlags: [0] },
 	"dermatoloji": { locals: ["cildiye"], foreignFlags:0, localFlags: [0] },
 	"dermatolog": { locals: ["cildiyeci"], foreignFlags:0, localFlags: [0] },
 	"dizayn": { locals: ["tasarım"], foreignFlags:0, localFlags: [0] },
 	"dizayn et": { locals: ["tasarla"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL // YOK
-	"döküman": { locals: ["belge"], foreignFlags:0, localFlags: [0] }, // YOK
+	"doküman": { locals: ["belge"], foreignFlags:0, localFlags: [0] },
 	"download et": { locals: ["indir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL  // YOK
 	"driver": { locals: ["sürücü"], foreignFlags:0, localFlags: [0] }, // YOK
 	"e-mail": { locals: ["elektronik posta"], foreignFlags:0, localFlags: [0] },
@@ -59,10 +59,8 @@ export const words = {
 	"ekstra": { locals: ["fazladan", "üstün nitelikli", "en iyi"], foreignFlags:0, localFlags: [0, 0, 0] },
 	"extra": { locals: ["fazladan", "üstün nitelikli", "en iyi"], foreignFlags:0, localFlags: [0, 0, 0] },
 	"entegre ol": { locals: ["bütünleş"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
-	"entegre et": { locals: ["bütünleştir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL // YOK
 	"exit": { locals: ["çıkış"], foreignFlags:0, localFlags: [0] }, // YOK
 	"feedback": { locals: ["geri bildirim"], foreignFlags:0, localFlags: [0] }, // YOK
-	"full": { locals: ["dolu"], foreignFlags:0, localFlags: [0] }, // YOK
 	"full time": { locals: ["tam gün"], foreignFlags:0, localFlags: [0] },
 	"global": { locals: ["küresel"], foreignFlags:0, localFlags: [0] },
 	"globalleş": { locals: ["küreselleş"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
@@ -74,14 +72,14 @@ export const words = {
 	"imitasyon": { locals: ["taklit"], foreignFlags:0, localFlags: [0] },
 	"influencer": { locals: ["etkileyen"], foreignFlags:0, localFlags: [0], pronounce: "sır", }, // YOK
 	"irregular": { locals: ["düzensiz"], foreignFlags:0, localFlags: [0] }, // YOK
-	"izolasyon": { locals: ["yalıtım"], foreignFlags:0, localFlags: [0] }, // YOK
+	"izolasyon": { locals: ["yalıtım"], foreignFlags:0, localFlags: [0] },
 	"jenerasyon": { locals: ["kuşak"], foreignFlags:0, localFlags: [0] },
 	"jeneratör": { locals: ["üreteç"], foreignFlags:0, localFlags: [0] },
 	"kampüs": { locals: ["yerleşke"], foreignFlags:0, localFlags: [0] },
-	"klasifikasyon": { locals: ["sınıflandırma"], foreignFlags:0, localFlags: [0] }, // YOK
+	"klasifikasyon": { locals: ["sınıflandırma"], foreignFlags:0, localFlags: [0] },
 	"kompleks": { locals: ["karmaşık"], foreignFlags:0, localFlags: [0] },
 	"komünikasyon": { locals: ["iletişim"], foreignFlags:0, localFlags: [0] },
-	"konser": { locals: ["dinleti"], foreignFlags:0, localFlags: [0] }, // YOK
+	"konser": { locals: ["dinleti"], foreignFlags:0, localFlags: [0] },
 	"kontrol": { locals: ["denetim"], foreignFlags:0, localFlags: [0], pronounce: "kontrül" }, // kontrol kelimesine gelen eklere uyum için "pronounce: 'kontrül'" dendi
 	"kontrollü": { locals: ["denetimli"], foreignFlags:0, localFlags: [0]},
 	"kontrolsüz": { locals: ["denetimsiz"], foreignFlags:0, localFlags: [0]},
@@ -103,10 +101,10 @@ export const words = {
 	"objektif": { locals: ["nesnel"], foreignFlags:0, localFlags: [0] },
 	"objektiflik": { locals: ["nesnellik"], foreignFlags:0, localFlags: [0] },
 	"offline": { locals: ["çevrim dış"], foreignFlags:0, localFlags: [1] },
-	"okey": { locals: ["tamam"], foreignFlags:0, localFlags: [0] }, // YOK
-	"okeyle": { locals: ["onayla"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL // YOK
-	"online": { locals: ["çevrim iç"], foreignFlags:0, localFlags: [1] }, // YOK
-	"opsiyonel": { locals: ["isteğe bağlı", "seçmeli"], foreignFlags:0, localFlags: [0, 0] }, // YOK
+	"okey": { locals: ["tamam"], foreignFlags:0, localFlags: [0] },
+	"okeyle": { locals: ["onayla"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL
+	"online": { locals: ["çevrimiç"], foreignFlags:0, localFlags: [1] },
+	"opsiyonel": { locals: ["isteğe bağlı"], foreignFlags:0, localFlags: [0] },
 	"optimist": { locals: ["iyimser"], foreignFlags:0, localFlags: [0] },
 	"orijinal": { locals: ["özgün"], foreignFlags:0, localFlags: [0] },
 	"orjinal": { locals: ["özgün"], foreignFlags:0, localFlags: [0] },
@@ -127,6 +125,7 @@ export const words = {
 	"relaks ol": { locals: ["rahatla"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
 	"resetle": { locals: ["sıfırla"], foreignFlags:0, localFlags: [0] }, // YOK
 	"revize et": { locals: ["düzelt", "yenile"], foreignFlags:0b001, localFlags: [0b00, 0b00] },  // FIIL
+	"rezervuar": { locals: ["depo"], foreignFlags:0, localFlags: [0] },
 	"screenshot": { locals: ["ekran görüntü"], foreignFlags:0, localFlags: [1] }, // YOK
 	"security": { locals: ["güvenlik"], foreignFlags:0, localFlags: [0] }, // YOK
 	"selfie": { locals: ["özçekim"], foreignFlags:0, localFlags: [0] },
