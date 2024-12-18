@@ -73,27 +73,40 @@ function crudeNounConvert(fromWord, routes) {
 }
 
 function insertS3(routes) { // MUTATION
-	return routes.map(route => {
+	routes.forEach((route, i) => {
 		let s3ToAdd = [priorities.kök.iyelikEkiS3, "iyelikEkiS3"];
 
 		for (const transformer of route)
 			if (transformer[1][1] =="y" && transformer[1][6] =="E")
 				/*iyelik eki zaten var*/
-				return route;
+				return;
 
 		// iyelik eki eklenmeli
 		// i değişkeni ekin eklenebileceği pozisyon
+
 		for (let i = route.length; i >= 0; i--) {
-			if (
-				( !route[i] || priorities[route[i][1]].iyelikEkiS3 ) &&
-				( !route[i-1] || priorities.iyelikEkiS3[route[i-1][1]] )
-			) {
-				if (route[i-1]) route[i-1][2]=true;
+			const nextKaynaşım = route[i-1] && priorities.iyelikEkiS3[route[i-1][1] + "K"];
+
+			const prevSupport = !route[i] || priorities[route[i][1]].iyelikEkiS3;
+			const nextSupport =
+				!route[i-1] ||
+				priorities.iyelikEkiS3[route[i-1][1]] ||
+				nextKaynaşım ||
+				route[i-1][1]==="isimEylem";
+
+			if ( prevSupport && nextSupport ) {
 				route.splice(i, 0, s3ToAdd);
-				return route;
+
+				if ( nextKaynaşım ) {
+					route[i-1] = [
+						priorities.iyelikEkiS3[route[i-1][1] + "K"],
+						route[i-1][1] + "K",
+						route[i-1][2]
+					]
+				}
+				return;
 			}
 		}
-
 	})
 }
 
@@ -117,17 +130,16 @@ export function foreignNounConvert(originalWord, rootInfo) {
 
 	let routes = disectNoun(pronouncedWord, pronouncedRoot);
 
-	if (rootInfo.flags & 1) {
+	if (rootInfo.localFlags & 1)
 		insertS3(routes);
-	}
 
 	return crudeNounConvert(rootInfo.local, routes);
 }
 
-/* console.log(foreignNounConvert("perspektifindekileri", {
-	rootForeign:"perspektif",
-	local:"bakış açı",
-	foreignFlags:0b1,
-	localFlags:0b0,
-	pronounce:"perspektif"
+/* console.log(foreignNounConvert("bug'ı", {
+	rootForeign:"bug",
+	local:"yazılım hata",
+	foreignFlags:0,
+	localFlags:1,
+	pronounce:"bag"
 })); */

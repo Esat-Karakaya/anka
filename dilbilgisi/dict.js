@@ -25,6 +25,7 @@ export const words = { // kelimelerin farklı karşılıkları yazılmalı
 	"anons et": { locals: ["duyur"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"anormal": { locals: ["olağandışı"], foreignFlags:0, localFlags: [0] },
 	"antipatik": { locals: ["sevimsiz"], foreignFlags:0, localFlags: [0] },
+	"bug": { locals: ["yazılım hata"], foreignFlags:0, localFlags: [1], pronounce:"bag" },
 	"bodyguard": { locals: ["koruma"], foreignFlags:0, localFlags: [0] },
 	"brifing": { locals: ["özetleme"], foreignFlags:0, localFlags: [0] },
 	"brifing al": { locals: ["bilgilen"], foreignFlags:0b101, localFlags: [0] },  // FIIL
