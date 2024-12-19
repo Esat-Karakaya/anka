@@ -111,7 +111,7 @@ export const words = {
 	"part time": { locals: ["yarım gün"], foreignFlags:0, localFlags: [0] },
 	"partikül": { locals: ["parçacık"], foreignFlags:0, localFlags: [0] },
 	"partiküllü": { locals: ["parçacıklı"], foreignFlags:0, localFlags: [0] },
-	"perspektif": { locals: ["görünge", "bakış açı"], foreignFlags:0, localFlags: [0, 1] },
+	"perspektif": { locals: ["bakış açı", "görünge",], foreignFlags:0, localFlags: [1, 0] },
 	"pesimist": { locals: ["kötümser"], foreignFlags:0, localFlags: [0] },
 	"pozisyon": { locals: ["konum", "durum"], foreignFlags:0, localFlags: [0, 0] },
 	"prestij": { locals: ["saygınlık"], foreignFlags:0, localFlags: [0] },

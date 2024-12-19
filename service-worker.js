@@ -1,5 +1,5 @@
-import "./dilbilgisi/content-connect.js";
-import { autoClean, checkClean, fixSite } from "./JSdependencies.js";
+import "./extras/content-connect.js";
+import { autoClean, checkClean, fixSite } from "./extras/JSdependencies.js";
 
 // Save default settings
 chrome.runtime.onInstalled.addListener(({ reason }) => {
