@@ -4,14 +4,23 @@ const defReplaceMode = document.getElementById("def-replace-mode");
 const defSiteFixMode = document.getElementById("def-site_fix-mode");
 const siteReplaceMode = document.getElementById("site-replace-mode");
 const siteSiteFixMode = document.getElementById("site-site_fix-mode");
+const statistics = document.getElementById("statistics");
 
-// set gui according to storage
-chrome.storage.local.get("defReplaceMode").then((value)=>{
-	defReplaceMode.checked = value.defReplaceMode === "auto";
-});
-chrome.storage.local.get("defSiteFixMode").then((value)=>{
-	defSiteFixMode.checked = value.defSiteFixMode === "off";
-});
+// get domain
+let [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
+const { hostname } = (new URL(tab?.url));
+
+// read local storage
+const stored =
+await chrome.storage.local.get([
+	"defReplaceMode", "defSiteFixMode", hostname + "FixCnt", "generalFixCnt"
+])
+
+
+//GENERAL SETTINGS
+
+defReplaceMode.checked = stored.defReplaceMode === "auto";
+defSiteFixMode.checked = stored.defSiteFixMode === "off";
 
 // set storage according to gui
 defReplaceMode.addEventListener("change", (event)=>{
@@ -28,8 +37,6 @@ defSiteFixMode.addEventListener("change", (event)=>{
 })
 
 // SITE SETTINGS
-let [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-const hostname = (new URL(tab?.url)).hostname;
 
 const siteSettingsH2 = document.getElementById("siteSettingsH2");
 siteSettingsH2.innerText = (hostname? hostname:"Site") + " Ayarları";
@@ -66,3 +73,13 @@ siteSiteFixMode.addEventListener("change", (event) => {
 	chrome.storage.local
 	.set(storage);
 })
+
+// STATISRICS
+let info = `Bu tarayıcıda ${stored.generalFixCnt ?? 0} tane kelime düzeltilmiştir.`;
+let siteInfo = `${hostname} adreslerinde ise ${stored[hostname + "FixCnt"] ?? 0} tane kelime düzeltilmiştir.`;
+
+
+if (hostname)
+	info += " " + siteInfo;
+
+statistics.textContent = info;

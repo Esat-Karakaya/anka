@@ -5,6 +5,6 @@ async function textForeignInfo(...props) {
 	return res;	
 };
 
-function addWordCnt(site, addVal) {
+function addWordCnt(addVal, site) {
 	sendMessage({type: "word-count", site, addVal});
 };

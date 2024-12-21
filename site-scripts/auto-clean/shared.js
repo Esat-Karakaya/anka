@@ -27,33 +27,6 @@ function fixTxt(str, loopable) {
 	return tobefixed;
 }
 
-// NO ACCOUNT FOR TWO WORD FOREIGNS
-function fixTxt2(str, loopable) { 
-	const alternatives = Object.fromEntries(loopable);
-	let fixed="";
-	let lastWord = "";
-	for (let i = 0; i < str.length; i++) {
-		const char = str[i];
-		
-		if (ALPHABET.has(char)) {
-			lastWord+=char;
-			continue;
-		}
-
-		if (alternatives[lastWord])
-			fixed+=alternatives[lastWord] + char;
-		else
-			fixed+=lastWord + char;
-		lastWord="";
-	}
-	if (alternatives[lastWord])
-		fixed+=alternatives[lastWord];
-	else
-		fixed+=lastWord;
-
-	return fixed;
-}
-
 /*
 	if string ends with non alphabetical char
 	it will return the last word's start index

@@ -1,9 +1,11 @@
+import { addWordCnt } from "../extras/word-count.js";
 import { arrayifyText } from "./arrayify.js";
 import { isForeign, replaceForeign } from "./dilbilgisi.js";
 
 // returns alternatives for used forign word roots
 // and original form of the foreign roots
 export function textForeignInfo(text, getMulti) {
+	let cnt = 0;
 	const words = arrayifyText(text);
 	const replacements = {} // {dizaynın: ["tasarımın"], perspektifini: ["bakış açını", "bakış açısını"]}
 
@@ -24,17 +26,22 @@ export function textForeignInfo(text, getMulti) {
 		else foreign = words[i];
 
 		const possibleLocals = replaceForeign(foreign);
+
 		if (!possibleLocals.size) 
 			continue;
 
 		replacements[foreign] = [...possibleLocals];
 
 		if (!getMulti){
+			cnt++;
+
 			// a single word is needed
 			replacements[foreign] =
 			replacements[foreign][0]
 		}
 	}
+	if (!getMulti)
+		addWordCnt(cnt);
 
 	return replacements;
 }

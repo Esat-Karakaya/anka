@@ -1,6 +1,6 @@
 // wrapped around an object to prevent name clashing with auto-clean 
 function siteFixUtils() {
-	const cleanables = document.querySelectorAll("a, b, blockquote, caption, del, details, div, em, figcaption, h1, h2, h3, h4, h5, h6, label, legend, li, mark, noscript, p, pre, s, samp, section, span, strong, summary, textarea, title");
+	const cleanables = document.querySelectorAll("a, b, blockquote, caption, del, details, div, em, figcaption, h1, h2, h3, h4, h5, h6, input, label, legend, li, mark, noscript, p, pre, s, samp, section, span, strong, summary, textarea, title");
 
 	// returns a sorted Object.entries
 	// Sort is used to make sure smaller chunks

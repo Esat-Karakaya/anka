@@ -45,6 +45,7 @@ export const words = {
 	"departman": { locals: ["bölüm"], foreignFlags:0, localFlags: [0] },
 	"dermatoloji": { locals: ["cildiye"], foreignFlags:0, localFlags: [0] },
 	"dermatolog": { locals: ["cildiyeci"], foreignFlags:0, localFlags: [0] },
+	"direkt": { locals: ["aracısız", "doğruca", "doğrudan doğruya"], foreignFlags:0, localFlags: [0, 0, 0] },
 	"dizayn": { locals: ["tasarım"], foreignFlags:0, localFlags: [0] },
 	"dizayn et": { locals: ["tasarla"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL // YOK
 	"doküman": { locals: ["belge"], foreignFlags:0, localFlags: [0] },
@@ -72,6 +73,7 @@ export const words = {
 	"imitasyon": { locals: ["taklit"], foreignFlags:0, localFlags: [0] },
 	"influencer": { locals: ["etkileyen"], foreignFlags:0, localFlags: [0], pronounce: "sır", }, // YOK
 	"irregular": { locals: ["düzensiz"], foreignFlags:0, localFlags: [0] }, // YOK
+	"istatistik": { locals: ["sayımlama", "sayım bilim"], foreignFlags:0, localFlags: [0, 1] },
 	"izolasyon": { locals: ["yalıtım"], foreignFlags:0, localFlags: [0] },
 	"jenerasyon": { locals: ["kuşak"], foreignFlags:0, localFlags: [0] },
 	"jeneratör": { locals: ["üreteç"], foreignFlags:0, localFlags: [0] },

@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener(
 
 chrome.runtime.onMessage.addListener(
 	req => {
-		if (req.type!=="word-count")
-			addWordCnt(req.site, req.addVal);
+		if (req.type==="word-count")
+			addWordCnt(req.addVal, req.site);
 	}
 );
