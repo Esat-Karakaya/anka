@@ -79,7 +79,7 @@ let info = `Bu tarayıcıda ${stored.generalFixCnt ?? 0} tane kelime düzeltilmi
 let siteInfo = `${hostname} adreslerinde ise ${stored[hostname + "FixCnt"] ?? 0} tane kelime düzeltilmiştir.`;
 
 
-if (hostname)
+if (hostname.includes("."))
 	info += " " + siteInfo;
 
 statistics.textContent = info;
