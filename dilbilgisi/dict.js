@@ -23,14 +23,13 @@ export const words = {
 	"anksiyete": { locals: ["kaygı bozukluk"], foreignFlags:0, localFlags: [1] },
 	"anons": { locals: ["duyuru", "sesli duyuru"], foreignFlags:0, localFlags: [0, 0] },
 	"anons et": { locals: ["duyur"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
-	"anormal": { locals: ["düzgüsüz"], foreignFlags:0, localFlags: [0, 0] },
+	"anormal": { locals: ["düzgüsüz"], foreignFlags:0, localFlags: [0, 0], pronounce:"anormel" },
 	"antipatik": { locals: ["sevimsiz"], foreignFlags:0, localFlags: [0] },
 	"bug": { locals: ["yazılım hata"], foreignFlags:0, localFlags: [1], pronounce:"bag" }, // YOK
 	"bodyguard": { locals: ["koruma"], foreignFlags:0, localFlags: [0] },
 	"brifing": { locals: ["özetlem", "bilgilendirme"], foreignFlags:0, localFlags: [0, 0] },
 	"brifing al": { locals: ["bilgilen"], foreignFlags:0b101, localFlags: [0] },  // FIIL
 	"brifing ver": { locals: ["bilgilendir"], foreignFlags:0b101, localFlags: [0] },  // FIIL
-	"brifing yap": { locals: ["bilgilendir"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL // YOK
 	"bye": { locals: ["görüşürüz"], foreignFlags:0, localFlags: [0] }, // YOK
 	"bye bye": { locals: ["güle güle"], foreignFlags:0, localFlags: [0] }, // YOK
 	"catering": { locals: ["yemek hizmet"], foreignFlags:0, localFlags: [1] },
@@ -39,7 +38,7 @@ export const words = {
 	"counter": { locals: ["sayaç"], foreignFlags:0, localFlags: [0] }, // YOK
 	"cv": { locals: ["özgeçmiş"], foreignFlags:0, localFlags: [0], pronounce: "sivi", },  // YOK
 	"data": { locals: ["veri"], foreignFlags:0, localFlags: [0] },
-	"deadline": { locals: ["süre sonu"], foreignFlags:0, localFlags: [0], pronounce: "layn" },
+	"deadline": { locals: ["süre son"], foreignFlags:0, localFlags: [1], pronounce: "layn" },
 	"deklare et": { locals: ["bildir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"default": { locals: ["varsayılan"], foreignFlags:0, localFlags: [0] }, // YOK
 	"departman": { locals: ["bölüm"], foreignFlags:0, localFlags: [0] },
@@ -82,6 +81,7 @@ export const words = {
 	"kompleks": { locals: ["karmaşık"], foreignFlags:0, localFlags: [0] },
 	"komünikasyon": { locals: ["iletişim"], foreignFlags:0, localFlags: [0] },
 	"konser": { locals: ["dinleti"], foreignFlags:0, localFlags: [0] },
+	"konferans": { locals: ["konuşma"], foreignFlags:0, localFlags: [0] },
 	"kontrol": { locals: ["denetim"], foreignFlags:0, localFlags: [0], pronounce: "kontrül" }, // kontrol kelimesine gelen eklere uyum için "pronounce: 'kontrül'" dendi
 	"kontrollü": { locals: ["denetimli"], foreignFlags:0, localFlags: [0]},
 	"kontrolsüz": { locals: ["denetimsiz"], foreignFlags:0, localFlags: [0]},
@@ -120,7 +120,8 @@ export const words = {
 	"prezentasyon": { locals: ["sunum"], foreignFlags:0, localFlags: [0] },
 	"printer": { locals: ["yazıcı"], foreignFlags:0, localFlags: [0] },
 	"print out": { locals: ["çıktı"], foreignFlags:0, localFlags: [0] },
-	"provoke et": { locals: ["kışkırt"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL
+	"propaganda": { locals: ["yaymaca"], foreignFlags:0, localFlags: [0] },
+	"provoke et": { locals: ["kışkırt"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"randıman": { locals: ["verim"], foreignFlags:0, localFlags: [0] },
 	"reaksiyon": { locals: ["tepki", "tepkime", "yanıt"], foreignFlags:0, localFlags: [0, 0, 0] },
 	"recycling": { locals: ["geri dönüşüm"], foreignFlags:0, localFlags: [0] }, // YOK

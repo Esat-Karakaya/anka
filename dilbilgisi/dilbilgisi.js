@@ -62,7 +62,7 @@ export function replaceForeign(word) {
 	
 	for (let index = 0; index < replaceInfo.locals.length; index++) {
 		const local = replaceInfo.locals[index];
-		const localFlags = replaceInfo.locals[index];
+		const localFlags = replaceInfo.localFlags[index];
 		
 		const replaceSingle = {
 			rootForeign: replaceInfo.rootForeign,
