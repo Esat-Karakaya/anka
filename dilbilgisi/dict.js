@@ -30,7 +30,7 @@ export const words = {
 	"brifing": { locals: ["özetlem", "bilgilendirme"], foreignFlags:0, localFlags: [0, 0] },
 	"brifing al": { locals: ["bilgilen"], foreignFlags:0b101, localFlags: [0] },  // FIIL
 	"brifing ver": { locals: ["bilgilendir"], foreignFlags:0b101, localFlags: [0] },  // FIIL
-	"brifing yap": { locals: ["özetle"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL // YOK
+	"brifing yap": { locals: ["bilgilendir"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL // YOK
 	"bye": { locals: ["görüşürüz"], foreignFlags:0, localFlags: [0] }, // YOK
 	"bye bye": { locals: ["güle güle"], foreignFlags:0, localFlags: [0] }, // YOK
 	"catering": { locals: ["yemek hizmet"], foreignFlags:0, localFlags: [1] },

@@ -4,10 +4,10 @@ import { autoClean, checkClean, fixSite } from "./extras/JSdependencies.js";
 // Save default settings
 chrome.runtime.onInstalled.addListener(({ reason }) => {
 	if (reason === 'install') {
-	chrome.storage.local.set({
-		defReplaceMode: "suggest",
-		defSiteFixMode: "on"
-	});
+		chrome.storage.local.set({
+			defReplaceMode: "suggest",
+			defSiteFixMode: "on"
+		});
 	}
 });
 
