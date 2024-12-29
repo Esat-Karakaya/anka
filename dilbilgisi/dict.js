@@ -91,6 +91,7 @@ export const words = {
 	"kriter": { locals: ["ölçüt"], foreignFlags:0, localFlags: [0] },
 	"laptop": { locals: ["dizüstü"], foreignFlags:0, localFlags: [0] },
 	"link": { locals: ["bağlantı"], foreignFlags:0, localFlags: [0] },
+	"logo": { locals: ["imlek"], foreignFlags:0, localFlags: [0] },
 	"mantalite": { locals: ["anlayış"], foreignFlags:0, localFlags: [0] },
 	"manipülasyon": { locals: ["yönlendirme"], foreignFlags:0, localFlags: [0] },
 	"manipüle et": { locals: ["yönlendir"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
@@ -143,7 +144,7 @@ export const words = {
 	"straplez": { locals: ["askısız giysi"], foreignFlags:0, localFlags: [0] },
 	"subjektif": { locals: ["öznel"], foreignFlags:0, localFlags: [0] },
 	"trend": { locals: ["eğilim"], foreignFlags:0, localFlags: [0] },
-	"web": { locals: ["ağ"], foreignFlags:0, localFlags: [0] }, // YOK
+//	"web": { locals: ["ağ"], foreignFlags:0, localFlags: [0] }, // YOK
 };
 
 export const twoWords={
