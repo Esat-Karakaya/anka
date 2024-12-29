@@ -20,7 +20,5 @@ export async function addWordCnt(addVal, site) {
 
 	storage.generalFixCnt = cntCache.general = cnt + addVal;
 
-	console.log("hello", storage)
-
 	local.set(storage);
 }
