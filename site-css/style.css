@@ -102,7 +102,7 @@
 /* selections */
 .showReplacement select{all: unset;}
 .showReplacement select:not(select[disabled]){
-	background-color: white;
+	background-color: rgb(255, 255, 255);
 	border: 2px solid black;
 	border-radius: 3px;
 	padding: 3px;
@@ -111,7 +111,7 @@
 	user-select: none;
 	transition: border-radius .2s;
 }
-.showReplacement select:active
+.showReplacement select:not(select[disabled]):active
 { border-radius: 10px }
 
 .showReplacement del{

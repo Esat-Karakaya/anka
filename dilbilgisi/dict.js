@@ -34,7 +34,7 @@ export const words = {
 	"bye": { locals: ["görüşürüz"], foreignFlags:0, localFlags: [0] }, // YOK
 	"bye bye": { locals: ["güle güle"], foreignFlags:0, localFlags: [0] }, // YOK
 	"catering": { locals: ["yemek hizmet"], foreignFlags:0, localFlags: [1] },
-	"center": { locals: ["merkez"], foreignFlags:0, localFlags: [0] },
+	"center": { locals: ["merkez"], foreignFlags:0, localFlags: [0], pronounce: "sentır" },
 	"cool": { locals: ["havalı"], foreignFlags:0, localFlags: [0] }, // YOK
 	"counter": { locals: ["sayaç"], foreignFlags:0, localFlags: [0] }, // YOK
 	"cv": { locals: ["özgeçmiş"], foreignFlags:0, localFlags: [0], pronounce: "sivi", },  // YOK
@@ -116,6 +116,7 @@ export const words = {
 	"partikül": { locals: ["parçacık"], foreignFlags:0, localFlags: [0] },
 	"partiküllü": { locals: ["parçacıklı"], foreignFlags:0, localFlags: [0] },
 	"perspektif": { locals: ["bakış açı", "görünge",], foreignFlags:0, localFlags: [1, 0] },
+	"performans": { locals: ["başarım",], foreignFlags:0, localFlags: [0] },
 	"pesimist": { locals: ["kötümser"], foreignFlags:0, localFlags: [0] },
 	"pozisyon": { locals: ["konum", "durum"], foreignFlags:0, localFlags: [0, 0] },
 	"prestij": { locals: ["saygınlık"], foreignFlags:0, localFlags: [0] },
