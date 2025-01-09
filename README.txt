@@ -4,11 +4,11 @@ Bilinen hatalar:
 * Uzantıları yönet sayfasında logo gözükmüyor
 * mı, mi, mu, mü soru ekleri değiştirilmiyor
 * ikiden fazla kelimeden oluşan "dizayn ede ede" gibi kelimelerin sadece ilk ikisine bakılıyor
+* dizayn ve perspektif kelimesi doğrudan değiştirilirse düzeltilen kelime sayısı fazladan hesaplanıyor
+* önerilen kelime sayısı tutulmuyor
 
 Geliştirilebilir yerler:
 * Site-fix ve auto-fix yabancı kelimeyi sadece tek bir kelimeyle çevirir. Ancak eklenti yine de olabilecek tüm hesaplamaları yaparak gereksiz işlem yapar
-* Safari desteği yok
-* çoğu yabancı kelimenin tüm karşılıkları yok
-
-* Sözlükteki kelimeler TDK'de var mı denetlenecek eğer yoksa kalın sözlükte denetlenecek
-* engellenen kelime sayısı gösterilebilir
+* düzeltme penceresi kısayol ile yapılabilir
+* sayfa için düzeltme düğmesi ve onun açılma kısayolu yapılabilir
+* doğrulama düğmesi sayfanın alt köşesinde bulunabilir
