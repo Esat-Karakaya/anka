@@ -20,7 +20,7 @@ export const words = {
 	"ambiyans": { locals: ["hava", "tarz"], foreignFlags:0, localFlags: [0, 0] },
 	"ambulans": { locals: ["cankurtaran"], foreignFlags:0, localFlags: [0] },
 	"analiz": { locals: ["çözümleme"], foreignFlags:0, localFlags: [0] },
-	"analiz et": { locals: ["çözümle, değerlendir"], foreignFlags:0b011, localFlags: [0b00, 0b00] },  // FIIL
+	"analiz et": { locals: ["değerlendir", "çözümle"], foreignFlags:0b011, localFlags: [0b00, 0b00] },  // FIIL
 	"anksiyete": { locals: ["kaygı bozukluk"], foreignFlags:0, localFlags: [1] },
 	"anons": { locals: ["duyuru", "sesli duyuru"], foreignFlags:0, localFlags: [0, 0] },
 	"anons et": { locals: ["duyur"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
@@ -57,6 +57,9 @@ export const words = {
 	"emperyalizm": { locals: ["yayılmacılık", "yayılımcılık"], foreignFlags:0, localFlags: [0b00, 0b00] },
 	"empoze et": { locals: ["dayat"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"emergency": { locals: ["acil"], foreignFlags:0, localFlags: [0] }, // YOK
+	"ekonomi": { locals: ["iktisat", "tutum"], foreignFlags:0, localFlags: [0, 0] },
+	"ekonomik": { locals: ["iktisadi"], foreignFlags:0, localFlags: [0] },
+	"ekonomist": { locals: ["iktisatçı"], foreignFlags:0, localFlags: [0] },
 	"ekstra": { locals: ["fazladan", "üstün nitelikli", "en iyi"], foreignFlags:0, localFlags: [0, 0, 0] },
 	"extra": { locals: ["fazladan", "üstün nitelikli", "en iyi"], foreignFlags:0, localFlags: [0, 0, 0] },
 	"entegre ol": { locals: ["bütünleş"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
