@@ -4,9 +4,6 @@ Bilinen hatalar:
 * Uzantıları yönet sayfasında logo gözükmüyor
 * mı, mi, mu, mü soru ekleri değiştirilmiyor
 * ikiden fazla kelimeden oluşan "dizayn ede ede" gibi kelimelerin sadece ilk ikisine bakılıyor
-* dizayn ve perspektif kelimesi doğrudan değiştirilirse düzeltilen kelime sayısı fazladan hesaplanıyor
-* önerilen kelime sayısı tutulmuyor
-* "laptopun" kelimesi "dizüstünün" diye de çevrilmesi gerekir.
 
 Geliştirilebilir yerler:
 * Site-fix ve auto-fix yabancı kelimeyi sadece tek bir kelimeyle çevirir. Ancak eklenti yine de olabilecek tüm hesaplamaları yaparak gereksiz işlem yapar
