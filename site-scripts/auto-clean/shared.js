@@ -21,6 +21,8 @@ function comparator(a, b) {
 function fixTxt(str, loopable) {
 	let tobefixed=str;
 	for (const pair of loopable) {
+		callAddWordCnt(tobefixed, pair[0]);
+
 		tobefixed = tobefixed.replaceAll(pair[0], pair[1]);
 	}
 
@@ -59,6 +61,12 @@ function seeAlternative(str, alternatives) {
 		}
 	}
 	return false;
+}
+
+function callAddWordCnt(mainStr, subStr) {
+	// count the number of appearances
+	const cnt = (mainStr.match(new RegExp(subStr, 'gi')) || []).length;
+	addWordCnt(cnt, window.location.hostname);
 }
 
 const PUNCTUATIONS = new Set([
