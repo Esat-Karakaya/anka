@@ -110,7 +110,7 @@ export const words = {
 	"offline": { locals: ["çevrim dış"], foreignFlags:0, localFlags: [1] },
 	"okey": { locals: ["tamam"], foreignFlags:0, localFlags: [0] },
 	"okeyle": { locals: ["onayla"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL
-	"online": { locals: ["çevrimiç"], foreignFlags:0, localFlags: [1] },
+	"online": { locals: ["çevrimiçi"], foreignFlags:0, localFlags: [1] },
 	"opsiyonel": { locals: ["isteğe bağlı"], foreignFlags:0, localFlags: [0] },
 	"optimist": { locals: ["iyimser"], foreignFlags:0, localFlags: [0] },
 	"orijinal": { locals: ["özgün"], foreignFlags:0, localFlags: [0] },

@@ -8,7 +8,9 @@ async function handleBody() {
 
 	const contentText = getTexts();
 
-	const alternatives = await textForeignInfo(contentText);
+	const alternatives =
+	await textForeignInfo(contentText, false, true); // get only one replacement and count all foreigns
+
 	const sorted = sortedLoopable(alternatives);
 	const replacer = returnReplacer(sorted);
 

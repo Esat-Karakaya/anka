@@ -4,7 +4,7 @@ import { isForeign, replaceForeign } from "./dilbilgisi.js";
 
 // returns alternatives for used forign word roots
 // and original form of the foreign roots
-export function textForeignInfo(text, getMulti) {
+export function textForeignInfo(text, getMulti, countWords) {
 	let cnt = 0;
 	const words = arrayifyText(text);
 	const replacements = {} // {dizaynın: ["tasarımın"], perspektifini: ["bakış açını", "bakış açısını"]}
@@ -33,14 +33,15 @@ export function textForeignInfo(text, getMulti) {
 		replacements[foreign] = [...possibleLocals];
 
 		if (!getMulti){
-			cnt++;
-
 			// a single word is needed
 			replacements[foreign] =
 			replacements[foreign][0]
 		}
+
+		// count found foreign words
+		if (countWords) cnt++;
 	}
-	if (!getMulti)
+	if (countWords)
 		addWordCnt(cnt);
 
 	return replacements;

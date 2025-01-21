@@ -83,3 +83,10 @@ if (hostname.includes("."))
 	info += " " + siteInfo;
 
 statistics.textContent = info;
+
+// RESET BUTTON
+const resetBtn=document.getElementById("resetBtn");
+resetBtn.addEventListener("click", ()=>{
+	chrome.storage.local
+	.set({ generalFixCnt: 0, });
+})

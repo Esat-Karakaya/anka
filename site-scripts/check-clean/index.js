@@ -33,7 +33,7 @@ function addGui(focused, id) { // mutations
 	};
 	const selectedForeigns = Object.create(clearPrototype);
 
-	const gui = newGui(whenVisible, id, () => localizeText(focused, selectedForeigns));
+	const gui = newGui(whenVisible, id, applyHandler);
 
 	async function whenVisible() { // when popover is visible
 		const element = 
@@ -52,5 +52,18 @@ function addGui(focused, id) { // mutations
 			selecteds: selectedForeigns,
 		});
 	}
+
+	// When apply button is clicked
+	function applyHandler() {
+		// fix writable element
+		localizeText(focused, selectedForeigns);
+
+		// Count number of fixed words
+		const foreignCnt=Object.keys(selectedForeigns).length;
+		const hostname=window.location.hostname;
+		addWordCnt(foreignCnt, hostname);
+	}
+
 	focused.before(gui);
 }
+
