@@ -93,7 +93,7 @@ export const words = {
 	"konsensüs": { locals: ["uzlaşma"], foreignFlags:0, localFlags: [0] },
 	"kreatif": { locals: ["yaratıcı"], foreignFlags:0, localFlags: [0] },
 	"kriter": { locals: ["ölçüt"], foreignFlags:0, localFlags: [0] },
-	"laptop": { locals: ["dizüstü"], foreignFlags:0, localFlags: [0] },
+	"laptop": { locals: ["dizüstü bilgisayar"], foreignFlags:0, localFlags: [0] },
 	"link": { locals: ["bağlantı"], foreignFlags:0, localFlags: [0] },
 	"logo": { locals: ["imlek"], foreignFlags:0, localFlags: [0] },
 	"mantalite": { locals: ["anlayış"], foreignFlags:0, localFlags: [0] },
