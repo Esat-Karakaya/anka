@@ -20,8 +20,9 @@ export function disectNoun(toWord, fromWord, wordState="kök", foreign=true) {
 		const newWord = suffixAdder(fromWord, additionalInfo);
 
 		if (newWord===toWord) {
-			delete additionalInfo.yumuşamama; // prop deleted because it only applies to foreign word
-			possibleRoutes.push([[suffixAdder, newSuffix, additionalInfo]]); 
+			let deletedYumuşamama = {...additionalInfo};
+			delete deletedYumuşamama.yumuşamama // prop deleted because it only applies to foreign word
+			possibleRoutes.push([[suffixAdder, newSuffix, deletedYumuşamama]]); 
 		}
 
 		else if (newWord===toWord.slice(0, newWord.length)) {
@@ -30,8 +31,9 @@ export function disectNoun(toWord, fromWord, wordState="kök", foreign=true) {
 			if (!attempt) continue;
 
 			for (const route of attempt) {
-				delete additionalInfo.yumuşamama;
-				route.push([suffixAdder, newSuffix, additionalInfo])
+				let deletedYumuşamama = {...additionalInfo};
+				delete deletedYumuşamama.yumuşamama // prop deleted because it only applies to foreign word
+				route.push([suffixAdder, newSuffix, deletedYumuşamama])
 				possibleRoutes.push(route);
 			}
 		}
