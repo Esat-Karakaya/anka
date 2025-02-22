@@ -26,6 +26,7 @@ export const words = {
 	"anons et": { locals: ["duyur"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
 	"anormal": { locals: ["düzgüsüz"], foreignFlags:0, localFlags: [0, 0], pronounce:"anormel" },
 	"antipatik": { locals: ["sevimsiz"], foreignFlags:0, localFlags: [0] },
+	"avantaj": { locals: ["üstünlük", "kazanım", "yarar"], foreignFlags:0, localFlags: [0,0,0] },
 	"bug": { locals: ["yazılım hata"], foreignFlags:0, localFlags: [1], pronounce:"bag" }, // YOK
 	"bodyguard": { locals: ["koruma"], foreignFlags:0, localFlags: [0] },
 	"brifing": { locals: ["özetlem", "bilgilendirme"], foreignFlags:0, localFlags: [0, 0] },
@@ -102,6 +103,7 @@ export const words = {
 	"manipüle ol": { locals: ["yönlendiril"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
 	"manipüle olun": { locals: ["yönlendiril"], foreignFlags:0b101, localFlags: [0b00] },  // FIIL
 	"motivasyon": { locals: ["isteklendirme", "güdüleme"], foreignFlags:0, localFlags: [0, 0] },
+	"jüri": { locals: ["seçiciler kurul", "hakem heyet"], foreignFlags:0, localFlags: [1, 1] },
 	"monoton": { locals: ["tekdüze"], foreignFlags:0, localFlags: [0] },
 	"nickname": { locals: ["takma ad"], foreignFlags:0, localFlags: [1] },
 	"normal": { locals: ["olağan"], foreignFlags:0, localFlags: [0] },
@@ -129,6 +131,9 @@ export const words = {
 	"print out": { locals: ["çıktı"], foreignFlags:0, localFlags: [0] },
 	"propaganda": { locals: ["yaymaca"], foreignFlags:0, localFlags: [0] },
 	"provoke et": { locals: ["kışkırt"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
+	"psikiyatr": { locals: ["ruh hekim", "ruh doktor", "akıl doktor"], foreignFlags:0b0, localFlags: [0b1, 0b1, 0b1] },
+	"psikiyatri": { locals: ["ruh hekimlik"], foreignFlags:0b0, localFlags: [0b1] },
+	"psikiyatrist": { locals: ["ruh hekim", "ruh doktor", "akıl doktor"], foreignFlags:0b0, localFlags: [0b1, 0b1, 0b1] },
 	"randıman": { locals: ["verim"], foreignFlags:0, localFlags: [0] },
 	"reaksiyon": { locals: ["tepki", "tepkime", "yanıt"], foreignFlags:0, localFlags: [0, 0, 0] },
 	"recycling": { locals: ["geri dönüşüm"], foreignFlags:0, localFlags: [0] }, // YOK

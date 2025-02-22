@@ -10,3 +10,7 @@ Geliştirilebilir yerler:
 * doğrulama düğmesi sayfanın alt köşesinde bulunabilir
 * Doğruluk yüzdesi ölçülebilir (hem kütüphanenin hem de eklentinin)
 * Yapım ekleri desteği gelebilir
+
+
+To run in Firefox Android:
+	web-ext run -t firefox-android --android-device=XXX
