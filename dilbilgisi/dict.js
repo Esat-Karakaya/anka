@@ -21,6 +21,9 @@ export const words = {
 	"ambulans": { locals: ["cankurtaran"], foreignFlags:0, localFlags: [0] },
 	"analiz": { locals: ["çözümleme"], foreignFlags:0, localFlags: [0] },
 	"analiz et": { locals: ["değerlendir", "çözümle"], foreignFlags:0b011, localFlags: [0b00, 0b00] },  // FIIL
+	"animasyon": { locals: ["canlandırma"], foreignFlags:0, localFlags: [0] },
+	"animatör": { locals: ["canlandırıcı"], foreignFlags:0, localFlags: [0] },
+	"animatörlük": { locals: ["canlandırıcılık"], foreignFlags:0, localFlags: [0] },
 	"anksiyete": { locals: ["kaygı bozukluk"], foreignFlags:0, localFlags: [1] },
 	"anons": { locals: ["duyuru", "sesli duyuru"], foreignFlags:0, localFlags: [0, 0] },
 	"anons et": { locals: ["duyur"], foreignFlags:0b011, localFlags: [0b00] },  // FIIL
@@ -112,7 +115,7 @@ export const words = {
 	"offline": { locals: ["çevrim dış"], foreignFlags:0, localFlags: [1] },
 	"okey": { locals: ["tamam"], foreignFlags:0, localFlags: [0] },
 	"okeyle": { locals: ["onayla"], foreignFlags:0b001, localFlags: [0b00] },  // FIIL
-	"online": { locals: ["çevrimiçi"], foreignFlags:0, localFlags: [1] },
+	"online": { locals: ["çevrim iç"], foreignFlags:0, localFlags: [1], pronounce:"layn" },
 	"opsiyonel": { locals: ["isteğe bağlı"], foreignFlags:0, localFlags: [0] },
 	"optimist": { locals: ["iyimser"], foreignFlags:0, localFlags: [0] },
 	"orijinal": { locals: ["özgün"], foreignFlags:0, localFlags: [0] },
