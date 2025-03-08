@@ -11,7 +11,6 @@ Geliştirilebilir yerler:
 * Doğruluk yüzdesi ölçülebilir (hem kütüphanenin hem de eklentinin)
 * Yapım ekleri desteği gelebilir
 
-
 To run in Firefox Android:
 	web-ext run -t firefox-android --android-device=XXX
 	example: web-ext run -t firefox-android --android-device=R9JNB06M45J
